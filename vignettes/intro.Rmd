@@ -1,0 +1,142 @@
+---
+title: "Create and Manipulate BioCompute Objects with R"
+author: "Nan Xiao <<nan.xiao@sevenbridges.com>>"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_document:
+    toc: true
+    toc_float: false
+    toc_depth: 4
+    number_sections: true
+    highlight: "pygments"
+    css: "custom.css"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{An Introduction to BioCompute Objects with R}
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = "")
+```
+
+# Introduction
+
+The biocompute package offers a toolkit to create, validate, and export BioCompute Objects (BCO). This package follows the tidyverse design principles and can be seamlessly used together with the other packages with similar designs.
+
+```{r}
+library("biocompute")
+```
+
+# Design for Reproducibility
+
+To ensure better reproducibility, the composing and validation functions in this package are versioned. This means the BCO creation and validation can be done with fixed versions of the BioCompute Object specification if needed.
+
+For example, to compose the provenance domain, one could use `compose_provenance()`, which is an alias to the current stable version of the specification. Alternatively, one could use a versioned function `compose_provenance_v1.3.0()`. As the specification evolves, functions for new spec versions can be added, and `compose_provenance()` might point to a newer version in the future, while `compose_provenance_v1.3.0()` will not change over time.
+
+The function `biocompute::versions()` tells the current and all available versions of the BioCompute Object specification supported in this package:
+
+```{r}
+biocompute::versions()
+```
+
+# Compose BioCompute Object Domains
+
+The package takes structured, native R data structures (vector or data frames), and turns them into BioCompute Objects. The functions `compose_*()` and `biocompute::compose()` are used to compose BioCompute Object domains and the final BioCompute Object.
+
+For example, to compose the provenance domain, we first prepare the data as data frames or vectors with a fixed set of variables names, and feed them into `compose_provenance()`:
+
+```{r}
+name <- "HCV1a ledipasvir resistance SNP detection"
+version <- "1.0.0"
+review <- data.frame(
+  "status" = c("approved", "approved"),
+  "reviewer_comment" = c(
+    "Approved by [company name] staff. Waiting for approval from FDA Reviewer",
+    "The revised BCO looks fine"
+  ),
+  "date" = c(
+    as.POSIXct("2017-11-12T12:30:48", format = "%Y-%m-%dT%H:%M:%S", tz = "EST"),
+    as.POSIXct("2017-12-12T12:30:48", format = "%Y-%m-%dT%H:%M:%S", tz = "America/Los_Angeles")
+  ),
+  "reviewer_name" = c("Jane Doe", "John Doe"),
+  "reviewer_affiliation" = c("Seven Bridges Genomics", "U.S. Food and Drug Administration"),
+  "reviewer_email" = c("example@sevenbridges.com", "example@fda.gov"),
+  "reviewer_contribution" = c("curatedBy", "curatedBy"),
+  "reviewer_orcid" = c("https://orcid.org/0000-0000-0000-0000", NA),
+  stringsAsFactors = FALSE
+)
+
+derived_from <- "https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"
+obsolete_after <- as.POSIXct("2018-11-12T12:30:48", format = "%Y-%m-%dT%H:%M:%S", tz = "EST")
+
+embargo <- c(
+  "start_time" = as.POSIXct("2017-10-12T12:30:48", format = "%Y-%m-%dT%H:%M:%S", tz = "EST"),
+  "end_time" = as.POSIXct("2017-11-12T12:30:48", format = "%Y-%m-%dT%H:%M:%S", tz = "EST")
+)
+
+created <- as.POSIXct("2017-01-20T09:40:17", format = "%Y-%m-%dT%H:%M:%S", tz = "EST")
+
+modified <- as.POSIXct("2019-05-10T09:40:17", format = "%Y-%m-%dT%H:%M:%S", tz = "EST")
+
+contributors <- data.frame(
+  "name" = c("Jane Doe", "John Doe"),
+  "affiliation" = c("Seven Bridges Genomics", "U.S. Food and Drug Administration"),
+  "email" = c("example@sevenbridges.com", "example@fda.gov"),
+  "contribution" = I(list(c("createdBy", "curatedBy"), c("authoredBy"))),
+  "orcid" = c("https://orcid.org/0000-0000-0000-0000", NA),
+  stringsAsFactors = FALSE
+)
+
+license <- "https://creativecommons.org/licenses/by/4.0/"
+
+compose_provenance(
+  name, version, review, derived_from, obsolete_after,
+  embargo, created, modified, contributors, license
+) %>% convert_json()
+```
+
+# Compose BioCompute Objects
+
+After all the domains are composed, use `compose_tlf()` to compose the top level fields,  as all the domains will be used to calculate an SHA-256 checksum. Next, use `biocompute::compose()` to compose the complete BioCompute Object.
+
+```{r}
+tlf <- compose_tlf(
+  compose_provenance(), compose_usability(), compose_extension(),
+  compose_description(), compose_execution(), compose_parametric(),
+  compose_io(), compose_error()
+)
+biocompute::compose(
+  tlf,
+  compose_provenance(), compose_usability(), compose_extension(),
+  compose_description(), compose_execution(), compose_parametric(),
+  compose_io(), compose_error()
+) %>% convert_json()
+```
+
+# Convert to JSON or YAML
+
+As we have already seen above, use `convert_json()` or `convert_yaml()` to convert the domain objects or BCO objects into the JSON or YAML format.
+
+# Validate BioCompute Objects
+
+To make sure that a BioCompute Object was not tampered and follows the standard, we can validate them by the checksum, or validate them against the BCO JSON schemas. For example
+
+```{r}
+bco <- tempfile(fileext = ".json")
+generate_example("HCV1a") %>%
+  convert_json() %>%
+  export_json(bco)
+bco %>% validate_checksum()
+```
+
+```{r}
+bco <- tempfile(fileext = ".json")
+generate_example("HCV1a") %>%
+  convert_json() %>%
+  export_json(bco)
+bco %>% validate_schema()
+```
+
+# Export BioCompute Objects
+
+The biocompute package offers a few convinient functions for exporting the BioCompute Objects to a JSON (`export_json()`), PDF, HTML, or Word document (`export_pdf()`, `export_html()`, `export_word()`), and the capability to export (upload) to cloud-based platforms (`export_sevenbridges()`). Check the function documentation for details.

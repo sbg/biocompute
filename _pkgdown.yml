@@ -1,0 +1,43 @@
+template:
+  params:
+    ganalytics: UA-87185344-1
+
+reference:
+  - title: "Compose"
+    contents:
+      - compose
+  - title: "Compose Domains"
+    contents:
+      - compose_tlf
+      - compose_provenance
+      - compose_usability
+      - compose_extension
+      - compose_fhir
+      - compose_scm
+      - compose_description
+      - compose_execution
+      - compose_parametric
+      - compose_io
+      - compose_error
+  - title: "Convert"
+    contents:
+      - convert_json
+      - convert_yaml
+  - title: "Export"
+    contents:
+      - export_json
+      - export_pdf
+      - export_html
+      - export_word
+      - export_sevenbridges
+  - title: "Validate"
+    contents:
+      - validate_checksum
+      - validate_schema
+  - title: "Utilities"
+    contents:
+      - generate_id
+      - generate_example
+      - is_bco
+      - is_domain
+      - versions

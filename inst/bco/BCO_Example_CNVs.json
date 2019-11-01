@@ -1,0 +1,335 @@
+{
+    "bco_id": "http://biocomputeobject.org/BCO_000500",
+    "checksum": "d0cb5585d064112163fe1da3b1f5e890",
+    "bco_spec_version": "1.3.0",
+    "provenance_domain": {
+        "name": "WGS Simulation of DUF1220 Regions",
+        "version": "1.0.0",
+        "license": "MIT",
+        "created": "2019-08-12T19:11:18.369303",
+        "modified": "2019-08-16T17:00:00.113218",
+        "contributors": [
+            {
+                "name": "Charles Darwin",
+                "orcid": "",
+                "affiliation": "GWU",
+                "contribution": [
+                    "createdBy"
+                ],
+                "email": "cdarwin@example.edu"
+            }
+        ]
+    },
+    "usability_domain": [
+        "https://github.com/dpastling/DUF1220_simulation"
+    ],
+    "extension_domain": {
+        "git_repository": "https://github.com/dpastling/DUF1220_simulation"
+        }
+    },
+    "description_domain": {
+        "keywords": [
+            "Genome",
+            "Genomics",
+            "Simulation",
+            "Alignment",
+            "Alignment-Strategies",
+            "copy-number-variation",
+            "cnv",
+            "DUF1220"
+        ],
+        "pipeline_steps": [
+            {
+                "name": "Spike-In Simulate Reads",
+                "version": "1.0.0",
+                "step_number": 0,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "1_simulate_readlengths.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_spikein/1_simulate_readlengths.sh",
+                            "filename": "1_simulate_readlengths.sh"
+                        }
+                    }
+                ],
+                "description": "This script simulates the reads for the 'spike-in' simulation. Single and paired-reads were randomly sampled from the reference gene (hg38.) To simulate duplication or deletion events, the number of reads were varied to simulate one to ten copies of each DUF1220 domain. To obtain reads for a single domain, reads overlapping a DUF1220 domain of interest were isolated and aligned back to the genome using each of the alignment strategies below."
+            },
+            {
+                "name": "Spike-In Trim and Filter Reads",
+                "version": "1.0.0",
+                "step_number": 1,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "2_trim_spikein.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_spikein/2_trim_spikein.sh",
+                            "filename": "2_trim_spikein.sh"
+                        }
+                    }
+                ],
+                "description": "This script filters and trims reads down to 100 bp to remove low quality bases from the ends."
+            },
+            {
+                "name": "Spike-In Align Reads to the Genome Reference",
+                "version": "1.0.0",
+                "step_number": 2,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "bowtie2_spikein.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_spikein/bowtie2_spikein.sh",
+                            "filename": "bowtie2_spikein.sh"
+                        }
+                    }
+                ],
+                "description": "Choose an alignment strategy for alignment to the human genome reference. This workflow chose Bowtie2, finds the 'best' alignment for each read."
+            },
+            {
+                "name": "Calculate Spike-In Coverage for each DUF1220 domain",
+                "version": "1.0.0",
+                "step_number": 3,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "make_bed_spikein.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_spikein/make_bed_spikein.sh",
+                            "filename": "make_bed_spikein.sh"
+                        }
+                    }
+                ],
+                "description": "This script calculates coverage for each DUF1220 domain."
+            },
+            {
+                "name": "Baseline Simulate Reads",
+                "version": "1.0.0",
+                "step_number": 4,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "1_simulate_replicates.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_baseline/1_simulate_replicates.sh",
+                            "filename": "1_simulate_replicates.sh"
+                        }
+                    }
+                ],
+                "description": "This script simulates the reads for the baseline simulation. Single and paired-reads were randomly sampled from the reference gene (hg38.) To simulate duplication or deletion events, the number of reads were varied to simulate one to ten copies of each DUF1220 domain. To obtain reads for a single domain, reads overlapping a DUF1220 domain of interest were isolated and aligned back to the genome using each of the alignment strategies below."
+            },
+            {
+                "name": "Baseline Trim and Filter Reads",
+                "version": "1.0.0",
+                "step_number": 5,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "2_trim_replicates.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_baseline/2_trim_replicates.sh",
+                            "filename": "2_trim_replicates.sh"
+                        }
+                    }
+                ],
+                "description": "This script filters and trims reads down to 100 bp to remove low quality bases from the ends."
+            },
+            {
+                "name": "Baseline Align Reads to the Genome Reference",
+                "version": "1.0.0",
+                "step_number": 6,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "bowtie2_replicates.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_baseline/bowtie2_replicates.sh",
+                            "filename": "bowtie2_replicates.sh"
+                        }
+                    }
+                ],
+                "description": "Choose an alignment strategy for alignment to the human genome reference. This workflow chose Bowtie2, finds the 'best' alignment for each read."
+            },
+            {
+                "name": "Calculate Baseline Coverage for each DUF1220 Domain",
+                "version": "1.0.0",
+                "step_number": 7,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "make_bed_replicates.sh",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/simulation_baseline/make_bed_replicates.sh",
+                            "filename": "make_bed_replicates.sh"
+                        }
+                    }
+                ],
+                "description": "This script calculates coverage for each DUF1220 domain."
+            },
+            {
+                "name": "Analyze Results using R",
+                "version": "1.0.0",
+                "step_number": 8,
+                "input_list": [],
+                "output_list": [],
+                "prerequisite": [
+                    {
+                        "name": "spikein_analysis.R",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/analysis/spikein_analysis.R",
+                            "filename": "spikein_analysis.R"
+                        }
+                    },
+                    {
+                        "name": "replicate_analysis.R",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/analysis/replicate_analysis.R",
+                            "filename": "replicate_analysis.R"
+                        }
+                    },
+                    {
+                        "name": "load_data.R",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/analysis/load_data.R",
+                            "filename": "load_data.R"
+                        }
+                    },
+                    {
+                        "name": "normalize.R",
+                        "uri": {
+                            "access_time": "",
+                            "sha1_chksum": "",
+                            "uri": "https://github.com/dpastling/DUF1220_simulation/blob/master/code/analysis/normalize.R",
+                            "filename": "normalize.R"
+                        }
+                    }
+                ],
+                "description": "These scripts compile, parse, and analyze the results files in R. spikein_analysis.R processes the result files for the spikein simulation. replicate_analysis.R processes the result files for the baseline simulation. load_data.R gathers all of the result files into a single data frame. normalize.R normalizes the data depending which type of analysis was run."
+            }
+        ]
+    },
+    "execution_domain": {
+        "external_data_endpoints": [],
+        "environment_variables": {},
+        "script_driver": "",
+        "software_prerequisites": [
+            {
+                "name": "Bowtie2",
+                "version": "2.2.5",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "http://bowtie-bio.sourceforge.net/bowtie2/index.shtml",
+                    "filename": ""
+                }
+            },
+            {
+                "name": "Bedtools",
+                "version": "2.17.0",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "https://bedtools.readthedocs.io/en/latest/",
+                    "filename": ""
+                }
+            },
+            {
+                "name": "Samtools",
+                "version": "0.1.19-44428cd",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "http://samtools.sourceforge.net/",
+                    "filename": ""
+                }
+            },
+            {
+                "name": "mrsFAST-Ultra",
+                "version": "3.3.11",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "http://sfu-compbio.github.io/mrsfast/",
+                    "filename": ""
+                }
+            },
+            {
+                "name": "Bowtie1",
+                "version": "1.1.2",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "http://bowtie-bio.sourceforge.net/index.shtml",
+                    "filename": ""
+                }
+            },
+            {
+                "name": "Perl module: Math::Random",
+                "version": "",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "",
+                    "filename": ""
+                }
+            },
+            {
+                "name": "Perl module: Math::Complex",
+                "version": "",
+                "uri": {
+                    "access_time": "",
+                    "sha1_chksum": "",
+                    "uri": "",
+                    "filename": ""
+                }
+            }
+        ],
+        "script": []
+    },
+    "parametric_domain": [
+        {
+            "step": "",
+            "param": "",
+            "value": ""
+        }
+    ],
+    "io_domain": {
+        "input_subdomain": [],
+        "output_subdomain": []
+    },
+    "error_domain": {
+        "empirical_error": {},
+        "algorithmic_error": {}
+    }
+}
