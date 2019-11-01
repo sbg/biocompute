@@ -37,5 +37,7 @@ text <- c(
   )
 )
 
-text \%>\% compose_usability() \%>\% convert_json()
+text \%>\%
+  compose_usability() \%>\%
+  convert_json()
 }

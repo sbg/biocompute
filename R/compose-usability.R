@@ -29,7 +29,9 @@
 #'   )
 #' )
 #'
-#' text %>% compose_usability() %>% convert_json()
+#' text %>%
+#'   compose_usability() %>%
+#'   convert_json()
 compose_usability_v1.3.0 <- function(text = NULL) {
   if (is.null(text)) {
     text_vec <- character()
