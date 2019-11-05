@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -157,6 +157,9 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Logical. <code>TRUE</code> if the checksum matched, <code>FALSE</code> if not.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>An SHA-256 checksum is
@@ -171,8 +174,8 @@ in the validation results.</p>
 <span class='fu'><a href='generate_example.html'>generate_example</a></span>(<span class='st'>"HCV1a"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='convert_json.html'>convert_json</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='export_json.html'>export_json</a></span>(<span class='no'>bco</span>)
-<span class='no'>bco</span> <span class='kw'>%&gt;%</span> <span class='fu'>validate_checksum</span>()</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>Loading BioCompute Object</span><span> ───────────────────────────────────────────────────────────────
-#&gt; ── </span><span style='font-weight: bold;'>Validating Checksum</span><span> ─────────────────────────────────────────────────────────────────────
+<span class='no'>bco</span> <span class='kw'>%&gt;%</span> <span class='fu'>validate_checksum</span>()</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>Loading BioCompute Object</span><span> ─────────────────────────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>Validating Checksum</span><span> ───────────────────────────────────────────────────────────────────────────────────
 #&gt; Documented checksum: 31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243
 #&gt; Calculated checksum: 31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243
 #&gt; Documented and calculated checksum matched.</div></span></pre>
@@ -181,6 +184,7 @@ in the validation results.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

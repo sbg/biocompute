@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -159,15 +159,18 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Path to the output file</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>bco</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".json"</span>)
+    <pre class="examples"><div class='input'><span class='no'>file_json</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".json"</span>)
 <span class='fu'><a href='generate_example.html'>generate_example</a></span>(<span class='st'>"HCV1a"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='convert_json.html'>convert_json</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>export_json</span>(<span class='no'>bco</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='no'>bco</span>), <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='st'>"\n"</span>))</div><div class='output co'>#&gt; {
+  <span class='fu'>export_json</span>(<span class='no'>file_json</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='no'>file_json</span>), <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='st'>"\n"</span>))</div><div class='output co'>#&gt; {
 #&gt;   "bco_spec_version": "https://w3id.org/biocompute/1.3.0/",
-#&gt;   "bco_id": "https://biocompute.sbgenomics.com/bco/bb904e1c-6580-41d0-b83c-4de9eef8e748",
+#&gt;   "bco_id": "https://biocompute.sbgenomics.com/bco/6ddeffdc-2bb2-437f-b267-6ca76c7d934c",
 #&gt;   "checksum": "31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243",
 #&gt;   "provenance_domain": {
 #&gt;     "name": "HCV1a ledipasvir resistance SNP detection",
@@ -503,6 +506,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

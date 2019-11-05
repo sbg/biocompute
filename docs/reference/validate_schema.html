@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -157,6 +157,9 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>None</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>JSON schema validators for BCO domains and complete BCO based on
@@ -169,13 +172,13 @@ for specific JSON schemas.</p>
 <span class='fu'><a href='generate_example.html'>generate_example</a></span>(<span class='st'>"HCV1a"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='convert_json.html'>convert_json</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='export_json.html'>export_json</a></span>(<span class='no'>bco</span>)
-<span class='no'>bco</span> <span class='kw'>%&gt;%</span> <span class='fu'>validate_schema</span>()</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>0: Validating BioCompute Object</span><span> ─────────────────────────────────────────────────────────
+<span class='no'>bco</span> <span class='kw'>%&gt;%</span> <span class='fu'>validate_schema</span>()</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>0: Validating BioCompute Object</span><span> ───────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                                  field           message
 #&gt; 1 data.extension_domain.fhir_extension is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>1: Validating Provenance Domain</span><span> ─────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>1: Validating Provenance Domain</span><span> ───────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                 field                  message
@@ -186,10 +189,10 @@ for specific JSON schemas.</p>
 #&gt; 5        data.created must be date-time format
 #&gt; 6       data.modified must be date-time format
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>2: Validating Usability Domain</span><span> ──────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>2: Validating Usability Domain</span><span> ────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>3.1: Validating Extension Domain (FHIR Extension)</span><span> ───────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>3.1: Validating Extension Domain (FHIR Extension)</span><span> ─────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                   field           message
@@ -199,10 +202,10 @@ for specific JSON schemas.</p>
 #&gt; 4 data.fhir_resources.3 is the wrong type
 #&gt; 5 data.fhir_resources.4 is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>3.2: Validating Extension Domain (SCM Extension)</span><span> ────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>3.2: Validating Extension Domain (SCM Extension)</span><span> ──────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>4: Validating Description Domain</span><span> ────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>4: Validating Description Domain</span><span> ──────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                               field                  message
@@ -216,7 +219,7 @@ for specific JSON schemas.</p>
 #&gt; 8                     data.platform        is the wrong type
 #&gt; 9 data.pipeline_steps.0.step_number        is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>5: Validating Execution Domain</span><span> ──────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>5: Validating Execution Domain</span><span> ────────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                            field           message
@@ -225,13 +228,13 @@ for specific JSON schemas.</p>
 #&gt; 3 data.external_data_endpoints.1 is the wrong type
 #&gt; 4 data.external_data_endpoints.2 is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>6: Validating Parametric Domain</span><span> ─────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>6: Validating Parametric Domain</span><span> ───────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>7: Validating I/O Domain</span><span> ────────────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>7: Validating I/O Domain</span><span> ──────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>8: Validating Error Domain</span><span> ──────────────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>8: Validating Error Domain</span><span> ────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; </div></span></pre>
   </div>
@@ -239,6 +242,7 @@ for specific JSON schemas.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
