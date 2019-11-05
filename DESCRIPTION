@@ -1,7 +1,7 @@
 Package: biocompute
 Type: Package
-Title: Create and Manipulate 'BioCompute Objects'
-Version: 1.0.0
+Title: Create and Manipulate BioCompute Objects
+Version: 1.0.1
 Authors@R: c(
     person("Nan", "Xiao", email = "nan.xiao@sevenbridges.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0250-5673")),
@@ -11,8 +11,13 @@ Authors@R: c(
     person("Seven Bridges Genomics", role = c("cph", "fnd"))
     )
 Maintainer: Nan Xiao <nan.xiao@sevenbridges.com>
-Description: Tools to create, validate, and export 'BioCompute Objects'
-    <DOI:10.5731/pdajpst.2016.006734>.
+Description: Tools to create, validate, and export BioCompute Objects
+    described in King et al. (2019) <doi:10.17605/osf.io/h59uh>.
+    Users can encode information in data frames, and compose
+    BioCompute Objects from the domains defined by the standard.
+    A checksum validator and a JSON schema validator are provided.
+    This package also supports exporting BioCompute Objects as JSON,
+    PDF, HTML, or Word documents, and exporting to cloud-based platforms.
 License: AGPL-3 | file LICENSE
 VignetteBuilder: knitr
 URL: https://sbg.github.io/biocompute/, https://github.com/sbg/biocompute
