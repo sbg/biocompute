@@ -2,12 +2,16 @@
 % Please edit documentation in R/version.R
 \name{versions}
 \alias{versions}
-\title{Supported and available BCO specification versions}
+\title{BioCompute Object specification versions}
 \usage{
 versions()
 }
+\value{
+List of current and all available BioCompute Object
+specification versions supported by the package.
+}
 \description{
-Supported and available BCO specification versions
+BioCompute Object specification versions
 }
 \examples{
 versions()

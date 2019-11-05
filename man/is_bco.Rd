@@ -9,6 +9,9 @@ is_bco(x)
 \arguments{
 \item{x}{any object}
 }
+\value{
+Logical. \code{TRUE} if it is a BCO object, \code{FALSE} if not.
+}
 \description{
 Is this a BCO object?
 }

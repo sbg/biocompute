@@ -28,6 +28,9 @@ source code referenced. Should not start with \code{/}.}
 \item{scm_preview}{Character string. The full URI for the source code
 referenced by the BioCompute Object.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Compose BioCompute Object - SCM Extension (v1.3.0)
 }

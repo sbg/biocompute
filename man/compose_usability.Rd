@@ -14,6 +14,9 @@ compose_usability(text = NULL)
 improves search-ability, provide specific scientific use cases,
 and a description of the function of the object.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 The usability domain
 (\href{https://github.com/biocompute-objects/BCO_Specification/blob/master/usability-domain.md}{domain definition}).

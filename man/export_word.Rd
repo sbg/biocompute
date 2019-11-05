@@ -17,14 +17,18 @@ export_word(x, file, wrap = FALSE, linewidth = 80, ...)
 
 \item{...}{Additional parameters for \code{\link[rmarkdown]{render}}.}
 }
+\value{
+Path to the output file
+}
 \description{
 Export BioCompute Object as Word document
 }
 \examples{
 \dontrun{
 
+file_docx <- tempfile(fileext = ".docx")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
-  export_word("~/HCV1a.bco.docx")
+  export_word(file_docx)
 }
 }

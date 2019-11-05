@@ -16,6 +16,9 @@ Each row is one item in the empirical error subdomain.}
 \item{algorithmic}{Data frame. Variables include \code{key} and \code{value}.
 Each row is one item in the algorithmic subdomain.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 The error domain can be used to determine what range of input
 returns outputs that are within the tolerance level defined

@@ -18,6 +18,9 @@ Each row is one item in the input subdomain.}
 \code{mediatype}, \code{uri}, and \code{access_time}.
 Each row is one item in the output subdomain.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 This domain contains the list of global input and output files
 created by the computational workflow, excluding the intermediate files.

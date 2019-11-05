@@ -14,6 +14,9 @@ compose_extension(fhir = NULL, scm = NULL)
 
 \item{scm}{SCM extension domain composed by \code{\link{compose_scm}}.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Compose BioCompute Object - Extension Domain (v1.3.0)
 }

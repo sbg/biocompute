@@ -39,6 +39,9 @@ Each row is one item in the output subdomain.}
 useful to configure the execution environment on the
 target platform. Variables include \code{key} and \code{value}.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Compose BioCompute Object - Execution Domain (v1.3.0)
 }

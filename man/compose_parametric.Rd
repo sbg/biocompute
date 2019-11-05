@@ -14,6 +14,9 @@ compose_parametric(df = NULL)
 \code{value} (value of the parameters), and \code{step}
 (step number for each parameter).}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Non-default parameters customizing the computational flow
 which can affect the output of the calculations

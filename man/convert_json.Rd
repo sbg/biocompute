@@ -18,6 +18,9 @@ Default is \code{"string"}.}
 
 \item{...}{Additional parameters for \code{\link[jsonlite]{toJSON}}.}
 }
+\value{
+JSON string of the BioCompute Object
+}
 \description{
 Convert BioCompute Object or domain to JSON string
 }

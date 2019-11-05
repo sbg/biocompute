@@ -9,6 +9,9 @@ is_domain(x)
 \arguments{
 \item{x}{any object}
 }
+\value{
+Logical. \code{TRUE} if it is a domain object, \code{FALSE} if not.
+}
 \description{
 Is this a domain object?
 }

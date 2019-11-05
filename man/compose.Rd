@@ -30,6 +30,9 @@ compose(tlf, provenance, usability, extension, description, execution,
 
 \item{error}{Error domain}
 }
+\value{
+A list of class \code{bco}
+}
 \description{
 Compose BioCompute Object (v1.3.0)
 }

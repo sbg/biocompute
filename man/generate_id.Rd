@@ -9,6 +9,9 @@ generate_id(platform = c("sevenbridges"))
 \arguments{
 \item{platform}{Platform. Default is \code{"sevenbridges"}.}
 }
+\value{
+BioCompute Object ID
+}
 \description{
 Generate ID for the BioCompute Object
 }

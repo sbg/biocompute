@@ -9,6 +9,9 @@ generate_example(type = c("minimal", "HCV1a"))
 \arguments{
 \item{type}{Example type. Default is \code{"minimal"}.}
 }
+\value{
+Example BioCompute Object
+}
 \description{
 Generate example BioCompute Objects
 }

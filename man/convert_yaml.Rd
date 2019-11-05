@@ -11,6 +11,9 @@ convert_yaml(x, ...)
 
 \item{...}{Additional parameters for \code{\link[yaml]{as.yaml}}.}
 }
+\value{
+YAML string of the BioCompute Object
+}
 \description{
 Convert BioCompute Object or domain to YAML string
 }

@@ -19,6 +19,9 @@ FHIR server containing the resource.}
 \item{resources}{Data frame with two variables: \code{id} and \code{resource}.
 Each row is one item of resources to fetch from the endpoint.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Compose BioCompute Object - FHIR Extension (v1.3.0)
 }

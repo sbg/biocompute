@@ -26,19 +26,22 @@ Get the base URL from the platform's Developer Dashboard.}
 BCO file with the same name in that project (if any).
 If \code{FALSE}, will not overwrite.}
 }
+\value{
+Response of the file upload request
+}
 \description{
 Export BioCompute Object to Seven Bridges Platforms
 }
 \examples{
 \dontrun{
 
-bco <- tempfile(fileext = ".json")
+file_json <- tempfile(fileext = ".json")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
-  export_json(bco)
+  export_json(file_json)
 
 export_sevenbridges(
-  bco,
+  file_json,
   project = "rosalind_franklin/project_name",
   token = "your_api_auth_token",
   base_url = "https://cgc-api.sbgenomics.com/v2/"

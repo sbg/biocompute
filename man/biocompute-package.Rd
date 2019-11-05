@@ -4,10 +4,15 @@
 \name{biocompute-package}
 \alias{biocompute}
 \alias{biocompute-package}
-\title{biocompute: Create and Manipulate 'BioCompute Objects'}
+\title{biocompute: Create and Manipulate BioCompute Objects}
 \description{
-Tools to create, validate, and export 'BioCompute Objects'
-    <DOI:10.5731/pdajpst.2016.006734>.
+Tools to create, validate, and export BioCompute Objects
+    described in King et al. (2019) <doi:10.17605/osf.io/h59uh>.
+    Users can encode information in data frames, and compose
+    BioCompute Objects from the domains defined by the standard.
+    A checksum validator and a JSON schema validator are provided.
+    This package also supports exporting BioCompute Objects as JSON,
+    PDF, HTML, or Word documents, and exporting to cloud-based platforms.
 }
 \seealso{
 Useful links:

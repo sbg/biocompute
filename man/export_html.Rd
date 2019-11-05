@@ -17,14 +17,18 @@ export_html(x, file, wrap = FALSE, linewidth = 80, ...)
 
 \item{...}{Additional parameters for \code{\link[rmarkdown]{render}}.}
 }
+\value{
+Path to the output file
+}
 \description{
 Export BioCompute Object as HTML
 }
 \examples{
 \dontrun{
 
+file_html <- tempfile(fileext = ".html")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
-  export_html("~/HCV1a.bco.html")
+  export_html(file_html)
 }
 }

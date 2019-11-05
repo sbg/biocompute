@@ -11,13 +11,16 @@ export_json(x, file)
 
 \item{file}{JSON file path}
 }
+\value{
+Path to the output file
+}
 \description{
 Export BioCompute Object as JSON
 }
 \examples{
-bco <- tempfile(fileext = ".json")
+file_json <- tempfile(fileext = ".json")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
-  export_json(bco)
-cat(paste(readLines(bco), collapse = "\\n"))
+  export_json(file_json)
+cat(paste(readLines(file_json), collapse = "\\n"))
 }

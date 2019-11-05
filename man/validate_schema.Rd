@@ -12,6 +12,9 @@ validate_schema(file)
 \arguments{
 \item{file}{Path to the BCO JSON file}
 }
+\value{
+None
+}
 \description{
 BioCompute Objects schema validator (v1.3.0)
 }

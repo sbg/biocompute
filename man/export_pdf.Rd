@@ -17,14 +17,18 @@ export_pdf(x, file, wrap = FALSE, linewidth = 80, ...)
 
 \item{...}{Additional parameters for \code{\link[rmarkdown]{render}}.}
 }
+\value{
+Path to the output file
+}
 \description{
 Export BioCompute Object as PDF
 }
 \examples{
 \dontrun{
 
+file_pdf <- tempfile(fileext = ".pdf")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
-  export_pdf("~/HCV1a.bco.pdf")
+  export_pdf(file_pdf)
 }
 }

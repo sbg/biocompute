@@ -12,6 +12,9 @@ validate_checksum(file)
 \arguments{
 \item{file}{Path to the BCO JSON file}
 }
+\value{
+Logical. \code{TRUE} if the checksum matched, \code{FALSE} if not.
+}
 \description{
 BioCompute Objects checksum validator (v1.3.0)
 }

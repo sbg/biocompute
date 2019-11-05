@@ -41,6 +41,9 @@ of their contribution types.}
 
 \item{license}{Character string. Licence URL or other licence information (text).}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Compose BioCompute Object - Provenance Domain (v1.3.0)
 }

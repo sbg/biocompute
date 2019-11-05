@@ -39,6 +39,9 @@ Variables include \code{step_number}, \code{uri}, and \code{access_time}.}
 \item{pipeline_output}{Data frame. Output files for the tools.
 Variables include \code{step_number}, \code{uri}, and \code{access_time}.}
 }
+\value{
+A list of class \code{bco.domain}
+}
 \description{
 Compose BioCompute Object - Description Domain (v1.3.0)
 }
