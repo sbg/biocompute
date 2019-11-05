@@ -10,6 +10,8 @@
 #' @param io I/O domain
 #' @param error Error domain
 #'
+#' @return A list of class \code{bco}
+#'
 #' @rdname compose
 #' @export compose_v1.3.0
 #'

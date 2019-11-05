@@ -6,6 +6,8 @@
 #' @param linewidth Maximum linewidth when \code{wrap} is \code{TRUE}.
 #' @param ... Additional parameters for \code{\link[rmarkdown]{render}}.
 #'
+#' @return Path to the output file
+#'
 #' @importFrom rmarkdown render
 #'
 #' @export export_pdf
@@ -13,9 +15,10 @@
 #' @examples
 #' \dontrun{
 #'
+#' file_pdf <- tempfile(fileext = ".pdf")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
-#'   export_pdf("~/HCV1a.bco.pdf")
+#'   export_pdf(file_pdf)
 #' }
 export_pdf <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
   template <- normalizePath(system.file("templates/export.Rmd", package = "biocompute"))
@@ -36,14 +39,17 @@ export_pdf <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
 #' @param linewidth Maximum linewidth when \code{wrap} is \code{TRUE}.
 #' @param ... Additional parameters for \code{\link[rmarkdown]{render}}.
 #'
+#' @return Path to the output file
+#'
 #' @export export_html
 #'
 #' @examples
 #' \dontrun{
 #'
+#' file_html <- tempfile(fileext = ".html")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
-#'   export_html("~/HCV1a.bco.html")
+#'   export_html(file_html)
 #' }
 export_html <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
   template <- normalizePath(system.file("templates/export.Rmd", package = "biocompute"))
@@ -64,14 +70,17 @@ export_html <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
 #' @param linewidth Maximum linewidth when \code{wrap} is \code{TRUE}.
 #' @param ... Additional parameters for \code{\link[rmarkdown]{render}}.
 #'
+#' @return Path to the output file
+#'
 #' @export export_word
 #'
 #' @examples
 #' \dontrun{
 #'
+#' file_docx <- tempfile(fileext = ".docx")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
-#'   export_word("~/HCV1a.bco.docx")
+#'   export_word(file_docx)
 #' }
 export_word <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
   template <- normalizePath(system.file("templates/export.Rmd", package = "biocompute"))

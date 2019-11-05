@@ -8,6 +8,8 @@
 #' \code{value} (value of the parameters), and \code{step}
 #' (step number for each parameter).
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @importFrom jsonlite toJSON
 #'
 #' @rdname compose_parametric

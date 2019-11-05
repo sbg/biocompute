@@ -7,6 +7,8 @@
 #' Default is \code{"string"}.
 #' @param ... Additional parameters for \code{\link[jsonlite]{toJSON}}.
 #'
+#' @return JSON string of the BioCompute Object
+#'
 #' @export convert_json
 #'
 #' @examples
@@ -20,6 +22,8 @@ convert_json <- function(x, pretty = TRUE, auto_unbox = TRUE, na = "string", ...
 #'
 #' @param x BioCompute Object or domain
 #' @param ... Additional parameters for \code{\link[yaml]{as.yaml}}.
+#'
+#' @return YAML string of the BioCompute Object
 #'
 #' @importFrom yaml as.yaml
 #'

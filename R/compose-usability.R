@@ -7,6 +7,8 @@
 #' improves search-ability, provide specific scientific use cases,
 #' and a description of the function of the object.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_usability
 #' @export compose_usability_v1.3.0
 #'

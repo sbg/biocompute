@@ -13,18 +13,20 @@
 #' BCO file with the same name in that project (if any).
 #' If \code{FALSE}, will not overwrite.
 #'
+#' @return Response of the file upload request
+#'
 #' @export export_sevenbridges
 #'
 #' @examples
 #' \dontrun{
 #'
-#' bco <- tempfile(fileext = ".json")
+#' file_json <- tempfile(fileext = ".json")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
-#'   export_json(bco)
+#'   export_json(file_json)
 #'
 #' export_sevenbridges(
-#'   bco,
+#'   file_json,
 #'   project = "rosalind_franklin/project_name",
 #'   token = "your_api_auth_token",
 #'   base_url = "https://cgc-api.sbgenomics.com/v2/"
@@ -55,7 +57,7 @@ export_sevenbridges <-
     # upload the file
     rule_text("Uploading BCO")
     cat_checklist("Destination project: ", cat_path_output(project))
-    resp_zip <- upload_file(
+    resp <- upload_file(
       token = token, base_url = base_url,
       project_id = project, file = file,
       name = name, overwrite = overwrite
@@ -63,5 +65,5 @@ export_sevenbridges <-
 
     rule_text("DONE", line = 2)
 
-    invisible()
+    invisible(resp)
   }

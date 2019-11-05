@@ -1,4 +1,7 @@
-#' Supported and available BCO specification versions
+#' BioCompute Object specification versions
+#'
+#' @return List of current and all available BioCompute Object
+#' specification versions supported by the package.
 #'
 #' @export versions
 #'

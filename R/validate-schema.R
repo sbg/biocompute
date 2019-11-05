@@ -2,6 +2,8 @@
 #'
 #' @param file Path to the BCO JSON file
 #'
+#' @return None
+#'
 #' @importFrom jsonvalidate json_validate json_validator
 #'
 #' @rdname validate_schema

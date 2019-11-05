@@ -3,6 +3,8 @@
 #' @param fhir FHIR extension domain composed by \code{\link{compose_fhir}}.
 #' @param scm SCM extension domain composed by \code{\link{compose_scm}}.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_extension
 #' @export compose_extension_v1.3.0
 #'

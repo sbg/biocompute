@@ -11,6 +11,8 @@
 #' @param scm_preview Character string. The full URI for the source code
 #' referenced by the BioCompute Object.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_scm
 #' @export compose_scm_v1.3.0
 #'

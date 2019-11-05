@@ -2,6 +2,8 @@
 #'
 #' @param platform Platform. Default is \code{"sevenbridges"}.
 #'
+#' @return BioCompute Object ID
+#'
 #' @export generate_id
 #'
 #' @examples
@@ -19,6 +21,8 @@ generate_id <- function(platform = c("sevenbridges")) {
 #'
 #' @param x any object
 #'
+#' @return Logical. \code{TRUE} if it is a domain object, \code{FALSE} if not.
+#'
 #' @export is_domain
 #'
 #' @examples
@@ -28,6 +32,8 @@ is_domain <- function(x) if ("bco.domain" %in% class(x)) TRUE else FALSE
 #' Is this a BCO object?
 #'
 #' @param x any object
+#'
+#' @return Logical. \code{TRUE} if it is a BCO object, \code{FALSE} if not.
 #'
 #' @export is_bco
 #'
@@ -51,6 +57,8 @@ df2list <- function(df) {
 #' Generate example BioCompute Objects
 #'
 #' @param type Example type. Default is \code{"minimal"}.
+#'
+#' @return Example BioCompute Object
 #'
 #' @export generate_example
 #'

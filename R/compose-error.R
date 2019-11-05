@@ -10,6 +10,8 @@
 #' @param algorithmic Data frame. Variables include \code{key} and \code{value}.
 #' Each row is one item in the algorithmic subdomain.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_error
 #' @export compose_error_v1.3.0
 #'

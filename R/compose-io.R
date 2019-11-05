@@ -10,6 +10,8 @@
 #' \code{mediatype}, \code{uri}, and \code{access_time}.
 #' Each row is one item in the output subdomain.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_io
 #' @export compose_io_v1.3.0
 #'

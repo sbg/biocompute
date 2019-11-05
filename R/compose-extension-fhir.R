@@ -6,6 +6,8 @@
 #' @param resources Data frame with two variables: \code{id} and \code{resource}.
 #' Each row is one item of resources to fetch from the endpoint.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_fhir
 #' @export compose_fhir_v1.3.0
 #'

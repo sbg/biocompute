@@ -21,6 +21,8 @@
 #' useful to configure the execution environment on the
 #' target platform. Variables include \code{key} and \code{value}.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @importFrom stats setNames
 #'
 #' @rdname compose_execution

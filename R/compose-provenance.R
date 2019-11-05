@@ -16,6 +16,8 @@
 #' of their contribution types.
 #' @param license Character string. Licence URL or other licence information (text).
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_provenance
 #' @export compose_provenance_v1.3.0
 #'

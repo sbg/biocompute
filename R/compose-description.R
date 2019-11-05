@@ -17,6 +17,8 @@
 #' @param pipeline_output Data frame. Output files for the tools.
 #' Variables include \code{step_number}, \code{uri}, and \code{access_time}.
 #'
+#' @return A list of class \code{bco.domain}
+#'
 #' @rdname compose_description
 #' @export compose_description_v1.3.0
 #'

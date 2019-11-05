@@ -2,6 +2,8 @@
 #'
 #' @param file Path to the BCO JSON file
 #'
+#' @return Logical. \code{TRUE} if the checksum matched, \code{FALSE} if not.
+#'
 #' @importFrom digest digest
 #'
 #' @rdname validate_checksum
