@@ -5,8 +5,7 @@
 \alias{compose_fhir}
 \title{Compose BioCompute Object - FHIR Extension (v1.3.0)}
 \usage{
-compose_fhir_v1.3.0(endpoint = NULL, version = NULL,
-  resources = NULL)
+compose_fhir_v1.3.0(endpoint = NULL, version = NULL, resources = NULL)
 
 compose_fhir(endpoint = NULL, version = NULL, resources = NULL)
 }

@@ -4,8 +4,14 @@
 \alias{export_sevenbridges}
 \title{Export BioCompute Object to Seven Bridges Platforms}
 \usage{
-export_sevenbridges(file, name = NULL, project = NULL, token = NULL,
-  base_url = "https://api.sbgenomics.com/v2/", overwrite = TRUE)
+export_sevenbridges(
+  file,
+  name = NULL,
+  project = NULL,
+  token = NULL,
+  base_url = "https://api.sbgenomics.com/v2/",
+  overwrite = TRUE
+)
 }
 \arguments{
 \item{file}{Path to the BCO file.}
@@ -33,8 +39,7 @@ Response of the file upload request
 Export BioCompute Object to Seven Bridges Platforms
 }
 \examples{
-\dontrun{
-
+\donttest{
 file_json <- tempfile(fileext = ".json")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%

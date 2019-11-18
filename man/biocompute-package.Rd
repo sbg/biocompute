@@ -12,7 +12,7 @@ Tools to create, validate, and export BioCompute Objects
     BioCompute Objects from the domains defined by the standard.
     A checksum validator and a JSON schema validator are provided.
     This package also supports exporting BioCompute Objects as JSON,
-    PDF, HTML, or Word documents, and exporting to cloud-based platforms.
+    PDF, HTML, or 'Word' documents, and exporting to cloud-based platforms.
 }
 \seealso{
 Useful links:
@@ -24,12 +24,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Nan Xiao \email{nan.xiao@sevenbridges.com} (0000-0002-0250-5673)
+\strong{Maintainer}: Nan Xiao \email{nan.xiao@sevenbridges.com} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID})
 
 Authors:
 \itemize{
   \item Soner Koc \email{soner.koc@sevenbridges.com}
-  \item Dennis Dean \email{dennis.dean@sevenbridges.com} (0000-0002-7621-9717)
+  \item Dennis Dean \email{dennis.dean@sevenbridges.com} (\href{https://orcid.org/0000-0002-7621-9717}{ORCID})
 }
 
 Other contributors:

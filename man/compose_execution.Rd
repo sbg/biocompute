@@ -5,13 +5,21 @@
 \alias{compose_execution}
 \title{Compose BioCompute Object - Execution Domain (v1.3.0)}
 \usage{
-compose_execution_v1.3.0(script = NULL, script_driver = NULL,
-  software_prerequisites = NULL, external_data_endpoints = NULL,
-  environment_variables = NULL)
+compose_execution_v1.3.0(
+  script = NULL,
+  script_driver = NULL,
+  software_prerequisites = NULL,
+  external_data_endpoints = NULL,
+  environment_variables = NULL
+)
 
-compose_execution(script = NULL, script_driver = NULL,
-  software_prerequisites = NULL, external_data_endpoints = NULL,
-  environment_variables = NULL)
+compose_execution(
+  script = NULL,
+  script_driver = NULL,
+  software_prerequisites = NULL,
+  external_data_endpoints = NULL,
+  environment_variables = NULL
+)
 }
 \arguments{
 \item{script}{Character string. Points to internal or external

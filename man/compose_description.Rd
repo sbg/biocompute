@@ -5,15 +5,25 @@
 \alias{compose_description}
 \title{Compose BioCompute Object - Description Domain (v1.3.0)}
 \usage{
-compose_description_v1.3.0(keywords = NULL, xref = NULL,
-  platform = "Seven Bridges Platform", pipeline_meta = NULL,
-  pipeline_prerequisite = NULL, pipeline_input = NULL,
-  pipeline_output = NULL)
+compose_description_v1.3.0(
+  keywords = NULL,
+  xref = NULL,
+  platform = "Seven Bridges Platform",
+  pipeline_meta = NULL,
+  pipeline_prerequisite = NULL,
+  pipeline_input = NULL,
+  pipeline_output = NULL
+)
 
-compose_description(keywords = NULL, xref = NULL,
-  platform = "Seven Bridges Platform", pipeline_meta = NULL,
-  pipeline_prerequisite = NULL, pipeline_input = NULL,
-  pipeline_output = NULL)
+compose_description(
+  keywords = NULL,
+  xref = NULL,
+  platform = "Seven Bridges Platform",
+  pipeline_meta = NULL,
+  pipeline_prerequisite = NULL,
+  pipeline_input = NULL,
+  pipeline_output = NULL
+)
 }
 \arguments{
 \item{keywords}{Character vector. A list of keywords to aid in

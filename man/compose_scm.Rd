@@ -5,12 +5,21 @@
 \alias{compose_scm}
 \title{Compose BioCompute Object - SCM Extension (v1.3.0)}
 \usage{
-compose_scm_v1.3.0(scm_repository = NULL, scm_type = c("git", "svn",
-  "hg", "other"), scm_commit = NULL, scm_path = NULL,
-  scm_preview = NULL)
+compose_scm_v1.3.0(
+  scm_repository = NULL,
+  scm_type = c("git", "svn", "hg", "other"),
+  scm_commit = NULL,
+  scm_path = NULL,
+  scm_preview = NULL
+)
 
-compose_scm(scm_repository = NULL, scm_type = c("git", "svn", "hg",
-  "other"), scm_commit = NULL, scm_path = NULL, scm_preview = NULL)
+compose_scm(
+  scm_repository = NULL,
+  scm_type = c("git", "svn", "hg", "other"),
+  scm_commit = NULL,
+  scm_path = NULL,
+  scm_preview = NULL
+)
 }
 \arguments{
 \item{scm_repository}{Character string. Base URL of the SCM repository.}

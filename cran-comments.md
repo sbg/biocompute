@@ -1,3 +1,27 @@
+# biocompute 1.0.2
+
+## Test environments
+
+- Local macOS install, R 3.6.1
+- Ubuntu 16.04.6 LTS (on Travis-CI), R 3.6.1
+- win-builder (release, devel, and oldrelease)
+
+## R CMD check results
+
+There were no ERRORs or WARNINGs.
+
+## Explanation for the stylized names
+
+A 'BioCompute Object' ('BCO') is an instance of the 'BioCompute' standard (https://en.wikipedia.org/wiki/BioCompute_Object). To follow the convention, we stylized it as 'BioCompute Object' instead of 'BioCompute object' in the Description text.
+
+## Single quotes
+
+Added single quotes to the Description section as suggested ('Word').
+
+## Use \donttest
+
+Replaced \dontrun{} by \donttest{} in the Rd files as suggested.
+
 # biocompute 1.0.1
 
 ## Test environments

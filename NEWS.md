@@ -1,3 +1,9 @@
+# biocompute 1.0.2
+
+## Improvements
+
+- Minor improvements in description text and example code.
+
 # biocompute 1.0.1
 
 ## Improvements

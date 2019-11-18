@@ -5,11 +5,29 @@
 \alias{compose}
 \title{Compose BioCompute Object (v1.3.0)}
 \usage{
-compose_v1.3.0(tlf, provenance, usability, extension, description,
-  execution, parametric, io, error)
+compose_v1.3.0(
+  tlf,
+  provenance,
+  usability,
+  extension,
+  description,
+  execution,
+  parametric,
+  io,
+  error
+)
 
-compose(tlf, provenance, usability, extension, description, execution,
-  parametric, io, error)
+compose(
+  tlf,
+  provenance,
+  usability,
+  extension,
+  description,
+  execution,
+  parametric,
+  io,
+  error
+)
 }
 \arguments{
 \item{tlf}{Top level fields}

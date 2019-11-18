@@ -1,7 +1,7 @@
 Package: biocompute
 Type: Package
 Title: Create and Manipulate BioCompute Objects
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
     person("Nan", "Xiao", email = "nan.xiao@sevenbridges.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0250-5673")),
@@ -17,7 +17,7 @@ Description: Tools to create, validate, and export BioCompute Objects
     BioCompute Objects from the domains defined by the standard.
     A checksum validator and a JSON schema validator are provided.
     This package also supports exporting BioCompute Objects as JSON,
-    PDF, HTML, or Word documents, and exporting to cloud-based platforms.
+    PDF, HTML, or 'Word' documents, and exporting to cloud-based platforms.
 License: AGPL-3 | file LICENSE
 VignetteBuilder: knitr
 URL: https://sbg.github.io/biocompute/, https://github.com/sbg/biocompute
@@ -40,4 +40,4 @@ Imports:
     rmarkdown
 Suggests:
     knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0

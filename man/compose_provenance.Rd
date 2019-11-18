@@ -5,15 +5,31 @@
 \alias{compose_provenance}
 \title{Compose BioCompute Object - Provenance Domain (v1.3.0)}
 \usage{
-compose_provenance_v1.3.0(name = NULL, version = NULL, review = NULL,
-  derived_from = NULL, obsolete_after = NULL, embargo = NULL,
-  created = NULL, modified = NULL, contributors = NULL,
-  license = NULL)
+compose_provenance_v1.3.0(
+  name = NULL,
+  version = NULL,
+  review = NULL,
+  derived_from = NULL,
+  obsolete_after = NULL,
+  embargo = NULL,
+  created = NULL,
+  modified = NULL,
+  contributors = NULL,
+  license = NULL
+)
 
-compose_provenance(name = NULL, version = NULL, review = NULL,
-  derived_from = NULL, obsolete_after = NULL, embargo = NULL,
-  created = NULL, modified = NULL, contributors = NULL,
-  license = NULL)
+compose_provenance(
+  name = NULL,
+  version = NULL,
+  review = NULL,
+  derived_from = NULL,
+  obsolete_after = NULL,
+  embargo = NULL,
+  created = NULL,
+  modified = NULL,
+  contributors = NULL,
+  license = NULL
+)
 }
 \arguments{
 \item{name}{Character string. Name for the BCO.}

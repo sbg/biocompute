@@ -5,11 +5,29 @@
 \alias{compose_tlf}
 \title{Compose BioCompute Object - Top Level Fields (v1.3.0)}
 \usage{
-compose_tlf_v1.3.0(provenance, usability, extension, description,
-  execution, parametric, io, error, bco_id = NULL)
+compose_tlf_v1.3.0(
+  provenance,
+  usability,
+  extension,
+  description,
+  execution,
+  parametric,
+  io,
+  error,
+  bco_id = NULL
+)
 
-compose_tlf(provenance, usability, extension, description, execution,
-  parametric, io, error, bco_id = NULL)
+compose_tlf(
+  provenance,
+  usability,
+  extension,
+  description,
+  execution,
+  parametric,
+  io,
+  error,
+  bco_id = NULL
+)
 }
 \arguments{
 \item{provenance}{Provenance domain}

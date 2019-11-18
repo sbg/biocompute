@@ -24,8 +24,7 @@ Path to the output file
 Export BioCompute Object as Word document
 }
 \examples{
-\dontrun{
-
+\donttest{
 file_docx <- tempfile(fileext = ".docx")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
