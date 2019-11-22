@@ -1,3 +1,9 @@
+# biocompute 1.0.3
+
+## Improvements
+
+- Removed the redundant copy of the full AGPL-3 license file.
+
 # biocompute 1.0.2
 
 ## Improvements
