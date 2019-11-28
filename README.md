@@ -2,6 +2,7 @@
 
 [![Travis build status](https://travis-ci.org/sbg/biocompute.svg?branch=master)](https://travis-ci.org/sbg/biocompute)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/2owpw6m61bnihetf/branch/master?svg=true)](https://ci.appveyor.com/project/nanxstats/biocompute)
+[![CRAN Version](https://www.r-pkg.org/badges/version/biocompute)](https://cran.r-project.org/package=biocompute)
 
 Seven Bridges implementation of the BioCompute Object (BCO) specification. Offers the capabilities to compose, validate, and convert BioCompute Objects with R.
 
