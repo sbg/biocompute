@@ -22,5 +22,5 @@ file_json <- tempfile(fileext = ".json")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%
   export_json(file_json)
-cat(paste(readLines(file_json), collapse = "\\n"))
+cat(paste(readLines(file_json), collapse = "\n"))
 }

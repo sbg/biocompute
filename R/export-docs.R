@@ -15,8 +15,8 @@
 #' @examples
 #' \donttest{
 #' file_pdf <- tempfile(fileext = ".pdf")
-#' generate_example("HCV1a") \%>\%
-#'   convert_json() \%>\%
+#' generate_example("HCV1a") %>%
+#'   convert_json() %>%
 #'   export_pdf(file_pdf)
 #' }
 export_pdf <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
@@ -45,8 +45,8 @@ export_pdf <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
 #' @examples
 #' \donttest{
 #' file_html <- tempfile(fileext = ".html")
-#' generate_example("HCV1a") \%>\%
-#'   convert_json() \%>\%
+#' generate_example("HCV1a") %>%
+#'   convert_json() %>%
 #'   export_html(file_html)
 #' }
 export_html <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
@@ -75,8 +75,8 @@ export_html <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
 #' @examples
 #' \donttest{
 #' file_docx <- tempfile(fileext = ".docx")
-#' generate_example("HCV1a") \%>\%
-#'   convert_json() \%>\%
+#' generate_example("HCV1a") %>%
+#'   convert_json() %>%
 #'   export_word(file_docx)
 #' }
 export_word <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
