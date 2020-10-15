@@ -3,7 +3,7 @@
 #' The error domain can be used to determine what range of input
 #' returns outputs that are within the tolerance level defined
 #' in this subdomain and therefore can be used to optimize algorithm
-#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/master/error-domain.md}{domain definition}).
+#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/error-domain.md}{domain definition}).
 #'
 #' @param empirical Data frame. Variables include \code{key} and \code{value}.
 #' Each row is one item in the empirical error subdomain.

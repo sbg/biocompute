@@ -2,7 +2,7 @@
 #'
 #' Non-default parameters customizing the computational flow
 #' which can affect the output of the calculations
-#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/master/parametric-domain.md#26-parametric-domain-parametric_domain}{domain definition}).
+#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/parametric-domain.md}{domain definition}).
 #'
 #' @param df Data frame. Variables include \code{param} (parameter names),
 #' \code{value} (value of the parameters), and \code{step}

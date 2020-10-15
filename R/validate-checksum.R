@@ -10,7 +10,7 @@
 #' @export validate_checksum_v1.3.0
 #'
 #' @note An SHA-256 checksum is
-#' \href{https://github.com/biocompute-objects/BCO_Specification/blob/master/top-level.md#203-checksum-checksum}{calculated and stored}
+#' \href{https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/top-level.md#203-etag-etag}{calculated and stored}
 #' in the top level fields when a BioCompute Object is created. In reality,
 #' due to the delicate differences in how the data in JSON is represented,
 #' parsed, and handled in different languages, there could be false positives
