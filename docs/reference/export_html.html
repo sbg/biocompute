@@ -57,16 +57,6 @@
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
-
 
   </head>
 
@@ -84,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -147,7 +137,7 @@
     <p>Export BioCompute Object as HTML</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_html</span>(<span class='no'>x</span>, <span class='no'>file</span>, <span class='kw'>wrap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>linewidth</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>export_html</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>file</span>, wrap <span class='op'>=</span> <span class='cn'>FALSE</span>, linewidth <span class='op'>=</span> <span class='fl'>80</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,10 +170,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>file_html</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".html"</span>)
-<span class='fu'><a href='generate_example.html'>generate_example</a></span>(<span class='st'>"HCV1a"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='convert_json.html'>convert_json</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>export_html</span>(<span class='no'>file_html</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+<span class='va'>file_html</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".html"</span><span class='op'>)</span>
+<span class='fu'><a href='generate_example.html'>generate_example</a></span><span class='op'>(</span><span class='st'>"HCV1a"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>export_html</span><span class='op'>(</span><span class='va'>file_html</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>processing file: export.Rmd</span></div><div class='output co'>#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |............                                                          |  17%
 #&gt;   ordinary text without R code
@@ -206,8 +197,8 @@
 #&gt; 
 #&gt;   |                                                                              |......................................................................| 100%
 #&gt; label: unnamed-chunk-1
-#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: export.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS export.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash+smart --output /var/folders/w4/h1qfny1d0bq5qx4r80pq1xnm0000gn/T//Rtmp9Lbym5/file106245de1e3df.html --email-obfuscation none --self-contained --standalone --section-divs --template /Library/Frameworks/R.framework/Versions/3.6/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /var/folders/w4/h1qfny1d0bq5qx4r80pq1xnm0000gn/T//Rtmp9Lbym5/rmarkdown-str106247ea1ea26.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /Library/Frameworks/R.framework/Versions/3.6/Resources/library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/3.6/Resources/library/rmarkdown/rmd/lua/latex-div.lua </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Output created: /var/folders/w4/h1qfny1d0bq5qx4r80pq1xnm0000gn/T//Rtmp9Lbym5/file106245de1e3df.html</span></div><div class='input'># }
+#&gt; </div><div class='output co'>#&gt; <span class='message'>output file: export.knit.md</span></div><div class='output co'>#&gt; /usr/local/bin/pandoc +RTS -K512m -RTS export.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /var/folders/w2/dtbkg42d6ygcrwlqh_2jtx0w0000gn/T//RtmpJnUBwi/file2034f8b1e8b.html --lua-filter /Users/c02sn03cfvh6/rpkgs/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /Users/c02sn03cfvh6/rpkgs/rmarkdown/rmarkdown/lua/latex-div.lua --email-obfuscation none --self-contained --standalone --section-divs --template /Users/c02sn03cfvh6/rpkgs/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /var/folders/w2/dtbkg42d6ygcrwlqh_2jtx0w0000gn/T//RtmpJnUBwi/rmarkdown-str20343381b6f4.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' </div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Output created: /var/folders/w2/dtbkg42d6ygcrwlqh_2jtx0w0000gn/T//RtmpJnUBwi/file2034f8b1e8b.html</span></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -220,11 +211,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

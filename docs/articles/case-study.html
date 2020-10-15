@@ -17,13 +17,7 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script><script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
+<![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
@@ -38,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -89,13 +83,12 @@
 
       
 
-      </header><script src="case-study_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="case-study_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Authoring Biocompute Objects with R: A Case Study</h1>
-                        <h4 class="author">Nan Xiao &lt;<a href="mailto:nan.xiao@sevenbridges.com" class="email">nan.xiao@sevenbridges.com</a>&gt;</h4>
             
-            <h4 class="date">2020-04-23</h4>
+            <h4 class="date">2020-10-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbg/biocompute/blob/master/vignettes/case-study.Rmd"><code>vignettes/case-study.Rmd</code></a></small>
       <div class="hidden name"><code>case-study.Rmd</code></div>
@@ -105,55 +98,57 @@
     
     
 <p>In this vignette, we will use the biocompute package to recreate the example Biocompute Object (HCV1a.json) used in the <a href="https://github.com/biocompute-objects/BCO_Specification">BCO specification</a>.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"biocompute"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://sbg.github.io/biocompute/">"biocompute"</a></span><span class="op">)</span></pre></div>
 <div id="provenance-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#provenance-domain" class="anchor"></a>Provenance domain</h1>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">name</span> <span class="kw">&lt;-</span> <span class="st">"HCV1a ledipasvir resistance SNP detection"</span>
-<span class="no">version</span> <span class="kw">&lt;-</span> <span class="st">"1.0.0"</span>
-<span class="no">review</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"status"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"approved"</span>, <span class="st">"approved"</span>),
-  <span class="st">"reviewer_comment"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Approved by [company name] staff. Waiting for approval from FDA Reviewer"</span>, <span class="st">"The revised BCO looks fine"</span>),
-  <span class="st">"date"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-11-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-12-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"America/Los_Angeles"</span>)
-  ),
-  <span class="st">"reviewer_name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span>),
-  <span class="st">"reviewer_affiliation"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span>),
-  <span class="st">"reviewer_email"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span>),
-  <span class="st">"reviewer_contribution"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"curatedBy"</span>, <span class="st">"curatedBy"</span>),
-  <span class="st">"reviewer_orcid"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="fl">NA</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"HCV1a ledipasvir resistance SNP detection"</span>
+<span class="va">version</span> <span class="op">&lt;-</span> <span class="st">"1.0.0"</span>
+<span class="va">review</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"status"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"approved"</span>, <span class="st">"approved"</span><span class="op">)</span>,
+  <span class="st">"reviewer_comment"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Approved by [company name] staff. Waiting for approval from FDA Reviewer"</span>, <span class="st">"The revised BCO looks fine"</span><span class="op">)</span>,
+  <span class="st">"date"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-11-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-12-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"America/Los_Angeles"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  <span class="st">"reviewer_name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span><span class="op">)</span>,
+  <span class="st">"reviewer_affiliation"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span><span class="op">)</span>,
+  <span class="st">"reviewer_email"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span><span class="op">)</span>,
+  <span class="st">"reviewer_contribution"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"curatedBy"</span>, <span class="st">"curatedBy"</span><span class="op">)</span>,
+  <span class="st">"reviewer_orcid"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="cn">NA</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">derived_from</span> <span class="kw">&lt;-</span> <span class="st">"https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"</span>
-<span class="no">obsolete_after</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2018-11-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
+<span class="va">derived_from</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"</span>
+<span class="va">obsolete_after</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2018-11-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
 
-<span class="no">embargo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="st">"start_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-10-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-  <span class="st">"end_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-11-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-)
+<span class="va">embargo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="st">"start_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-10-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+  <span class="st">"end_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-11-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+<span class="op">)</span>
 
-<span class="no">created</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-20T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
+<span class="va">created</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-20T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
 
-<span class="no">modified</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2019-05-10T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
+<span class="va">modified</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2019-05-10T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
 
-<span class="no">contributors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span>),
-  <span class="st">"affiliation"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span>),
-  <span class="st">"email"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span>),
-  <span class="st">"contribution"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"createdBy"</span>, <span class="st">"curatedBy"</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"authoredBy"</span>))),
-  <span class="st">"orcid"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="fl">NA</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<span class="va">contributors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span><span class="op">)</span>,
+  <span class="st">"affiliation"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span><span class="op">)</span>,
+  <span class="st">"email"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span><span class="op">)</span>,
+  <span class="st">"contribution"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"createdBy"</span>, <span class="st">"curatedBy"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"authoredBy"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+  <span class="st">"orcid"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="cn">NA</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">license</span> <span class="kw">&lt;-</span> <span class="st">"https://creativecommons.org/licenses/by/4.0/"</span>
+<span class="va">license</span> <span class="op">&lt;-</span> <span class="st">"https://creativecommons.org/licenses/by/4.0/"</span>
 
-<span class="no">provenance</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_provenance.html">compose_provenance</a></span>(
-  <span class="no">name</span>, <span class="no">version</span>, <span class="no">review</span>, <span class="no">derived_from</span>, <span class="no">obsolete_after</span>,
-  <span class="no">embargo</span>, <span class="no">created</span>, <span class="no">modified</span>, <span class="no">contributors</span>, <span class="no">license</span>
-)
-<span class="no">provenance</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">provenance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span>
+  <span class="va">name</span>, <span class="va">version</span>, <span class="va">review</span>, <span class="va">derived_from</span>, <span class="va">obsolete_after</span>,
+  <span class="va">embargo</span>, <span class="va">created</span>, <span class="va">modified</span>, <span class="va">contributors</span>, <span class="va">license</span>
+<span class="op">)</span>
+<span class="va">provenance</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "name": "HCV1a ledipasvir resistance SNP detection",
   "version": "1.0.0",
@@ -214,14 +209,15 @@
 <div id="usability-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usability-domain" class="anchor"></a>Usability Domain</h1>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">text</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"Identify baseline single nucleotide polymorphisms (SNPs)[SO:0000694], (insertions)[SO:0000667], and (deletions)[SO:0000045] that correlate with reduced (ledipasvir)[pubchem.compound:67505836] antiviral drug efficacy in (Hepatitis C virus subtype 1)[taxonomy:31646]"</span>,
   <span class="st">"Identify treatment emergent amino acid (substitutions)[SO:1000002] that correlate with antiviral drug treatment failure"</span>,
   <span class="st">"Determine whether the treatment emergent amino acid (substitutions)[SO:1000002] identified correlate with treatment failure involving other drugs against the same virus"</span>
-)
+<span class="op">)</span>
 
-<span class="no">usability</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_usability.html">compose_usability</a></span>(<span class="no">text</span>)
-<span class="no">usability</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">usability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_usability_v1.3.0.html">compose_usability</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>
+<span class="va">usability</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>["Identify baseline single nucleotide polymorphisms (SNPs)[SO:0000694], (insertions)[SO:0000667], and (deletions)[SO:0000045] that correlate with reduced (ledipasvir)[pubchem.compound:67505836] antiviral drug efficacy in (Hepatitis C virus subtype 1)[taxonomy:31646]", "Identify treatment emergent amino acid (substitutions)[SO:1000002] that correlate with antiviral drug treatment failure", "Determine whether the treatment emergent amino acid (substitutions)[SO:1000002] identified correlate with treatment failure involving other drugs against the same virus"] </code></pre>
 </div>
 <div id="extension-domain" class="section level1">
@@ -230,19 +226,20 @@
 <div id="fhir-extension" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fhir-extension" class="anchor"></a>FHIR extension</h2>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">fhir_endpoint</span> <span class="kw">&lt;-</span> <span class="st">"https://fhirtest.uhn.ca/baseDstu3"</span>
-<span class="no">fhir_version</span> <span class="kw">&lt;-</span> <span class="st">"3"</span>
-<span class="no">fhir_resources</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"id"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"21376"</span>, <span class="st">"6288583"</span>, <span class="st">"25544"</span>, <span class="st">"92440"</span>, <span class="st">"4588936"</span>),
-  <span class="st">"resource"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">fhir_endpoint</span> <span class="op">&lt;-</span> <span class="st">"https://fhirtest.uhn.ca/baseDstu3"</span>
+<span class="va">fhir_version</span> <span class="op">&lt;-</span> <span class="st">"3"</span>
+<span class="va">fhir_resources</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"id"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"21376"</span>, <span class="st">"6288583"</span>, <span class="st">"25544"</span>, <span class="st">"92440"</span>, <span class="st">"4588936"</span><span class="op">)</span>,
+  <span class="st">"resource"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"Sequence"</span>, <span class="st">"DiagnosticReport"</span>, <span class="st">"ProcedureRequest"</span>,
     <span class="st">"Observation"</span>, <span class="st">"FamilyMemberHistory"</span>
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">fhir</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_fhir.html">compose_fhir</a></span>(<span class="no">fhir_endpoint</span>, <span class="no">fhir_version</span>, <span class="no">fhir_resources</span>)
-<span class="no">fhir</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">fhir</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_fhir_v1.3.0.html">compose_fhir</a></span><span class="op">(</span><span class="va">fhir_endpoint</span>, <span class="va">fhir_version</span>, <span class="va">fhir_resources</span><span class="op">)</span>
+<span class="va">fhir</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "fhir_endpoint": "https://fhirtest.uhn.ca/baseDstu3",
   "fhir_version": "3",
@@ -283,14 +280,15 @@
 <div id="scm-extension" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scm-extension" class="anchor"></a>SCM extension</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">scm_repository</span> <span class="kw">&lt;-</span> <span class="st">"https://github.com/example/repo1"</span>
-<span class="no">scm_type</span> <span class="kw">&lt;-</span> <span class="st">"git"</span>
-<span class="no">scm_commit</span> <span class="kw">&lt;-</span> <span class="st">"c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21"</span>
-<span class="no">scm_path</span> <span class="kw">&lt;-</span> <span class="st">"workflow/hive-viral-mutation-detection.cwl"</span>
-<span class="no">scm_preview</span> <span class="kw">&lt;-</span> <span class="st">"https://github.com/example/repo1/blob/c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21/workflow/hive-viral-mutation-detection.cwl"</span>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">scm_repository</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/example/repo1"</span>
+<span class="va">scm_type</span> <span class="op">&lt;-</span> <span class="st">"git"</span>
+<span class="va">scm_commit</span> <span class="op">&lt;-</span> <span class="st">"c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21"</span>
+<span class="va">scm_path</span> <span class="op">&lt;-</span> <span class="st">"workflow/hive-viral-mutation-detection.cwl"</span>
+<span class="va">scm_preview</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/example/repo1/blob/c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21/workflow/hive-viral-mutation-detection.cwl"</span>
 
-<span class="no">scm</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_scm.html">compose_scm</a></span>(<span class="no">scm_repository</span>, <span class="no">scm_type</span>, <span class="no">scm_commit</span>, <span class="no">scm_path</span>, <span class="no">scm_preview</span>)
-<span class="no">scm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">scm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_scm_v1.3.0.html">compose_scm</a></span><span class="op">(</span><span class="va">scm_repository</span>, <span class="va">scm_type</span>, <span class="va">scm_commit</span>, <span class="va">scm_path</span>, <span class="va">scm_preview</span><span class="op">)</span>
+<span class="va">scm</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "scm_repository": "https://github.com/example/repo1",
   "scm_type": "git",
@@ -298,8 +296,9 @@
   "scm_path": "workflow/hive-viral-mutation-detection.cwl",
   "scm_preview": "https://github.com/example/repo1/blob/c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21/workflow/hive-viral-mutation-detection.cwl"
 } </code></pre>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">extension</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_extension.html">compose_extension</a></span>(<span class="no">fhir</span>, <span class="no">scm</span>)
-<span class="no">extension</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">extension</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_extension_v1.3.0.html">compose_extension</a></span><span class="op">(</span><span class="va">fhir</span>, <span class="va">scm</span><span class="op">)</span>
+<span class="va">extension</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "fhir_extension": {
     "fhir_endpoint": "https://fhirtest.uhn.ca/baseDstu3",
@@ -350,92 +349,93 @@
 <div id="description-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#description-domain" class="anchor"></a>Description domain</h1>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">keywords</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"HCV1a"</span>, <span class="st">"Ledipasvir"</span>, <span class="st">"antiviral resistance"</span>, <span class="st">"SNP"</span>, <span class="st">"amino acid substitutions"</span>)
-<span class="no">xref</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"namespace"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"pubchem.compound"</span>, <span class="st">"pubmed"</span>, <span class="st">"so"</span>, <span class="st">"taxonomy"</span>),
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"PubChem-compound"</span>, <span class="st">"PubMed"</span>, <span class="st">"Sequence Ontology"</span>, <span class="st">"Taxonomy"</span>),
-  <span class="st">"ids"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">keywords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HCV1a"</span>, <span class="st">"Ledipasvir"</span>, <span class="st">"antiviral resistance"</span>, <span class="st">"SNP"</span>, <span class="st">"amino acid substitutions"</span><span class="op">)</span>
+<span class="va">xref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"namespace"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pubchem.compound"</span>, <span class="st">"pubmed"</span>, <span class="st">"so"</span>, <span class="st">"taxonomy"</span><span class="op">)</span>,
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PubChem-compound"</span>, <span class="st">"PubMed"</span>, <span class="st">"Sequence Ontology"</span>, <span class="st">"Taxonomy"</span><span class="op">)</span>,
+  <span class="st">"ids"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     <span class="st">"67505836"</span>,
     <span class="st">"26508693"</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"SO:000002"</span>, <span class="st">"SO:0000694"</span>, <span class="st">"SO:0000667"</span>, <span class="st">"SO:0000045"</span>),
+    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SO:000002"</span>, <span class="st">"SO:0000694"</span>, <span class="st">"SO:0000667"</span>, <span class="st">"SO:0000045"</span><span class="op">)</span>,
     <span class="st">"31646"</span>
-  )),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-20T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-21T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-22T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-23T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span><span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-20T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-21T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-22T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-23T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">platform</span> <span class="kw">&lt;-</span> <span class="st">"Seven Bridges Platform"</span>
+<span class="va">platform</span> <span class="op">&lt;-</span> <span class="st">"Seven Bridges Platform"</span>
 
-<span class="no">pipeline_meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"step_number"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"1"</span>),
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"HIVE-hexagon"</span>),
-  <span class="st">"description"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Alignment of reads to a set of references"</span>),
-  <span class="st">"version"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"1.3"</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<span class="va">pipeline_meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"step_number"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span><span class="op">)</span>,
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HIVE-hexagon"</span><span class="op">)</span>,
+  <span class="st">"description"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alignment of reads to a set of references"</span><span class="op">)</span>,
+  <span class="st">"version"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1.3"</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">pipeline_prerequisite</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"step_number"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"1"</span>, <span class="fl">5</span>),
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<span class="va">pipeline_prerequisite</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"step_number"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="fl">5</span><span class="op">)</span>,
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"Hepatitis C virus genotype 1"</span>,
     <span class="st">"Hepatitis C virus type 1b complete genome"</span>,
     <span class="st">"Hepatitis C virus (isolate JFH-1) genomic RNA"</span>,
     <span class="st">"Hepatitis C virus clone J8CF, complete genome"</span>,
     <span class="st">"Hepatitis C virus S52 polyprotein gene"</span>
-  ),
-  <span class="st">"uri"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+  <span class="op">)</span>,
+  <span class="st">"uri"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/22129792"</span>,
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/5420376"</span>,
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/13122261"</span>,
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/386646758"</span>,
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/295311559"</span>
-  ),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">pipeline_input</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"step_number"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"1"</span>, <span class="fl">2</span>),
-  <span class="st">"uri"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<span class="va">pipeline_input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"step_number"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="fl">2</span><span class="op">)</span>,
+  <span class="st">"uri"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"https://example.com/dna.cgi?cmd=objFile&amp;ids=514683"</span>,
     <span class="st">"https://example.com/dna.cgi?cmd=objFile&amp;ids=514682"</span>
-  ),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">pipeline_output</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"step_number"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"1"</span>, <span class="fl">2</span>),
-  <span class="st">"uri"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<span class="va">pipeline_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"step_number"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="fl">2</span><span class="op">)</span>,
+  <span class="st">"uri"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"https://example.com/data/514769/allCount-aligned.csv"</span>,
     <span class="st">"https://example.com/data/514801/SNPProfile*.csv"</span>
-  ),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">description</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_description.html">compose_description</a></span>(
-  <span class="no">keywords</span>, <span class="no">xref</span>, <span class="no">platform</span>,
-  <span class="no">pipeline_meta</span>, <span class="no">pipeline_prerequisite</span>, <span class="no">pipeline_input</span>, <span class="no">pipeline_output</span>
-)
-<span class="no">description</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">description</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_description_v1.3.0.html">compose_description</a></span><span class="op">(</span>
+  <span class="va">keywords</span>, <span class="va">xref</span>, <span class="va">platform</span>,
+  <span class="va">pipeline_meta</span>, <span class="va">pipeline_prerequisite</span>, <span class="va">pipeline_input</span>, <span class="va">pipeline_output</span>
+<span class="op">)</span>
+<span class="va">description</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "keywords": ["HCV1a", "Ledipasvir", "antiviral resistance", "SNP", "amino acid substitutions"],
   "xref": [
@@ -535,40 +535,41 @@
 <div id="execution-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#execution-domain" class="anchor"></a>Execution domain</h1>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">script</span> <span class="kw">&lt;-</span> <span class="st">"https://example.com/workflows/antiviral_resistance_detection_hive.py"</span>
-<span class="no">script_driver</span> <span class="kw">&lt;-</span> <span class="st">"shell"</span>
-<span class="no">software_prerequisites</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"HIVE-hexagon"</span>, <span class="st">"HIVE-heptagon"</span>),
-  <span class="st">"version"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"babajanian.1"</span>, <span class="st">"albinoni.2"</span>),
-  <span class="st">"uri"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">script</span> <span class="op">&lt;-</span> <span class="st">"https://example.com/workflows/antiviral_resistance_detection_hive.py"</span>
+<span class="va">script_driver</span> <span class="op">&lt;-</span> <span class="st">"shell"</span>
+<span class="va">software_prerequisites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HIVE-hexagon"</span>, <span class="st">"HIVE-heptagon"</span><span class="op">)</span>,
+  <span class="st">"version"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"babajanian.1"</span>, <span class="st">"albinoni.2"</span><span class="op">)</span>,
+  <span class="st">"uri"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"https://example.com/dna.cgi?cmd=dna-hexagon&amp;cmdMode=-"</span>,
     <span class="st">"https://example.com/dna.cgi?cmd=dna-heptagon&amp;cmdMode=-"</span>
-  ),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="st">"sha1_chksum"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"d60f506cddac09e9e816531e7905ca1ca6641e3c"</span>, <span class="fl">NA</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
-<span class="no">external_data_endpoints</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"generic name"</span>, <span class="st">"access to ftp server"</span>, <span class="st">"access to e-utils web service"</span>),
-  <span class="st">"url"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+  <span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  <span class="st">"sha1_chksum"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"d60f506cddac09e9e816531e7905ca1ca6641e3c"</span>, <span class="cn">NA</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+<span class="va">external_data_endpoints</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"generic name"</span>, <span class="st">"access to ftp server"</span>, <span class="st">"access to e-utils web service"</span><span class="op">)</span>,
+  <span class="st">"url"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"protocol://domain:port/application/path"</span>,
     <span class="st">"ftp://data.example.com:21/"</span>,
     <span class="st">"https://eutils.ncbi.nlm.nih.gov/entrez/eutils"</span>
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
-<span class="no">environment_variables</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"key"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"HOSTTYPE"</span>, <span class="st">"EDITOR"</span>),
-  <span class="st">"value"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x86_64-linux"</span>, <span class="st">"vim"</span>)
-)
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+<span class="va">environment_variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"key"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HOSTTYPE"</span>, <span class="st">"EDITOR"</span><span class="op">)</span>,
+  <span class="st">"value"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x86_64-linux"</span>, <span class="st">"vim"</span><span class="op">)</span>
+<span class="op">)</span>
 
-<span class="no">execution</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_execution.html">compose_execution</a></span>(
-  <span class="no">script</span>, <span class="no">script_driver</span>, <span class="no">software_prerequisites</span>, <span class="no">external_data_endpoints</span>, <span class="no">environment_variables</span>
-)
-<span class="no">execution</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">execution</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_execution_v1.3.0.html">compose_execution</a></span><span class="op">(</span>
+  <span class="va">script</span>, <span class="va">script_driver</span>, <span class="va">software_prerequisites</span>, <span class="va">external_data_endpoints</span>, <span class="va">environment_variables</span>
+<span class="op">)</span>
+<span class="va">execution</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "script": "https://example.com/workflows/antiviral_resistance_detection_hive.py",
   "script_driver": "shell",
@@ -625,19 +626,20 @@
 <div id="parametric-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#parametric-domain" class="anchor"></a>Parametric domain</h1>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">df_parametric</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"param"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="va">df_parametric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"param"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"seed"</span>, <span class="st">"minimum_match_len"</span>,
     <span class="st">"divergence_threshold_percent"</span>,
     <span class="st">"minimum_coverage"</span>, <span class="st">"freq_cutoff"</span>
-  ),
-  <span class="st">"value"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"14"</span>, <span class="st">"66"</span>, <span class="st">"0.30"</span>, <span class="st">"15"</span>, <span class="st">"0.10"</span>),
-  <span class="st">"step"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"value"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"14"</span>, <span class="st">"66"</span>, <span class="st">"0.30"</span>, <span class="st">"15"</span>, <span class="st">"0.10"</span><span class="op">)</span>,
+  <span class="st">"step"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">parametric</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_parametric.html">compose_parametric</a></span>(<span class="no">df_parametric</span>)
-<span class="no">parametric</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">parametric</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_parametric_v1.3.0.html">compose_parametric</a></span><span class="op">(</span><span class="va">df_parametric</span><span class="op">)</span>
+<span class="va">parametric</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>[
   {
     "param": "seed",
@@ -669,37 +671,38 @@
 <div id="io-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#io-domain" class="anchor"></a>I/O domain</h1>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">input_subdomain</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"filename"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="va">input_subdomain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"filename"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"Hepatitis C virus genotype 1"</span>,
     <span class="st">"Hepatitis C virus type 1b complete genome"</span>
-  ),
-  <span class="st">"uri"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+  <span class="op">)</span>,
+  <span class="st">"uri"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/22129792"</span>,
     <span class="st">"https://www.ncbi.nlm.nih.gov/nuccore/5420376"</span>
-  ),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">output_subdomain</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"mediatype"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"text/csv"</span>, <span class="st">"text/csv"</span>),
-  <span class="st">"uri"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<span class="va">output_subdomain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"mediatype"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"text/csv"</span>, <span class="st">"text/csv"</span><span class="op">)</span>,
+  <span class="st">"uri"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"https://example.com/data/514769/dnaAccessionBased.csv"</span>,
     <span class="st">"https://example.com/data/514801/SNPProfile*.csv"</span>
-  ),
-  <span class="st">"access_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-24T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-  ),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"access_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-24T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">io</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_io.html">compose_io</a></span>(<span class="no">input_subdomain</span>, <span class="no">output_subdomain</span>)
-<span class="no">io</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">io</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_io_v1.3.0.html">compose_io</a></span><span class="op">(</span><span class="va">input_subdomain</span>, <span class="va">output_subdomain</span><span class="op">)</span>
+<span class="va">io</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "input_subdomain": [
     {
@@ -746,20 +749,21 @@
 <div id="error-domain" class="section level1">
 <h1 class="hasAnchor">
 <a href="#error-domain" class="anchor"></a>Error domain</h1>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">empirical</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"key"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"false_negative_alignment_hits"</span>, <span class="st">"false_discovery"</span>),
-  <span class="st">"value"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;0.0010"</span>, <span class="st">"&lt;0.05"</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="va">empirical</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"key"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"false_negative_alignment_hits"</span>, <span class="st">"false_discovery"</span><span class="op">)</span>,
+  <span class="st">"value"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;0.0010"</span>, <span class="st">"&lt;0.05"</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">algorithmic</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"key"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"false_positive_mutation_calls"</span>, <span class="st">"false_discovery"</span>),
-  <span class="st">"value"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;0.00005"</span>, <span class="st">"0.005"</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<span class="va">algorithmic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"key"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"false_positive_mutation_calls"</span>, <span class="st">"false_discovery"</span><span class="op">)</span>,
+  <span class="st">"value"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;0.00005"</span>, <span class="st">"0.005"</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">error</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_error.html">compose_error</a></span>(<span class="no">empirical</span>, <span class="no">algorithmic</span>)
-<span class="no">error</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="va">error</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_error_v1.3.0.html">compose_error</a></span><span class="op">(</span><span class="va">empirical</span>, <span class="va">algorithmic</span><span class="op">)</span>
+<span class="va">error</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "empirical_error": {
     "false_negative_alignment_hits": "&lt;0.0010",
@@ -774,24 +778,26 @@
 <div id="top-level-fields" class="section level1">
 <h1 class="hasAnchor">
 <a href="#top-level-fields" class="anchor"></a>Top level fields</h1>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">tlf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_tlf.html">compose_tlf</a></span>(
-  <span class="no">provenance</span>, <span class="no">usability</span>, <span class="no">extension</span>, <span class="no">description</span>,
-  <span class="no">execution</span>, <span class="no">parametric</span>, <span class="no">io</span>, <span class="no">error</span>
-)
-<span class="no">tlf</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
-<pre><code>["https://w3id.org/biocompute/1.3.0/", "https://biocompute.sbgenomics.com/bco/f66f949c-da0d-401f-b03c-f009de7ed533", "31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243"] </code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="va">tlf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_tlf_v1.3.0.html">compose_tlf</a></span><span class="op">(</span>
+  <span class="va">provenance</span>, <span class="va">usability</span>, <span class="va">extension</span>, <span class="va">description</span>,
+  <span class="va">execution</span>, <span class="va">parametric</span>, <span class="va">io</span>, <span class="va">error</span>
+<span class="op">)</span>
+<span class="va">tlf</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<pre><code>["https://w3id.org/biocompute/1.3.0/", "https://biocompute.sbgenomics.com/bco/d37672da-aff7-4996-b60d-496ff56ca5ed", "31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243"] </code></pre>
 </div>
 <div id="complete-bco" class="section level1">
 <h1 class="hasAnchor">
 <a href="#complete-bco" class="anchor"></a>Complete BCO</h1>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">bco</span> <span class="kw">&lt;-</span> <span class="kw pkg">biocompute</span><span class="kw ns">::</span><span class="fu"><a href="../reference/compose.html">compose</a></span>(
-  <span class="no">tlf</span>, <span class="no">provenance</span>, <span class="no">usability</span>, <span class="no">extension</span>, <span class="no">description</span>,
-  <span class="no">execution</span>, <span class="no">parametric</span>, <span class="no">io</span>, <span class="no">error</span>
-)
-<span class="no">bco</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/compose_v1.3.0.html">compose</a></span><span class="op">(</span>
+  <span class="va">tlf</span>, <span class="va">provenance</span>, <span class="va">usability</span>, <span class="va">extension</span>, <span class="va">description</span>,
+  <span class="va">execution</span>, <span class="va">parametric</span>, <span class="va">io</span>, <span class="va">error</span>
+<span class="op">)</span>
+<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "bco_spec_version": "https://w3id.org/biocompute/1.3.0/",
-  "bco_id": "https://biocompute.sbgenomics.com/bco/f66f949c-da0d-401f-b03c-f009de7ed533",
+  "bco_id": "https://biocompute.sbgenomics.com/bco/d37672da-aff7-4996-b60d-496ff56ca5ed",
   "checksum": "31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243",
   "provenance_domain": {
     "name": "HCV1a ledipasvir resistance SNP detection",
@@ -1136,11 +1142,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

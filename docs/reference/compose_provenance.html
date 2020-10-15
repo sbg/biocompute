@@ -57,16 +57,6 @@
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
-
 
   </head>
 
@@ -84,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -147,31 +137,31 @@
     <p>Compose BioCompute Object - Provenance Domain (v1.3.0)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compose_provenance_v1.3.0</span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>review</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>derived_from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>obsolete_after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>embargo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>created</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>modified</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>contributors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>license</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+    <pre class="usage"><span class='fu'>compose_provenance_v1.3.0</span><span class='op'>(</span>
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  version <span class='op'>=</span> <span class='cn'>NULL</span>,
+  review <span class='op'>=</span> <span class='cn'>NULL</span>,
+  derived_from <span class='op'>=</span> <span class='cn'>NULL</span>,
+  obsolete_after <span class='op'>=</span> <span class='cn'>NULL</span>,
+  embargo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  created <span class='op'>=</span> <span class='cn'>NULL</span>,
+  modified <span class='op'>=</span> <span class='cn'>NULL</span>,
+  contributors <span class='op'>=</span> <span class='cn'>NULL</span>,
+  license <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>compose_provenance</span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>review</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>derived_from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>obsolete_after</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>embargo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>created</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>modified</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>contributors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>license</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+<span class='fu'>compose_provenance</span><span class='op'>(</span>
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  version <span class='op'>=</span> <span class='cn'>NULL</span>,
+  review <span class='op'>=</span> <span class='cn'>NULL</span>,
+  derived_from <span class='op'>=</span> <span class='cn'>NULL</span>,
+  obsolete_after <span class='op'>=</span> <span class='cn'>NULL</span>,
+  embargo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  created <span class='op'>=</span> <span class='cn'>NULL</span>,
+  modified <span class='op'>=</span> <span class='cn'>NULL</span>,
+  contributors <span class='op'>=</span> <span class='cn'>NULL</span>,
+  license <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,53 +218,54 @@ of their contribution types.</p></td>
     <p>A list of class <code>bco.domain</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='st'>"HCV1a ledipasvir resistance SNP detection"</span>
-<span class='no'>version</span> <span class='kw'>&lt;-</span> <span class='st'>"1.0.0"</span>
-<span class='no'>review</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='st'>"status"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"approved"</span>, <span class='st'>"approved"</span>),
-  <span class='st'>"reviewer_comment"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+    <pre class="examples"><div class='input'><span class='va'>name</span> <span class='op'>&lt;-</span> <span class='st'>"HCV1a ledipasvir resistance SNP detection"</span>
+<span class='va'>version</span> <span class='op'>&lt;-</span> <span class='st'>"1.0.0"</span>
+<span class='va'>review</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  <span class='st'>"status"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"approved"</span>, <span class='st'>"approved"</span><span class='op'>)</span>,
+  <span class='st'>"reviewer_comment"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
     <span class='st'>"Approved by [company name] staff. Waiting for approval from FDA Reviewer"</span>,
     <span class='st'>"The revised BCO looks fine"</span>
-  ),
-  <span class='st'>"date"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
-    <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2017-11-12T12:30:48"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"EST"</span>),
-    <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2017-12-12T12:30:48"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Los_Angeles"</span>)
-  ),
-  <span class='st'>"reviewer_name"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Jane Doe"</span>, <span class='st'>"John Doe"</span>),
-  <span class='st'>"reviewer_affiliation"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Seven Bridges Genomics"</span>, <span class='st'>"U.S. Food and Drug Administration"</span>),
-  <span class='st'>"reviewer_email"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"example@sevenbridges.com"</span>, <span class='st'>"example@fda.gov"</span>),
-  <span class='st'>"reviewer_contribution"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"curatedBy"</span>, <span class='st'>"curatedBy"</span>),
-  <span class='st'>"reviewer_orcid"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"https://orcid.org/0000-0000-0000-0000"</span>, <span class='fl'>NA</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+  <span class='op'>)</span>,
+  <span class='st'>"date"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2017-11-12T12:30:48"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"EST"</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2017-12-12T12:30:48"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"America/Los_Angeles"</span><span class='op'>)</span>
+  <span class='op'>)</span>,
+  <span class='st'>"reviewer_name"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Jane Doe"</span>, <span class='st'>"John Doe"</span><span class='op'>)</span>,
+  <span class='st'>"reviewer_affiliation"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Seven Bridges Genomics"</span>, <span class='st'>"U.S. Food and Drug Administration"</span><span class='op'>)</span>,
+  <span class='st'>"reviewer_email"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"example@sevenbridges.com"</span>, <span class='st'>"example@fda.gov"</span><span class='op'>)</span>,
+  <span class='st'>"reviewer_contribution"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"curatedBy"</span>, <span class='st'>"curatedBy"</span><span class='op'>)</span>,
+  <span class='st'>"reviewer_orcid"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"https://orcid.org/0000-0000-0000-0000"</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='no'>derived_from</span> <span class='kw'>&lt;-</span> <span class='st'>"https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"</span>
-<span class='no'>obsolete_after</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2018-11-12T12:30:48"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"EST"</span>)
+<span class='va'>derived_from</span> <span class='op'>&lt;-</span> <span class='st'>"https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"</span>
+<span class='va'>obsolete_after</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2018-11-12T12:30:48"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"EST"</span><span class='op'>)</span>
 
-<span class='no'>embargo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
-  <span class='st'>"start_time"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2017-10-12T12:30:48"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"EST"</span>),
-  <span class='st'>"end_time"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2017-11-12T12:30:48"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"EST"</span>)
-)
+<span class='va'>embargo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+  <span class='st'>"start_time"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2017-10-12T12:30:48"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"EST"</span><span class='op'>)</span>,
+  <span class='st'>"end_time"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2017-11-12T12:30:48"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"EST"</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='no'>created</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2017-01-20T09:40:17"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"EST"</span>)
+<span class='va'>created</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2017-01-20T09:40:17"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"EST"</span><span class='op'>)</span>
 
-<span class='no'>modified</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"2019-05-10T09:40:17"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"EST"</span>)
+<span class='va'>modified</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2019-05-10T09:40:17"</span>, format <span class='op'>=</span> <span class='st'>"%Y-%m-%dT%H:%M:%S"</span>, tz <span class='op'>=</span> <span class='st'>"EST"</span><span class='op'>)</span>
 
-<span class='no'>contributors</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='st'>"name"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Jane Doe"</span>, <span class='st'>"John Doe"</span>),
-  <span class='st'>"affiliation"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Seven Bridges Genomics"</span>, <span class='st'>"U.S. Food and Drug Administration"</span>),
-  <span class='st'>"email"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"example@sevenbridges.com"</span>, <span class='st'>"example@fda.gov"</span>),
-  <span class='st'>"contribution"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"createdBy"</span>, <span class='st'>"curatedBy"</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"authoredBy"</span>))),
-  <span class='st'>"orcid"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"https://orcid.org/0000-0000-0000-0000"</span>, <span class='fl'>NA</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+<span class='va'>contributors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  <span class='st'>"name"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Jane Doe"</span>, <span class='st'>"John Doe"</span><span class='op'>)</span>,
+  <span class='st'>"affiliation"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Seven Bridges Genomics"</span>, <span class='st'>"U.S. Food and Drug Administration"</span><span class='op'>)</span>,
+  <span class='st'>"email"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"example@sevenbridges.com"</span>, <span class='st'>"example@fda.gov"</span><span class='op'>)</span>,
+  <span class='st'>"contribution"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"createdBy"</span>, <span class='st'>"curatedBy"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"authoredBy"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+  <span class='st'>"orcid"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"https://orcid.org/0000-0000-0000-0000"</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='no'>license</span> <span class='kw'>&lt;-</span> <span class='st'>"https://creativecommons.org/licenses/by/4.0/"</span>
+<span class='va'>license</span> <span class='op'>&lt;-</span> <span class='st'>"https://creativecommons.org/licenses/by/4.0/"</span>
 
-<span class='fu'>compose_provenance</span>(
-  <span class='no'>name</span>, <span class='no'>version</span>, <span class='no'>review</span>, <span class='no'>derived_from</span>, <span class='no'>obsolete_after</span>,
-  <span class='no'>embargo</span>, <span class='no'>created</span>, <span class='no'>modified</span>, <span class='no'>contributors</span>, <span class='no'>license</span>
-) <span class='kw'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span>()</div><div class='output co'>#&gt; {
+<span class='fu'>compose_provenance</span><span class='op'>(</span>
+  <span class='va'>name</span>, <span class='va'>version</span>, <span class='va'>review</span>, <span class='va'>derived_from</span>, <span class='va'>obsolete_after</span>,
+  <span class='va'>embargo</span>, <span class='va'>created</span>, <span class='va'>modified</span>, <span class='va'>contributors</span>, <span class='va'>license</span>
+<span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; {
 #&gt;   "name": "HCV1a ledipasvir resistance SNP detection",
 #&gt;   "version": "1.0.0",
 #&gt;   "review": [
@@ -341,11 +332,11 @@ of their contribution types.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -17,13 +17,7 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script><script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
+<![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
@@ -38,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -89,13 +83,12 @@
 
       
 
-      </header><script src="intro_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="intro_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create and Manipulate BioCompute Objects with R</h1>
-                        <h4 class="author">Nan Xiao &lt;<a href="mailto:nan.xiao@sevenbridges.com" class="email">nan.xiao@sevenbridges.com</a>&gt;</h4>
             
-            <h4 class="date">2020-04-23</h4>
+            <h4 class="date">2020-10-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbg/biocompute/blob/master/vignettes/intro.Rmd"><code>vignettes/intro.Rmd</code></a></small>
       <div class="hidden name"><code>intro.Rmd</code></div>
@@ -108,15 +101,17 @@
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The biocompute package offers a toolkit to create, validate, and export BioCompute Objects (BCO). This package follows the tidyverse design principles and can be seamlessly used together with the other packages with similar designs.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"biocompute"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://sbg.github.io/biocompute/">"biocompute"</a></span><span class="op">)</span></pre></div>
 </div>
 <div id="design-for-reproducibility" class="section level1">
 <h1 class="hasAnchor">
 <a href="#design-for-reproducibility" class="anchor"></a>Design for Reproducibility</h1>
 <p>To ensure better reproducibility, the composing and validation functions in this package are versioned. This means the BCO creation and validation can be done with fixed versions of the BioCompute Object specification if needed.</p>
-<p>For example, to compose the provenance domain, one could use <code><a href="../reference/compose_provenance.html">compose_provenance()</a></code>, which is an alias to the current stable version of the specification. Alternatively, one could use a versioned function <code><a href="../reference/compose_provenance.html">compose_provenance_v1.3.0()</a></code>. As the specification evolves, functions for new spec versions can be added, and <code><a href="../reference/compose_provenance.html">compose_provenance()</a></code> might point to a newer version in the future, while <code><a href="../reference/compose_provenance.html">compose_provenance_v1.3.0()</a></code> will not change over time.</p>
+<p>For example, to compose the provenance domain, one could use <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance()</a></code>, which is an alias to the current stable version of the specification. Alternatively, one could use a versioned function <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance_v1.3.0()</a></code>. As the specification evolves, functions for new spec versions can be added, and <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance()</a></code> might point to a newer version in the future, while <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance_v1.3.0()</a></code> will not change over time.</p>
 <p>The function <code><a href="../reference/versions.html">biocompute::versions()</a></code> tells the current and all available versions of the BioCompute Object specification supported in this package:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw pkg">biocompute</span><span class="kw ns">::</span><span class="fu"><a href="../reference/versions.html">versions</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/versions.html">versions</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>$current
 [1] "1.3.0"
 
@@ -126,55 +121,56 @@ $available
 <div id="compose-biocompute-object-domains" class="section level1">
 <h1 class="hasAnchor">
 <a href="#compose-biocompute-object-domains" class="anchor"></a>Compose BioCompute Object Domains</h1>
-<p>The package takes structured, native R data structures (vector or data frames), and turns them into BioCompute Objects. The functions <code>compose_*()</code> and <code><a href="../reference/compose.html">biocompute::compose()</a></code> are used to compose BioCompute Object domains and the final BioCompute Object.</p>
-<p>For example, to compose the provenance domain, we first prepare the data as data frames or vectors with a fixed set of variables names, and feed them into <code><a href="../reference/compose_provenance.html">compose_provenance()</a></code>:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">name</span> <span class="kw">&lt;-</span> <span class="st">"HCV1a ledipasvir resistance SNP detection"</span>
-<span class="no">version</span> <span class="kw">&lt;-</span> <span class="st">"1.0.0"</span>
-<span class="no">review</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"status"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"approved"</span>, <span class="st">"approved"</span>),
-  <span class="st">"reviewer_comment"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<p>The package takes structured, native R data structures (vector or data frames), and turns them into BioCompute Objects. The functions <code>compose_*()</code> and <code><a href="../reference/compose_v1.3.0.html">biocompute::compose()</a></code> are used to compose BioCompute Object domains and the final BioCompute Object.</p>
+<p>For example, to compose the provenance domain, we first prepare the data as data frames or vectors with a fixed set of variables names, and feed them into <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance()</a></code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"HCV1a ledipasvir resistance SNP detection"</span>
+<span class="va">version</span> <span class="op">&lt;-</span> <span class="st">"1.0.0"</span>
+<span class="va">review</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"status"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"approved"</span>, <span class="st">"approved"</span><span class="op">)</span>,
+  <span class="st">"reviewer_comment"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"Approved by [company name] staff. Waiting for approval from FDA Reviewer"</span>,
     <span class="st">"The revised BCO looks fine"</span>
-  ),
-  <span class="st">"date"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-11-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-12-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"America/Los_Angeles"</span>)
-  ),
-  <span class="st">"reviewer_name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span>),
-  <span class="st">"reviewer_affiliation"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span>),
-  <span class="st">"reviewer_email"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span>),
-  <span class="st">"reviewer_contribution"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"curatedBy"</span>, <span class="st">"curatedBy"</span>),
-  <span class="st">"reviewer_orcid"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="fl">NA</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+  <span class="op">)</span>,
+  <span class="st">"date"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-11-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-12-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"America/Los_Angeles"</span><span class="op">)</span>
+  <span class="op">)</span>,
+  <span class="st">"reviewer_name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span><span class="op">)</span>,
+  <span class="st">"reviewer_affiliation"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span><span class="op">)</span>,
+  <span class="st">"reviewer_email"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span><span class="op">)</span>,
+  <span class="st">"reviewer_contribution"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"curatedBy"</span>, <span class="st">"curatedBy"</span><span class="op">)</span>,
+  <span class="st">"reviewer_orcid"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="cn">NA</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">derived_from</span> <span class="kw">&lt;-</span> <span class="st">"https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"</span>
-<span class="no">obsolete_after</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2018-11-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
+<span class="va">derived_from</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json"</span>
+<span class="va">obsolete_after</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2018-11-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
 
-<span class="no">embargo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="st">"start_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-10-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>),
-  <span class="st">"end_time"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-11-12T12:30:48"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
-)
+<span class="va">embargo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="st">"start_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-10-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>,
+  <span class="st">"end_time"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-11-12T12:30:48"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
+<span class="op">)</span>
 
-<span class="no">created</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2017-01-20T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
+<span class="va">created</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2017-01-20T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
 
-<span class="no">modified</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span>(<span class="st">"2019-05-10T09:40:17"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, <span class="kw">tz</span> <span class="kw">=</span> <span class="st">"EST"</span>)
+<span class="va">modified</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2019-05-10T09:40:17"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%S"</span>, tz <span class="op">=</span> <span class="st">"EST"</span><span class="op">)</span>
 
-<span class="no">contributors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="st">"name"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span>),
-  <span class="st">"affiliation"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span>),
-  <span class="st">"email"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span>),
-  <span class="st">"contribution"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"createdBy"</span>, <span class="st">"curatedBy"</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"authoredBy"</span>))),
-  <span class="st">"orcid"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="fl">NA</span>),
-  <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<span class="va">contributors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  <span class="st">"name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jane Doe"</span>, <span class="st">"John Doe"</span><span class="op">)</span>,
+  <span class="st">"affiliation"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Seven Bridges Genomics"</span>, <span class="st">"U.S. Food and Drug Administration"</span><span class="op">)</span>,
+  <span class="st">"email"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"example@sevenbridges.com"</span>, <span class="st">"example@fda.gov"</span><span class="op">)</span>,
+  <span class="st">"contribution"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"createdBy"</span>, <span class="st">"curatedBy"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"authoredBy"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+  <span class="st">"orcid"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://orcid.org/0000-0000-0000-0000"</span>, <span class="cn">NA</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="no">license</span> <span class="kw">&lt;-</span> <span class="st">"https://creativecommons.org/licenses/by/4.0/"</span>
+<span class="va">license</span> <span class="op">&lt;-</span> <span class="st">"https://creativecommons.org/licenses/by/4.0/"</span>
 
-<span class="fu"><a href="../reference/compose_provenance.html">compose_provenance</a></span>(
-  <span class="no">name</span>, <span class="no">version</span>, <span class="no">review</span>, <span class="no">derived_from</span>, <span class="no">obsolete_after</span>,
-  <span class="no">embargo</span>, <span class="no">created</span>, <span class="no">modified</span>, <span class="no">contributors</span>, <span class="no">license</span>
-) <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span>
+  <span class="va">name</span>, <span class="va">version</span>, <span class="va">review</span>, <span class="va">derived_from</span>, <span class="va">obsolete_after</span>,
+  <span class="va">embargo</span>, <span class="va">created</span>, <span class="va">modified</span>, <span class="va">contributors</span>, <span class="va">license</span>
+<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "name": "HCV1a ledipasvir resistance SNP detection",
   "version": "1.0.0",
@@ -235,21 +231,22 @@ $available
 <div id="compose-biocompute-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#compose-biocompute-objects" class="anchor"></a>Compose BioCompute Objects</h1>
-<p>After all the domains are composed, use <code><a href="../reference/compose_tlf.html">compose_tlf()</a></code> to compose the top level fields, as all the domains will be used to calculate an SHA-256 checksum. Next, use <code><a href="../reference/compose.html">biocompute::compose()</a></code> to compose the complete BioCompute Object.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">tlf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compose_tlf.html">compose_tlf</a></span>(
-  <span class="fu"><a href="../reference/compose_provenance.html">compose_provenance</a></span>(), <span class="fu"><a href="../reference/compose_usability.html">compose_usability</a></span>(), <span class="fu"><a href="../reference/compose_extension.html">compose_extension</a></span>(),
-  <span class="fu"><a href="../reference/compose_description.html">compose_description</a></span>(), <span class="fu"><a href="../reference/compose_execution.html">compose_execution</a></span>(), <span class="fu"><a href="../reference/compose_parametric.html">compose_parametric</a></span>(),
-  <span class="fu"><a href="../reference/compose_io.html">compose_io</a></span>(), <span class="fu"><a href="../reference/compose_error.html">compose_error</a></span>()
-)
-<span class="kw pkg">biocompute</span><span class="kw ns">::</span><span class="fu"><a href="../reference/compose.html">compose</a></span>(
-  <span class="no">tlf</span>,
-  <span class="fu"><a href="../reference/compose_provenance.html">compose_provenance</a></span>(), <span class="fu"><a href="../reference/compose_usability.html">compose_usability</a></span>(), <span class="fu"><a href="../reference/compose_extension.html">compose_extension</a></span>(),
-  <span class="fu"><a href="../reference/compose_description.html">compose_description</a></span>(), <span class="fu"><a href="../reference/compose_execution.html">compose_execution</a></span>(), <span class="fu"><a href="../reference/compose_parametric.html">compose_parametric</a></span>(),
-  <span class="fu"><a href="../reference/compose_io.html">compose_io</a></span>(), <span class="fu"><a href="../reference/compose_error.html">compose_error</a></span>()
-) <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>()</pre></body></html></div>
+<p>After all the domains are composed, use <code><a href="../reference/compose_tlf_v1.3.0.html">compose_tlf()</a></code> to compose the top level fields, as all the domains will be used to calculate an SHA-256 checksum. Next, use <code><a href="../reference/compose_v1.3.0.html">biocompute::compose()</a></code> to compose the complete BioCompute Object.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">tlf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_tlf_v1.3.0.html">compose_tlf</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_usability_v1.3.0.html">compose_usability</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_extension_v1.3.0.html">compose_extension</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_description_v1.3.0.html">compose_description</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_execution_v1.3.0.html">compose_execution</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_parametric_v1.3.0.html">compose_parametric</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_io_v1.3.0.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.3.0.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/compose_v1.3.0.html">compose</a></span><span class="op">(</span>
+  <span class="va">tlf</span>,
+  <span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_usability_v1.3.0.html">compose_usability</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_extension_v1.3.0.html">compose_extension</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_description_v1.3.0.html">compose_description</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_execution_v1.3.0.html">compose_execution</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_parametric_v1.3.0.html">compose_parametric</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_io_v1.3.0.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.3.0.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>{
   "bco_spec_version": "https://w3id.org/biocompute/1.3.0/",
-  "bco_id": "https://biocompute.sbgenomics.com/bco/4e8b0db8-5fc9-4246-8689-d1c82405f5ed",
+  "bco_id": "https://biocompute.sbgenomics.com/bco/36835eda-9d0c-49bb-b66b-efb9629db042",
   "checksum": "d743d2f1407707eadcc2a700f7c506f13deddf6bf9c8d9d888e9087cc67a1c8f",
   "provenance_domain": {
     "name": [],
@@ -301,28 +298,30 @@ $available
 <h1 class="hasAnchor">
 <a href="#validate-biocompute-objects" class="anchor"></a>Validate BioCompute Objects</h1>
 <p>To make sure that a BioCompute Object was not tampered and follows the standard, we can validate them by the checksum, or validate them against the BCO JSON schemas. For example</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">bco</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="kw">fileext</span> <span class="kw">=</span> <span class="st">".json"</span>)
-<span class="fu"><a href="../reference/generate_example.html">generate_example</a></span>(<span class="st">"HCV1a"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/export_json.html">export_json</a></span>(<span class="no">bco</span>)
-<span class="no">bco</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/validate_checksum.html">validate_checksum</a></span>()</pre></body></html></div>
-<pre><code>── Loading BioCompute Object ─────────────────────────────────────────────────────────────────────────────────────
-── Validating Checksum ───────────────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/generate_example.html">generate_example</a></span><span class="op">(</span><span class="st">"HCV1a"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/export_json.html">export_json</a></span><span class="op">(</span><span class="va">bco</span><span class="op">)</span>
+<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_checksum_v1.3.0.html">validate_checksum</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<pre><code>── Loading BioCompute Object ───────────────────────────────────────────────────
+── Validating Checksum ─────────────────────────────────────────────────────────
 Documented checksum: 31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243
 Calculated checksum: 31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243
 Documented and calculated checksum matched.</code></pre>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">bco</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="kw">fileext</span> <span class="kw">=</span> <span class="st">".json"</span>)
-<span class="fu"><a href="../reference/generate_example.html">generate_example</a></span>(<span class="st">"HCV1a"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/export_json.html">export_json</a></span>(<span class="no">bco</span>)
-<span class="no">bco</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/validate_schema.html">validate_schema</a></span>()</pre></body></html></div>
-<pre><code>── 0: Validating BioCompute Object ───────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/generate_example.html">generate_example</a></span><span class="op">(</span><span class="st">"HCV1a"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/export_json.html">export_json</a></span><span class="op">(</span><span class="va">bco</span><span class="op">)</span>
+<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_schema_v1.3.0.html">validate_schema</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<pre><code>── 0: Validating BioCompute Object ─────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                                  field           message
 1 data.extension_domain.fhir_extension is the wrong type
 
-── 1: Validating Provenance Domain ───────────────────────────────────────────────────────────────────────────────
+── 1: Validating Provenance Domain ─────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                 field                  message
@@ -333,10 +332,10 @@ attr(,"errors")
 5        data.created must be date-time format
 6       data.modified must be date-time format
 
-── 2: Validating Usability Domain ────────────────────────────────────────────────────────────────────────────────
+── 2: Validating Usability Domain ──────────────────────────────────────────────
 [1] TRUE
 
-── 3.1: Validating Extension Domain (FHIR Extension) ─────────────────────────────────────────────────────────────
+── 3.1: Validating Extension Domain (FHIR Extension) ───────────────────────────
 [1] FALSE
 attr(,"errors")
                   field           message
@@ -346,10 +345,10 @@ attr(,"errors")
 4 data.fhir_resources.3 is the wrong type
 5 data.fhir_resources.4 is the wrong type
 
-── 3.2: Validating Extension Domain (SCM Extension) ──────────────────────────────────────────────────────────────
+── 3.2: Validating Extension Domain (SCM Extension) ────────────────────────────
 [1] TRUE
 
-── 4: Validating Description Domain ──────────────────────────────────────────────────────────────────────────────
+── 4: Validating Description Domain ────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                               field                  message
@@ -363,7 +362,7 @@ attr(,"errors")
 8                     data.platform        is the wrong type
 9 data.pipeline_steps.0.step_number        is the wrong type
 
-── 5: Validating Execution Domain ────────────────────────────────────────────────────────────────────────────────
+── 5: Validating Execution Domain ──────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                            field           message
@@ -372,13 +371,13 @@ attr(,"errors")
 3 data.external_data_endpoints.1 is the wrong type
 4 data.external_data_endpoints.2 is the wrong type
 
-── 6: Validating Parametric Domain ───────────────────────────────────────────────────────────────────────────────
+── 6: Validating Parametric Domain ─────────────────────────────────────────────
 [1] TRUE
 
-── 7: Validating I/O Domain ──────────────────────────────────────────────────────────────────────────────────────
+── 7: Validating I/O Domain ────────────────────────────────────────────────────
 [1] TRUE
 
-── 8: Validating Error Domain ────────────────────────────────────────────────────────────────────────────────────
+── 8: Validating Error Domain ──────────────────────────────────────────────────
 [1] TRUE</code></pre>
 </div>
 <div id="export-biocompute-objects" class="section level1">
@@ -399,11 +398,11 @@ attr(,"errors")
 
 
       <footer><div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

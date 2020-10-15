@@ -57,16 +57,6 @@
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
-
 
   </head>
 
@@ -84,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -147,14 +137,14 @@
     <p>Export BioCompute Object to Seven Bridges Platforms</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_sevenbridges</span>(
-  <span class='no'>file</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>project</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='st'>"https://api.sbgenomics.com/v2/"</span>,
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>export_sevenbridges</span><span class='op'>(</span>
+  <span class='va'>file</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  project <span class='op'>=</span> <span class='cn'>NULL</span>,
+  token <span class='op'>=</span> <span class='cn'>NULL</span>,
+  base_url <span class='op'>=</span> <span class='st'>"https://api.sbgenomics.com/v2/"</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,17 +187,22 @@ If <code>FALSE</code>, will not overwrite.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>file_json</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".json"</span>)
-<span class='fu'><a href='generate_example.html'>generate_example</a></span>(<span class='st'>"HCV1a"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='convert_json.html'>convert_json</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='export_json.html'>export_json</a></span>(<span class='no'>file_json</span>)
+<span class='va'>file_json</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".json"</span><span class='op'>)</span>
+<span class='fu'><a href='generate_example.html'>generate_example</a></span><span class='op'>(</span><span class='st'>"HCV1a"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='export_json.html'>export_json</a></span><span class='op'>(</span><span class='va'>file_json</span><span class='op'>)</span>
 
-<span class='fu'>export_sevenbridges</span>(
-  <span class='no'>file_json</span>,
-  <span class='kw'>project</span> <span class='kw'>=</span> <span class='st'>"rosalind_franklin/project_name"</span>,
-  <span class='kw'>token</span> <span class='kw'>=</span> <span class='st'>"your_api_auth_token"</span>,
-  <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='st'>"https://cgc-api.sbgenomics.com/v2/"</span>
-)</div><div class='output co'>#&gt; ══ <span style='font-weight: bold;'>Starting the upload</span><span> ═══════════════════════════════════════════════════════════════════════════════════════════</div><div class='output co'>#&gt; <span class='error'>Error in export_sevenbridges(file_json, project = "rosalind_franklin/project_name",     token = "your_api_auth_token", base_url = "https://cgc-api.sbgenomics.com/v2/"): The API token format is incorrect.</span></div><div class='input'># }
+<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span>
+  <span class='fu'>export_sevenbridges</span><span class='op'>(</span>
+    <span class='va'>file_json</span>,
+    project <span class='op'>=</span> <span class='st'>"rosalind_franklin/project_name"</span>,
+    token <span class='op'>=</span> <span class='st'>"your_api_auth_token"</span>,
+    base_url <span class='op'>=</span> <span class='st'>"https://cgc-api.sbgenomics.com/v2/"</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; ══ <span style='font-weight: bold;'>Starting the upload</span><span> ═════════════════════════════════════════════════════════
+#&gt; Error in export_sevenbridges(file_json, project = "rosalind_franklin/project_name",  : 
+#&gt;   The API token format is incorrect.</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -220,11 +215,11 @@ If <code>FALSE</code>, will not overwrite.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

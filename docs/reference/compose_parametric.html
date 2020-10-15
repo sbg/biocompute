@@ -59,16 +59,6 @@ which can affect the output of the calculations
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
-
 
   </head>
 
@@ -86,7 +76,7 @@ which can affect the output of the calculations
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -148,12 +138,12 @@ which can affect the output of the calculations
     <div class="ref-description">
     <p>Non-default parameters customizing the computational flow
 which can affect the output of the calculations
-(<a href='https://github.com/biocompute-objects/BCO_Specification/blob/master/parametric-domain.md#26-parametric-domain-parametric_domain'>domain definition</a>).</p>
+(<a href='https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/parametric-domain.md'>domain definition</a>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compose_parametric_v1.3.0</span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>compose_parametric_v1.3.0</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>compose_parametric</span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>compose_parametric</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,17 +161,18 @@ which can affect the output of the calculations
     <p>A list of class <code>bco.domain</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df_parametric</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='st'>"param"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+    <pre class="examples"><div class='input'><span class='va'>df_parametric</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  <span class='st'>"param"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
     <span class='st'>"seed"</span>, <span class='st'>"minimum_match_len"</span>,
     <span class='st'>"divergence_threshold_percent"</span>,
     <span class='st'>"minimum_coverage"</span>, <span class='st'>"freq_cutoff"</span>
-  ),
-  <span class='st'>"value"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"14"</span>, <span class='st'>"66"</span>, <span class='st'>"0.30"</span>, <span class='st'>"15"</span>, <span class='st'>"0.10"</span>),
-  <span class='st'>"step"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>)
-)
+  <span class='op'>)</span>,
+  <span class='st'>"value"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"14"</span>, <span class='st'>"66"</span>, <span class='st'>"0.30"</span>, <span class='st'>"15"</span>, <span class='st'>"0.10"</span><span class='op'>)</span>,
+  <span class='st'>"step"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>compose_parametric</span>(<span class='no'>df_parametric</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span>()</div><div class='output co'>#&gt; [
+<span class='fu'>compose_parametric</span><span class='op'>(</span><span class='va'>df_parametric</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [
 #&gt;   {
 #&gt;     "param": "seed",
 #&gt;     "value": "14",
@@ -219,11 +210,11 @@ which can affect the output of the calculations
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

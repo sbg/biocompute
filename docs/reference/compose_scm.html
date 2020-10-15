@@ -57,16 +57,6 @@
 <![endif]-->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-87185344-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-87185344-1');
-</script>
-
 
   </head>
 
@@ -84,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -147,21 +137,21 @@
     <p>Compose BioCompute Object - SCM Extension (v1.3.0)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compose_scm_v1.3.0</span>(
-  <span class='kw'>scm_repository</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scm_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"git"</span>, <span class='st'>"svn"</span>, <span class='st'>"hg"</span>, <span class='st'>"other"</span>),
-  <span class='kw'>scm_commit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scm_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scm_preview</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+    <pre class="usage"><span class='fu'>compose_scm_v1.3.0</span><span class='op'>(</span>
+  scm_repository <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scm_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"git"</span>, <span class='st'>"svn"</span>, <span class='st'>"hg"</span>, <span class='st'>"other"</span><span class='op'>)</span>,
+  scm_commit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scm_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scm_preview <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>compose_scm</span>(
-  <span class='kw'>scm_repository</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scm_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"git"</span>, <span class='st'>"svn"</span>, <span class='st'>"hg"</span>, <span class='st'>"other"</span>),
-  <span class='kw'>scm_commit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scm_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scm_preview</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+<span class='fu'>compose_scm</span><span class='op'>(</span>
+  scm_repository <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scm_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"git"</span>, <span class='st'>"svn"</span>, <span class='st'>"hg"</span>, <span class='st'>"other"</span><span class='op'>)</span>,
+  scm_commit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scm_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scm_preview <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,7 +174,7 @@ but may be a name of a branch.</p></td>
     <tr>
       <th>scm_path</th>
       <td><p>Character string. Path from the repository to the
-source code referenced. Should not start with <code>/</code>.</p></td>
+source code referenced. Should not start with <code><a href='https://rdrr.io/r/base/Arithmetic.html'>/</a></code>.</p></td>
     </tr>
     <tr>
       <th>scm_preview</th>
@@ -198,13 +188,14 @@ referenced by the BioCompute Object.</p></td>
     <p>A list of class <code>bco.domain</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>scm_repository</span> <span class='kw'>&lt;-</span> <span class='st'>"https://github.com/example/repo"</span>
-<span class='no'>scm_type</span> <span class='kw'>&lt;-</span> <span class='st'>"git"</span>
-<span class='no'>scm_commit</span> <span class='kw'>&lt;-</span> <span class='st'>"c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21"</span>
-<span class='no'>scm_path</span> <span class='kw'>&lt;-</span> <span class='st'>"workflow/hive-viral-mutation-detection.cwl"</span>
-<span class='no'>scm_preview</span> <span class='kw'>&lt;-</span> <span class='st'>"https://github.com/example/repo/blob/master/mutation-detection.cwl"</span>
+    <pre class="examples"><div class='input'><span class='va'>scm_repository</span> <span class='op'>&lt;-</span> <span class='st'>"https://github.com/example/repo"</span>
+<span class='va'>scm_type</span> <span class='op'>&lt;-</span> <span class='st'>"git"</span>
+<span class='va'>scm_commit</span> <span class='op'>&lt;-</span> <span class='st'>"c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21"</span>
+<span class='va'>scm_path</span> <span class='op'>&lt;-</span> <span class='st'>"workflow/hive-viral-mutation-detection.cwl"</span>
+<span class='va'>scm_preview</span> <span class='op'>&lt;-</span> <span class='st'>"https://github.com/example/repo/blob/master/mutation-detection.cwl"</span>
 
-<span class='fu'>compose_scm</span>(<span class='no'>scm_repository</span>, <span class='no'>scm_type</span>, <span class='no'>scm_commit</span>, <span class='no'>scm_path</span>, <span class='no'>scm_preview</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span>()</div><div class='output co'>#&gt; {
+<span class='fu'>compose_scm</span><span class='op'>(</span><span class='va'>scm_repository</span>, <span class='va'>scm_type</span>, <span class='va'>scm_commit</span>, <span class='va'>scm_path</span>, <span class='va'>scm_preview</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; {
 #&gt;   "scm_repository": "https://github.com/example/repo",
 #&gt;   "scm_type": "git",
 #&gt;   "scm_commit": "c9ffea0b60fa3bcf8e138af7c99ca141a6b8fb21",
@@ -222,11 +213,11 @@ referenced by the BioCompute Object.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nan Xiao, Soner Koc, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
