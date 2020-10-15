@@ -45,11 +45,13 @@ generate_example("HCV1a") \%>\%
   convert_json() \%>\%
   export_json(file_json)
 
-export_sevenbridges(
-  file_json,
-  project = "rosalind_franklin/project_name",
-  token = "your_api_auth_token",
-  base_url = "https://cgc-api.sbgenomics.com/v2/"
+try(
+  export_sevenbridges(
+    file_json,
+    project = "rosalind_franklin/project_name",
+    token = "your_api_auth_token",
+    base_url = "https://cgc-api.sbgenomics.com/v2/"
+  )
 )
 }
 }

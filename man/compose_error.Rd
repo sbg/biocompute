@@ -23,7 +23,7 @@ A list of class \code{bco.domain}
 The error domain can be used to determine what range of input
 returns outputs that are within the tolerance level defined
 in this subdomain and therefore can be used to optimize algorithm
-(\href{https://github.com/biocompute-objects/BCO_Specification/blob/master/error-domain.md}{domain definition}).
+(\href{https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/error-domain.md}{domain definition}).
 }
 \examples{
 empirical <- data.frame(

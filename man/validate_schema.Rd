@@ -21,7 +21,7 @@ BioCompute Objects schema validator (v1.3.0)
 \note{
 JSON schema validators for BCO domains and complete BCO based on
 jsonvalidate. Refer to the
-\href{https://github.com/biocompute-objects/BCO_Specification/tree/master/schemas}{BioCompute Objects Schema}
+\href{https://github.com/biocompute-objects/BCO_Specification/tree/main/ieee-2791-schema}{BioCompute Objects Schema}
 for specific JSON schemas.
 }
 \examples{
