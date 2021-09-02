@@ -54,6 +54,35 @@ compose_tlf_v1.3.0 <-
     domain
   }
 
+compose_tlf_v1.4.2 <-
+  function(
+           provenance, usability, extension, description,
+           execution, parametric, io, error, bco_id = NULL) {
+    bco_spec_version <- "https://w3id.org/biocompute/1.4.2/"
+    if (is.null(bco_id)) bco_id <- generate_id("sevenbridges")
+
+    lst <- list(
+      "provenance_domain" = provenance,
+      "usability_domain" = usability,
+      "extension_domain" = extension,
+      "description_domain" = description,
+      "execution_domain" = execution,
+      "parametric_domain" = parametric,
+      "io_domain" = io,
+      "error_domain" = error
+    )
+
+    json <- convert_json(lst)
+    checksum <- digest::digest(json, algo = "sha256")
+
+    domain <- c(
+      "spec_version" = bco_spec_version,
+      "object_id" = bco_id,
+      "etag" = checksum
+    )
+    domain
+  }
+
 #' @rdname compose_tlf
 #' @export compose_tlf
-compose_tlf <- compose_tlf_v1.3.0
+compose_tlf <- compose_tlf_v1.4.2
