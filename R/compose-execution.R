@@ -27,6 +27,7 @@
 #'
 #' @rdname compose_execution
 #' @export compose_execution_v1.3.0
+#' @export compose_execution_v1.4.2
 #'
 #' @examples
 #' script <- "https://example.com/workflows/antiviral_resistance_detection_hive.py"
@@ -112,6 +113,56 @@ compose_execution_v1.3.0 <-
     domain
   }
 
+compose_execution_v1.4.2 <-
+  function(
+           script = list(NULL), script_driver = NULL, software_prerequisites = NULL,
+           external_data_endpoints = NULL, environment_variables = NULL) {
+    if (is.null(script)) script <- list()
+    if (is.null(script_driver)) script_driver <- list()
+
+    if (is.null(software_prerequisites)) {
+      sp_lst <- list()
+    } else {
+      sp <- software_prerequisites
+      sp_lst <- df2list(sp)
+      for (i in 1:length(sp_lst)) {
+        sp_lst[[i]] <-
+          list(
+            "name" = unlist(unname(sp_lst[[i]]["name"])),
+            "version" = unlist(unname(sp_lst[[i]]["version"])),
+            "uri" = unlist(sp_lst[[i]][c("uri", "access_time", "sha1_chksum")])
+          )
+      }
+    }
+
+    if (is.null(external_data_endpoints)) {
+      ede_lst <- list()
+    } else {
+      ede <- external_data_endpoints
+      ede_lst <- df2list(ede)
+    }
+
+    if (is.null(environment_variables)) {
+      ev_lst <- list()
+    } else {
+      ev_lst <- as.list(setNames(
+        as.character(environment_variables$value),
+        as.character(environment_variables$key)
+      ))
+    }
+
+    domain <- list(
+      "script" = script,
+      "script_driver" = script_driver,
+      "software_prerequisites" = sp_lst,
+      "external_data_endpoints" = unlist(ede_lst),
+      "environment_variables" = ev_lst
+    )
+    class(domain) <- c(class(domain), "bco.domain")
+
+    domain
+  }
+
 #' @rdname compose_execution
 #' @export compose_execution
-compose_execution <- compose_execution_v1.3.0
+compose_execution <- compose_execution_v1.4.2
