@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Top Level Fields (v1.3.0)
+#' Compose BioCompute Object - Top Level Fields (v1.4.2)
 #'
 #' @param provenance Provenance domain
 #' @param usability Usability domain

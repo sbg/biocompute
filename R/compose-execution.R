@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Execution Domain (v1.3.0)
+#' Compose BioCompute Object - Execution Domain (v1.4.2)
 #'
 #' @param script Character string. Points to internal or external
 #' references to an object that was used to perform computations

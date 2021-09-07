@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Description Domain (v1.3.0)
+#' Compose BioCompute Object - Description Domain (v1.4.2)
 #'
 #' @param keywords Character vector. A list of keywords to aid in
 #' searchability and description of the experiment.

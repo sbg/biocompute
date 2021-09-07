@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Input and Output Domain (v1.3.0)
+#' Compose BioCompute Object - Input and Output Domain (v1.4.2)
 #'
 #' This domain contains the list of global input and output files
 #' created by the computational workflow, excluding the intermediate files.
