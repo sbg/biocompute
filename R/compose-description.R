@@ -21,6 +21,7 @@
 #'
 #' @rdname compose_description
 #' @export compose_description_v1.3.0
+#' @export compose_description_v1.4.2
 #'
 #' @examples
 #' keywords <- c("HCV1a", "Ledipasvir", "antiviral resistance", "SNP", "amino acid substitutions")
@@ -218,6 +219,116 @@ compose_description_v1.3.0 <-
     domain
   }
 
+compose_description_v1.4.2 <-
+  function(
+           keywords = NULL, xref = NULL, platform = list("Seven Bridges Platform"),
+           pipeline_meta = NULL, pipeline_prerequisite = NULL,
+           pipeline_input = NULL, pipeline_output = NULL) {
+    if (is.null(keywords)) keywords <- character()
+
+    if (is.null(xref)) {
+      xref_lst <- list()
+    } else {
+      xref$access_time <- as.character(xref$access_time, format = "%Y-%m-%dT%H:%M:%S%z")
+      xref_lst <- df2list(xref)
+      for (i in 1:length(xref_lst)) {
+        xref_lst[[i]] <-
+          list(
+            "namespace" = unlist(unname(xref_lst[[i]]["namespace"])),
+            "name" = unlist(unname(xref_lst[[i]]["name"])),
+            "ids" = unlist(unname(xref_lst[[i]]["ids"])),
+            "access_time" = unlist(unname(xref_lst[[i]]["access_time"]))
+          )
+      }
+    }
+
+    if (is.null(pipeline_meta)) {
+      ps_lst <- list()
+    } else {
+      ps_lst <- df2list(pipeline_meta)
+
+      # fill meta
+      for (i in 1:length(ps_lst)) {
+        ps_lst[[i]] <- list(
+          "step_number" = unlist(unname(ps_lst[[i]]["step_number"])),
+          "name" = unlist(unname(ps_lst[[i]]["name"])),
+          "description" = unlist(unname(ps_lst[[i]]["description"])),
+          "version" = unlist(unname(ps_lst[[i]]["version"]))
+        )
+      }
+
+      # fill prerequisites
+      for (i in 1:length(ps_lst)) ps_lst[[i]][["prerequisite"]] <- list()
+      if (!is.null(pipeline_prerequisite)) {
+        step_number_all <- sapply(ps_lst, "[[", "step_number")
+        for (i in 1:nrow(pipeline_prerequisite)) {
+          step_idx <- which(step_number_all == pipeline_prerequisite[i, "step_number"])
+          # only when we got a matched step number
+          if (length(step_idx) != 0L) {
+            ps_lst[[step_idx]][["prerequisite"]] <- append(
+              ps_lst[[step_idx]][["prerequisite"]],
+              list(list(
+                "name" = pipeline_prerequisite[i, "name"],
+                "uri" = list(
+                  "uri" = pipeline_prerequisite[i, "uri"],
+                  "access_time" = pipeline_prerequisite[i, "access_time"]
+                )
+              ))
+            )
+          }
+        }
+      }
+
+      # fill inputs
+      for (i in 1:length(ps_lst)) ps_lst[[i]][["input_list"]] <- list()
+      if (!is.null(pipeline_input)) {
+        step_number_all <- sapply(ps_lst, "[[", "step_number")
+        for (i in 1:nrow(pipeline_input)) {
+          step_idx <- which(step_number_all == pipeline_input[i, "step_number"])
+          # only when we got a matched step number
+          if (length(step_idx) != 0L) {
+            ps_lst[[step_idx]][["input_list"]] <- append(
+              ps_lst[[step_idx]][["input_list"]],
+              list(list(
+                "uri" = pipeline_input[i, "uri"],
+                "access_time" = pipeline_input[i, "access_time"]
+              ))
+            )
+          }
+        }
+      }
+
+      # fill outputs
+      for (i in 1:length(ps_lst)) ps_lst[[i]][["output_list"]] <- list()
+      if (!is.null(pipeline_output)) {
+        step_number_all <- sapply(ps_lst, "[[", "step_number")
+        for (i in 1:nrow(pipeline_output)) {
+          step_idx <- which(step_number_all == pipeline_output[i, "step_number"])
+          # only when we got a matched step number
+          if (length(step_idx) != 0L) {
+            ps_lst[[step_idx]][["output_list"]] <- append(
+              ps_lst[[step_idx]][["output_list"]],
+              list(list(
+                "uri" = pipeline_output[i, "uri"],
+                "access_time" = pipeline_output[i, "access_time"]
+              ))
+            )
+          }
+        }
+      }
+    }
+
+    domain <- list(
+      "keywords" = keywords,
+      "xref" = xref_lst,
+      "platform" = platform,
+      "pipeline_steps" = ps_lst
+    )
+    class(domain) <- c(class(domain), "bco.domain")
+
+    domain
+  }
+
 #' @rdname compose_description
 #' @export compose_description
-compose_description <- compose_description_v1.3.0
+compose_description <- compose_description_v1.4.2

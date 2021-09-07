@@ -18,6 +18,7 @@
 #'
 #' @rdname compose_tlf
 #' @export compose_tlf_v1.3.0
+#' @export compose_tlf_v1.4.2
 #'
 #' @examples
 #' compose_tlf(
