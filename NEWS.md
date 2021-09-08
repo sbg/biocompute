@@ -1,3 +1,9 @@
+# biocompute 1.1.0
+
+## Improvements
+
+- Update to BCO spec v1.4.2
+
 # biocompute 1.0.4
 
 ## Improvements
