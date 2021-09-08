@@ -8,8 +8,8 @@
 #' @examples
 #' versions()
 versions <- function() {
-  current <- "1.3.0"
-  available <- c("1.3.0")
+  current <- "1.4.2"
+  available <- c("1.4.2")
   list(
     "current" = current,
     "available" = available
