@@ -28,6 +28,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Jeffrey Grover \email{jeffrey.grover@sevenbridges.com}
   \item Nan Xiao
   \item Dennis Dean \email{dennis.dean@sevenbridges.com} (\href{https://orcid.org/0000-0002-7621-9717}{ORCID})
 }

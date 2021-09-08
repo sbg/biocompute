@@ -22,7 +22,7 @@ compose_execution(
 )
 }
 \arguments{
-\item{script}{Character string. Points to internal or external
+\item{script}{Character string or list. Points to internal or external
 references to an object that was used to perform computations
 for this BCO instance.}
 

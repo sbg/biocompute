@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -40,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -69,7 +69,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/sbg/biocompute/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -83,12 +83,12 @@
 
       
 
-      </header><script src="intro_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
+      </header><script src="intro_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create and Manipulate BioCompute Objects with R</h1>
             
-            <h4 class="date">2020-10-15</h4>
+            <h4 class="date">2021-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbg/biocompute/blob/master/vignettes/intro.Rmd"><code>vignettes/intro.Rmd</code></a></small>
       <div class="hidden name"><code>intro.Rmd</code></div>
@@ -101,30 +101,30 @@
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>The biocompute package offers a toolkit to create, validate, and export BioCompute Objects (BCO). This package follows the tidyverse design principles and can be seamlessly used together with the other packages with similar designs.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://sbg.github.io/biocompute/">"biocompute"</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://sbg.github.io/biocompute/">"biocompute"</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="design-for-reproducibility" class="section level1">
 <h1 class="hasAnchor">
 <a href="#design-for-reproducibility" class="anchor"></a>Design for Reproducibility</h1>
 <p>To ensure better reproducibility, the composing and validation functions in this package are versioned. This means the BCO creation and validation can be done with fixed versions of the BioCompute Object specification if needed.</p>
-<p>For example, to compose the provenance domain, one could use <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance()</a></code>, which is an alias to the current stable version of the specification. Alternatively, one could use a versioned function <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance_v1.3.0()</a></code>. As the specification evolves, functions for new spec versions can be added, and <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance()</a></code> might point to a newer version in the future, while <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance_v1.3.0()</a></code> will not change over time.</p>
+<p>For example, to compose the provenance domain, one could use <code><a href="../reference/compose_provenance_v1.4.2.html">compose_provenance()</a></code>, which is an alias to the current stable version of the specification. Alternatively, one could use a versioned function <code>compose_provenance_v1.3.0()</code>. As the specification evolves, functions for new spec versions can be added, and <code><a href="../reference/compose_provenance_v1.4.2.html">compose_provenance()</a></code> might point to a newer version in the future, while <code>compose_provenance_v1.3.0()</code> will not change over time.</p>
 <p>The function <code><a href="../reference/versions.html">biocompute::versions()</a></code> tells the current and all available versions of the BioCompute Object specification supported in this package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/versions.html">versions</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/versions.html">versions</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>$current
-[1] "1.3.0"
+[1] "1.4.2"
 
 $available
-[1] "1.3.0"</code></pre>
+[1] "1.4.2"</code></pre>
 </div>
 <div id="compose-biocompute-object-domains" class="section level1">
 <h1 class="hasAnchor">
 <a href="#compose-biocompute-object-domains" class="anchor"></a>Compose BioCompute Object Domains</h1>
-<p>The package takes structured, native R data structures (vector or data frames), and turns them into BioCompute Objects. The functions <code>compose_*()</code> and <code><a href="../reference/compose_v1.3.0.html">biocompute::compose()</a></code> are used to compose BioCompute Object domains and the final BioCompute Object.</p>
-<p>For example, to compose the provenance domain, we first prepare the data as data frames or vectors with a fixed set of variables names, and feed them into <code><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance()</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"HCV1a ledipasvir resistance SNP detection"</span>
+<p>The package takes structured, native R data structures (vector or data frames), and turns them into BioCompute Objects. The functions <code>compose_*()</code> and <code><a href="../reference/compose_v1.4.2.html">biocompute::compose()</a></code> are used to compose BioCompute Object domains and the final BioCompute Object.</p>
+<p>For example, to compose the provenance domain, we first prepare the data as data frames or vectors with a fixed set of variables names, and feed them into <code><a href="../reference/compose_provenance_v1.4.2.html">compose_provenance()</a></code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"HCV1a ledipasvir resistance SNP detection"</span>
 <span class="va">version</span> <span class="op">&lt;-</span> <span class="st">"1.0.0"</span>
 <span class="va">review</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   <span class="st">"status"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"approved"</span>, <span class="st">"approved"</span><span class="op">)</span>,
@@ -167,10 +167,10 @@ $available
 
 <span class="va">license</span> <span class="op">&lt;-</span> <span class="st">"https://creativecommons.org/licenses/by/4.0/"</span>
 
-<span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span>
+<span class="fu"><a href="../reference/compose_provenance_v1.4.2.html">compose_provenance</a></span><span class="op">(</span>
   <span class="va">name</span>, <span class="va">version</span>, <span class="va">review</span>, <span class="va">derived_from</span>, <span class="va">obsolete_after</span>,
   <span class="va">embargo</span>, <span class="va">created</span>, <span class="va">modified</span>, <span class="va">contributors</span>, <span class="va">license</span>
-<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>{
   "name": "HCV1a ledipasvir resistance SNP detection",
   "version": "1.0.0",
@@ -206,7 +206,7 @@ $available
   ],
   "derived_from": "https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json",
   "obsolete_after": "2018-11-12T12:30:48-0500",
-  "embargo": ["2017-10-12T13:30:48-0400", "2017-11-12T12:30:48-0500"],
+  "embargo": ["2017-10-12T12:30:48-0500", "2017-11-12T12:30:48-0500"],
   "created": "2017-01-20T09:40:17-0500",
   "modified": "2019-05-10T09:40:17-0500",
   "contributors": [
@@ -231,23 +231,23 @@ $available
 <div id="compose-biocompute-objects" class="section level1">
 <h1 class="hasAnchor">
 <a href="#compose-biocompute-objects" class="anchor"></a>Compose BioCompute Objects</h1>
-<p>After all the domains are composed, use <code><a href="../reference/compose_tlf_v1.3.0.html">compose_tlf()</a></code> to compose the top level fields, as all the domains will be used to calculate an SHA-256 checksum. Next, use <code><a href="../reference/compose_v1.3.0.html">biocompute::compose()</a></code> to compose the complete BioCompute Object.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">tlf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_tlf_v1.3.0.html">compose_tlf</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_usability_v1.3.0.html">compose_usability</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_extension_v1.3.0.html">compose_extension</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/compose_description_v1.3.0.html">compose_description</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_execution_v1.3.0.html">compose_execution</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_parametric_v1.3.0.html">compose_parametric</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/compose_io_v1.3.0.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.3.0.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
+<p>After all the domains are composed, use <code><a href="../reference/compose_tlf_v1.4.2.html">compose_tlf()</a></code> to compose the top level fields, as all the domains will be used to calculate an SHA-256 checksum. Next, use <code><a href="../reference/compose_v1.4.2.html">biocompute::compose()</a></code> to compose the complete BioCompute Object.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tlf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compose_tlf_v1.4.2.html">compose_tlf</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/compose_provenance_v1.4.2.html">compose_provenance</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_usability_v1.4.2.html">compose_usability</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_extension_v1.4.2.html">compose_extension</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_description_v1.4.2.html">compose_description</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_execution_v1.4.2.html">compose_execution</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_parametric_v1.4.2.html">compose_parametric</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_io_v1.4.2.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.4.2.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span>
-<span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/compose_v1.3.0.html">compose</a></span><span class="op">(</span>
+<span class="fu">biocompute</span><span class="fu">::</span><span class="fu"><a href="../reference/compose_v1.4.2.html">compose</a></span><span class="op">(</span>
   <span class="va">tlf</span>,
-  <span class="fu"><a href="../reference/compose_provenance_v1.3.0.html">compose_provenance</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_usability_v1.3.0.html">compose_usability</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_extension_v1.3.0.html">compose_extension</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/compose_description_v1.3.0.html">compose_description</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_execution_v1.3.0.html">compose_execution</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_parametric_v1.3.0.html">compose_parametric</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/compose_io_v1.3.0.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.3.0.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/compose_provenance_v1.4.2.html">compose_provenance</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_usability_v1.4.2.html">compose_usability</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_extension_v1.4.2.html">compose_extension</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_description_v1.4.2.html">compose_description</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_execution_v1.4.2.html">compose_execution</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_parametric_v1.4.2.html">compose_parametric</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/compose_io_v1.4.2.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.4.2.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>{
-  "bco_spec_version": "https://w3id.org/biocompute/1.3.0/",
-  "bco_id": "https://biocompute.sbgenomics.com/bco/36835eda-9d0c-49bb-b66b-efb9629db042",
-  "checksum": "d743d2f1407707eadcc2a700f7c506f13deddf6bf9c8d9d888e9087cc67a1c8f",
+  "bco_spec_version": "NA",
+  "bco_id": "NA",
+  "checksum": "NA",
   "provenance_domain": {
     "name": [],
     "version": [],
@@ -268,7 +268,9 @@ $available
   "description_domain": {
     "keywords": [],
     "xref": [],
-    "platform": "Seven Bridges Platform",
+    "platform": [
+      "Seven Bridges Platform"
+    ],
     "pipeline_steps": []
   },
   "execution_domain": {
@@ -298,28 +300,30 @@ $available
 <h1 class="hasAnchor">
 <a href="#validate-biocompute-objects" class="anchor"></a>Validate BioCompute Objects</h1>
 <p>To make sure that a BioCompute Object was not tampered and follows the standard, we can validate them by the checksum, or validate them against the BCO JSON schemas. For example</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/generate_example.html">generate_example</a></span><span class="op">(</span><span class="st">"HCV1a"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/export_json.html">export_json</a></span><span class="op">(</span><span class="va">bco</span><span class="op">)</span>
-<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_checksum_v1.3.0.html">validate_checksum</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_checksum_v1.4.2.html">validate_checksum</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>── Loading BioCompute Object ───────────────────────────────────────────────────
 ── Validating Checksum ─────────────────────────────────────────────────────────
-Documented checksum: 31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243
-Calculated checksum: 31ad400fdc50d044255391288b9f48d33beb82a58bf16ec2185c58596277a243
-Documented and calculated checksum matched.</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
+Documented checksum: NA
+Calculated checksum: 6323142e7d0888d5f73ec22efeced416f9ead8293e9095800df4559cf8f836d7
+Documented and calculated checksum did NOT match.Due to the minor differences in JSON serialization,this could be a false positive. Please double check.</code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/generate_example.html">generate_example</a></span><span class="op">(</span><span class="st">"HCV1a"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/export_json.html">export_json</a></span><span class="op">(</span><span class="va">bco</span><span class="op">)</span>
-<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_schema_v1.3.0.html">validate_schema</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_schema_v1.4.2.html">validate_schema</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>── 0: Validating BioCompute Object ─────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
-                                 field           message
-1 data.extension_domain.fhir_extension is the wrong type
+              field     message
+1    data.object_id is required
+2 data.spec_version is required
+3         data.etag is required
 
 ── 1: Validating Provenance Domain ─────────────────────────────────────────────
 [1] FALSE
@@ -335,20 +339,7 @@ attr(,"errors")
 ── 2: Validating Usability Domain ──────────────────────────────────────────────
 [1] TRUE
 
-── 3.1: Validating Extension Domain (FHIR Extension) ───────────────────────────
-[1] FALSE
-attr(,"errors")
-                  field           message
-1 data.fhir_resources.0 is the wrong type
-2 data.fhir_resources.1 is the wrong type
-3 data.fhir_resources.2 is the wrong type
-4 data.fhir_resources.3 is the wrong type
-5 data.fhir_resources.4 is the wrong type
-
-── 3.2: Validating Extension Domain (SCM Extension) ────────────────────────────
-[1] TRUE
-
-── 4: Validating Description Domain ────────────────────────────────────────────
+── 3: Validating Description Domain ────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                               field                  message
@@ -359,25 +350,23 @@ attr(,"errors")
 5           data.xref.2.access_time must be date-time format
 6                   data.xref.3.ids        is the wrong type
 7           data.xref.3.access_time must be date-time format
-8                     data.platform        is the wrong type
-9 data.pipeline_steps.0.step_number        is the wrong type
+8 data.pipeline_steps.0.step_number        is the wrong type
 
-── 5: Validating Execution Domain ──────────────────────────────────────────────
+── 4: Validating Execution Domain ──────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                            field           message
-1                    data.script is the wrong type
-2 data.external_data_endpoints.0 is the wrong type
-3 data.external_data_endpoints.1 is the wrong type
-4 data.external_data_endpoints.2 is the wrong type
+1 data.external_data_endpoints.0 is the wrong type
+2 data.external_data_endpoints.1 is the wrong type
+3 data.external_data_endpoints.2 is the wrong type
 
-── 6: Validating Parametric Domain ─────────────────────────────────────────────
+── 5: Validating Parametric Domain ─────────────────────────────────────────────
 [1] TRUE
 
-── 7: Validating I/O Domain ────────────────────────────────────────────────────
+── 6: Validating I/O Domain ────────────────────────────────────────────────────
 [1] TRUE
 
-── 8: Validating Error Domain ──────────────────────────────────────────────────
+── 7: Validating Error Domain ──────────────────────────────────────────────────
 [1] TRUE</code></pre>
 </div>
 <div id="export-biocompute-objects" class="section level1">
@@ -398,7 +387,7 @@ attr(,"errors")
 
 
       <footer><div class="copyright">
-  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Jeffrey Grover, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">

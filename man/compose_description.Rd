@@ -32,7 +32,7 @@ searchability and description of the experiment.}
 \item{xref}{Data frame. A list of the databases and/or ontology IDs
 that are cross-referenced in the BCO.}
 
-\item{platform}{Character string. Reference to a particular deployment
+\item{platform}{Character string or list. Reference to a particular deployment
 of an existing platform where this BCO can be reproduced.}
 
 \item{pipeline_meta}{Data frame. Pipeline metadata.

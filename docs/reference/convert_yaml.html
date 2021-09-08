@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/sbg/biocompute/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -157,18 +157,19 @@
     <p>YAML string of the BioCompute Object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='compose_description_v1.3.0.html'>compose_description</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='compose_description_v1.4.2.html'>compose_description</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>convert_yaml</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; keywords: []
 #&gt; xref: []
-#&gt; platform: Seven Bridges Platform
+#&gt; platform:
+#&gt; - Seven Bridges Platform
 #&gt; pipeline_steps: []</div><div class='input'><span class='fu'><a href='generate_example.html'>generate_example</a></span><span class='op'>(</span><span class='st'>"minimal"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>convert_yaml</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; bco_spec_version: https://w3id.org/biocompute/1.3.0/
-#&gt; bco_id: id
-#&gt; checksum: d743d2f1407707eadcc2a700f7c506f13deddf6bf9c8d9d888e9087cc67a1c8f
+</div><div class='output co'>#&gt; bco_spec_version: .na.character
+#&gt; bco_id: .na.character
+#&gt; checksum: .na.character
 #&gt; provenance_domain:
 #&gt;   name: []
 #&gt;   version: []
@@ -187,7 +188,8 @@
 #&gt; description_domain:
 #&gt;   keywords: []
 #&gt;   xref: []
-#&gt;   platform: Seven Bridges Platform
+#&gt;   platform:
+#&gt;   - Seven Bridges Platform
 #&gt;   pipeline_steps: []
 #&gt; execution_domain:
 #&gt;   script: []
@@ -213,7 +215,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Jeffrey Grover, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">

@@ -4,7 +4,7 @@
 #' searchability and description of the experiment.
 #' @param xref Data frame. A list of the databases and/or ontology IDs
 #' that are cross-referenced in the BCO.
-#' @param platform Character string. Reference to a particular deployment
+#' @param platform Character string or list. Reference to a particular deployment
 #' of an existing platform where this BCO can be reproduced.
 #' @param pipeline_meta Data frame. Pipeline metadata.
 #' Variables include \code{step_number}, \code{name}, \code{description},

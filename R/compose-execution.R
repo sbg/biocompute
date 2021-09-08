@@ -1,6 +1,6 @@
 #' Compose BioCompute Object - Execution Domain (v1.4.2)
 #'
-#' @param script Character string. Points to internal or external
+#' @param script Character string or list. Points to internal or external
 #' references to an object that was used to perform computations
 #' for this BCO instance.
 #' @param script_driver Character string. Indicate what kind of

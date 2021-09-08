@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compose BioCompute Object - Execution Domain (v1.3.0) — compose_execution_v1.3.0 • biocompute</title>
+<title>Compose BioCompute Object - Execution Domain (v1.4.2) — compose_execution_v1.4.2 • biocompute</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Compose BioCompute Object - Execution Domain (v1.3.0) — compose_execution_v1.3.0" />
-<meta property="og:description" content="Compose BioCompute Object - Execution Domain (v1.3.0)" />
+<meta property="og:title" content="Compose BioCompute Object - Execution Domain (v1.4.2) — compose_execution_v1.4.2" />
+<meta property="og:description" content="Compose BioCompute Object - Execution Domain (v1.4.2)" />
 
 
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/sbg/biocompute/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -128,16 +128,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compose BioCompute Object - Execution Domain (v1.3.0)</h1>
+    <h1>Compose BioCompute Object - Execution Domain (v1.4.2)</h1>
     <small class="dont-index">Source: <a href='https://github.com/sbg/biocompute/blob/master/R/compose-execution.R'><code>R/compose-execution.R</code></a></small>
     <div class="hidden name"><code>compose_execution.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compose BioCompute Object - Execution Domain (v1.3.0)</p>
+    <p>Compose BioCompute Object - Execution Domain (v1.4.2)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compose_execution_v1.3.0</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>compose_execution_v1.4.2</span><span class='op'>(</span>
   script <span class='op'>=</span> <span class='cn'>NULL</span>,
   script_driver <span class='op'>=</span> <span class='cn'>NULL</span>,
   software_prerequisites <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -158,7 +158,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>script</th>
-      <td><p>Character string. Points to internal or external
+      <td><p>Character string or list. Points to internal or external
 references to an object that was used to perform computations
 for this BCO instance.</p></td>
     </tr>
@@ -232,7 +232,9 @@ target platform. Variables include <code>key</code> and <code>value</code>.</p><
   <span class='va'>script</span>, <span class='va'>script_driver</span>, <span class='va'>software_prerequisites</span>, <span class='va'>external_data_endpoints</span>, <span class='va'>environment_variables</span>
 <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; {
-#&gt;   "script": "https://example.com/workflows/antiviral_resistance_detection_hive.py",
+#&gt;   "script": [
+#&gt;     "https://example.com/workflows/antiviral_resistance_detection_hive.py"
+#&gt;   ],
 #&gt;   "script_driver": "shell",
 #&gt;   "software_prerequisites": [
 #&gt;     {
@@ -294,7 +296,7 @@ target platform. Variables include <code>key</code> and <code>value</code>.</p><
 
       <footer>
       <div class="copyright">
-  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Soner Koc, Jeffrey Grover, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">
