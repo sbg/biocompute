@@ -24,7 +24,7 @@ validate_schema_v1.4.2 <- function(file) {
   rule_text("0: Validating BioCompute Object")
 
   txt <- paste(readLines(file), collapse = "")
-  schema <- system.file("schemas/1.4.2/biocomputeobject.json", package = "biocompute")
+  schema <- system.file("schemas/1.4.2/2791object.json", package = "biocompute")
   v <- jsonvalidate::json_validator(schema)
   print(v(txt, verbose = TRUE, greedy = TRUE))
   cat("\n")
