@@ -321,7 +321,7 @@ compose_description_v1.4.2 <-
     domain <- list(
       "keywords" = keywords,
       "xref" = xref_lst,
-      "platform" = platform,
+      "platform" = as.list(platform),
       "pipeline_steps" = ps_lst
     )
     class(domain) <- c(class(domain), "bco.domain")

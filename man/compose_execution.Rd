@@ -3,7 +3,7 @@
 \name{compose_execution_v1.3.0}
 \alias{compose_execution_v1.3.0}
 \alias{compose_execution}
-\title{Compose BioCompute Object - Execution Domain (v1.3.0)}
+\title{Compose BioCompute Object - Execution Domain (v1.4.2)}
 \usage{
 compose_execution_v1.3.0(
   script = NULL,
@@ -14,7 +14,7 @@ compose_execution_v1.3.0(
 )
 
 compose_execution(
-  script = NULL,
+  script = list(NULL),
   script_driver = NULL,
   software_prerequisites = NULL,
   external_data_endpoints = NULL,
@@ -51,7 +51,7 @@ target platform. Variables include \code{key} and \code{value}.}
 A list of class \code{bco.domain}
 }
 \description{
-Compose BioCompute Object - Execution Domain (v1.3.0)
+Compose BioCompute Object - Execution Domain (v1.4.2)
 }
 \examples{
 script <- "https://example.com/workflows/antiviral_resistance_detection_hive.py"

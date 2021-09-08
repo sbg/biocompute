@@ -96,7 +96,7 @@ compose_io_v1.4.2 <- function(input = NULL, output = NULL) {
       output_lst[[i]] <-
         list(
           "mediatype" = unlist(unname(output_lst[[i]]["mediatype"])),
-          "uri" = unlist(output_lst[[i]][c("uri", "access_time")])
+          "uri" = output_lst[[i]][c("uri", "access_time")]
         )
     }
   } else {

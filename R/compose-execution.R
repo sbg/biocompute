@@ -115,7 +115,7 @@ compose_execution_v1.3.0 <-
 
 compose_execution_v1.4.2 <-
   function(
-           script = list(NULL), script_driver = NULL, software_prerequisites = NULL,
+           script = NULL, script_driver = NULL, software_prerequisites = NULL,
            external_data_endpoints = NULL, environment_variables = NULL) {
     if (is.null(script)) script <- list()
     if (is.null(script_driver)) script_driver <- list()
@@ -130,7 +130,7 @@ compose_execution_v1.4.2 <-
           list(
             "name" = unlist(unname(sp_lst[[i]]["name"])),
             "version" = unlist(unname(sp_lst[[i]]["version"])),
-            "uri" = unlist(sp_lst[[i]][c("uri", "access_time", "sha1_chksum")])
+            "uri" = sp_lst[[i]][c("uri", "access_time", "sha1_chksum")]
           )
       }
     }
@@ -152,10 +152,10 @@ compose_execution_v1.4.2 <-
     }
 
     domain <- list(
-      "script" = script,
+      "script" = as.list(script),
       "script_driver" = script_driver,
       "software_prerequisites" = sp_lst,
-      "external_data_endpoints" = unlist(ede_lst),
+      "external_data_endpoints" = ede_lst,
       "environment_variables" = ev_lst
     )
     class(domain) <- c(class(domain), "bco.domain")

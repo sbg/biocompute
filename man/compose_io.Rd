@@ -3,7 +3,7 @@
 \name{compose_io_v1.3.0}
 \alias{compose_io_v1.3.0}
 \alias{compose_io}
-\title{Compose BioCompute Object - Input and Output Domain (v1.3.0)}
+\title{Compose BioCompute Object - Input and Output Domain (v1.4.2)}
 \usage{
 compose_io_v1.3.0(input = NULL, output = NULL)
 

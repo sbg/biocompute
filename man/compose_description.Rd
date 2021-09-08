@@ -3,7 +3,7 @@
 \name{compose_description_v1.3.0}
 \alias{compose_description_v1.3.0}
 \alias{compose_description}
-\title{Compose BioCompute Object - Description Domain (v1.3.0)}
+\title{Compose BioCompute Object - Description Domain (v1.4.2)}
 \usage{
 compose_description_v1.3.0(
   keywords = NULL,
@@ -18,7 +18,7 @@ compose_description_v1.3.0(
 compose_description(
   keywords = NULL,
   xref = NULL,
-  platform = "Seven Bridges Platform",
+  platform = list("Seven Bridges Platform"),
   pipeline_meta = NULL,
   pipeline_prerequisite = NULL,
   pipeline_input = NULL,
@@ -53,7 +53,7 @@ Variables include \code{step_number}, \code{uri}, and \code{access_time}.}
 A list of class \code{bco.domain}
 }
 \description{
-Compose BioCompute Object - Description Domain (v1.3.0)
+Compose BioCompute Object - Description Domain (v1.4.2)
 }
 \examples{
 keywords <- c("HCV1a", "Ledipasvir", "antiviral resistance", "SNP", "amino acid substitutions")
