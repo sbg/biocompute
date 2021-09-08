@@ -13,7 +13,6 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_io
-#' @export compose_io_v1.3.0
 #' @export compose_io_v1.4.2
 #'
 #' @examples
@@ -47,37 +46,6 @@
 #' )
 #'
 #' compose_io(input_subdomain, output_subdomain) %>% convert_json()
-compose_io_v1.3.0 <- function(input = NULL, output = NULL) {
-  if (!is.null(input)) {
-    input$access_time <- as.character(input$access_time, format = "%Y-%m-%dT%H:%M:%S%z")
-    input_lst <- df2list(input)
-    for (i in 1:length(input_lst)) {
-      input_lst[[i]] <- list("uri" = input_lst[[i]])
-    }
-  } else {
-    input_lst <- list()
-  }
-
-  if (!is.null(output)) {
-    output$access_time <- as.character(output$access_time, format = "%Y-%m-%dT%H:%M:%S%z")
-    output_lst <- df2list(output)
-    for (i in 1:length(output_lst)) {
-      output_lst[[i]] <-
-        list(
-          "mediatype" = unlist(unname(output_lst[[i]]["mediatype"])),
-          "uri" = output_lst[[i]][c("uri", "access_time")]
-        )
-    }
-  } else {
-    output_lst <- list()
-  }
-
-  domain <- list("input_subdomain" = input_lst, "output_subdomain" = output_lst)
-  class(domain) <- c(class(domain), "bco.domain")
-
-  domain
-}
-
 compose_io_v1.4.2 <- function(input = NULL, output = NULL) {
   if (!is.null(input)) {
     input$access_time <- as.character(input$access_time, format = "%Y-%m-%dT%H:%M:%S%z")

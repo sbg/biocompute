@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - FHIR Extension (v1.3.0)
+#' Compose BioCompute Object - FHIR Extension (v1.4.2)
 #'
 #' @param endpoint Character string. The URL of the endpoint of the
 #' FHIR server containing the resource.
@@ -9,7 +9,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_fhir
-#' @export compose_fhir_v1.3.0
+#' @export compose_fhir_v1.4.2
 #'
 #' @examples
 #' fhir_endpoint <- "https://fhirtest.uhn.ca/baseDstu3"
@@ -24,7 +24,7 @@
 #' )
 #'
 #' compose_fhir(fhir_endpoint, fhir_version, fhir_resources) %>% convert_json()
-compose_fhir_v1.3.0 <- function(endpoint = NULL, version = NULL, resources = NULL) {
+compose_fhir_v1.4.2 <- function(endpoint = NULL, version = NULL, resources = NULL) {
   if (!is.null(resources)) {
     names(resources)[which(names(resources) == "id")] <- "fhir_id"
     names(resources)[which(names(resources) == "resource")] <- "fhir_resource"
@@ -41,4 +41,4 @@ compose_fhir_v1.3.0 <- function(endpoint = NULL, version = NULL, resources = NUL
 
 #' @rdname compose_fhir
 #' @export compose_fhir
-compose_fhir <- compose_fhir_v1.3.0
+compose_fhir <- compose_fhir_v1.4.2

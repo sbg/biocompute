@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Extension Domain (v1.3.0)
+#' Compose BioCompute Object - Extension Domain (v1.4.2)
 #'
 #' @param fhir FHIR extension domain composed by \code{\link{compose_fhir}}.
 #' @param scm SCM extension domain composed by \code{\link{compose_scm}}.
@@ -6,7 +6,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_extension
-#' @export compose_extension_v1.3.0
+#' @export compose_extension_v1.4.2
 #'
 #' @examples
 #' fhir_endpoint <- "https://fhirtest.uhn.ca/baseDstu3"
@@ -31,7 +31,7 @@
 #' scm <- compose_scm(scm_repository, scm_type, scm_commit, scm_path, scm_preview)
 #'
 #' compose_extension(fhir, scm) %>% convert_json()
-compose_extension_v1.3.0 <- function(fhir = NULL, scm = NULL) {
+compose_extension_v1.4.2 <- function(fhir = NULL, scm = NULL) {
   if (is.null(fhir)) fhir_lst <- list() else fhir_lst <- fhir
   if (is.null(scm)) scm_lst <- list() else scm_lst <- scm
 
@@ -46,4 +46,4 @@ compose_extension_v1.3.0 <- function(fhir = NULL, scm = NULL) {
 
 #' @rdname compose_extension
 #' @export compose_extension
-compose_extension <- compose_extension_v1.3.0
+compose_extension <- compose_extension_v1.4.2

@@ -1,4 +1,4 @@
-#' BioCompute Objects schema validator (v1.3.0)
+#' BioCompute Objects schema validator (v1.4.2)
 #'
 #' @param file Path to the BCO JSON file
 #'
@@ -7,11 +7,11 @@
 #' @importFrom jsonvalidate json_validate json_validator
 #'
 #' @rdname validate_schema
-#' @export validate_schema_v1.3.0
+#' @export validate_schema_v1.4.2
 #'
 #' @note JSON schema validators for BCO domains and complete BCO based on
 #' jsonvalidate. Refer to the
-#' \href{https://github.com/biocompute-objects/BCO_Specification/tree/main/ieee-2791-schema}{BioCompute Objects Schema}
+#' \href{https://github.com/biocompute-objects/BCO_Specification/tree/1.4.2/ieee-2791-schema}{BioCompute Objects Schema}
 #' for specific JSON schemas.
 #'
 #' @examples
@@ -20,7 +20,7 @@
 #'   convert_json() %>%
 #'   export_json(bco)
 #' bco %>% validate_schema()
-validate_schema_v1.3.0 <- function(file) {
+validate_schema_v1.4.2 <- function(file) {
   rule_text("0: Validating BioCompute Object")
 
   txt <- paste(readLines(file), collapse = "")
@@ -79,4 +79,4 @@ validate_schema_v1.3.0 <- function(file) {
 
 #' @rdname validate_schema
 #' @export validate_schema
-validate_schema <- validate_schema_v1.3.0
+validate_schema <- validate_schema_v1.4.2

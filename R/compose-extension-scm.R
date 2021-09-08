@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - SCM Extension (v1.3.0)
+#' Compose BioCompute Object - SCM Extension (v1.4.2)
 #'
 #' @param scm_repository Character string. Base URL of the SCM repository.
 #' @param scm_type Character string. Type of SCM database. Must be one of
@@ -14,7 +14,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_scm
-#' @export compose_scm_v1.3.0
+#' @export compose_scm_v1.4.2
 #'
 #' @examples
 #' scm_repository <- "https://github.com/example/repo"
@@ -24,7 +24,7 @@
 #' scm_preview <- "https://github.com/example/repo/blob/master/mutation-detection.cwl"
 #'
 #' compose_scm(scm_repository, scm_type, scm_commit, scm_path, scm_preview) %>% convert_json()
-compose_scm_v1.3.0 <-
+compose_scm_v1.4.2 <-
   function(
            scm_repository = NULL, scm_type = c("git", "svn", "hg", "other"),
            scm_commit = NULL, scm_path = NULL, scm_preview = NULL) {
@@ -50,4 +50,4 @@ compose_scm_v1.3.0 <-
 
 #' @rdname compose_scm
 #' @export compose_scm
-compose_scm <- compose_scm_v1.3.0
+compose_scm <- compose_scm_v1.4.2

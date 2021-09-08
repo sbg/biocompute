@@ -17,7 +17,6 @@
 #' @importFrom uuid UUIDgenerate
 #'
 #' @rdname compose_tlf
-#' @export compose_tlf_v1.3.0
 #' @export compose_tlf_v1.4.2
 #'
 #' @examples
@@ -26,35 +25,6 @@
 #'   compose_description(), compose_execution(), compose_parametric(),
 #'   compose_io(), compose_error()
 #' ) %>% convert_json()
-compose_tlf_v1.3.0 <-
-  function(
-           provenance, usability, extension, description,
-           execution, parametric, io, error, bco_id = NULL) {
-    bco_spec_version <- "https://w3id.org/biocompute/1.3.0/"
-    if (is.null(bco_id)) bco_id <- generate_id("sevenbridges")
-
-    lst <- list(
-      "provenance_domain" = provenance,
-      "usability_domain" = usability,
-      "extension_domain" = extension,
-      "description_domain" = description,
-      "execution_domain" = execution,
-      "parametric_domain" = parametric,
-      "io_domain" = io,
-      "error_domain" = error
-    )
-
-    json <- convert_json(lst)
-    checksum <- digest::digest(json, algo = "sha256")
-
-    domain <- c(
-      "bco_spec_version" = bco_spec_version,
-      "bco_id" = bco_id,
-      "checksum" = checksum
-    )
-    domain
-  }
-
 compose_tlf_v1.4.2 <-
   function(
            provenance, usability, extension, description,
