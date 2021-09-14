@@ -32,9 +32,9 @@ compose_v1.4.2 <-
            tlf, provenance, usability, extension,
            description, execution, parametric, io, error) {
     bco <- list(
-      "bco_spec_version" = tlf["bco_spec_version"],
-      "bco_id" = tlf["bco_id"],
-      "checksum" = tlf["checksum"],
+      "spec_version" = tlf["spec_version"],
+      "bco_id" = tlf["object_id"],
+      "etag" = tlf["etag"],
       "provenance_domain" = provenance,
       "usability_domain" = usability,
       "extension_domain" = extension,
