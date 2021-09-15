@@ -33,7 +33,7 @@ compose_v1.4.2 <-
            description, execution, parametric, io, error) {
     bco <- list(
       "spec_version" = tlf["spec_version"],
-      "bco_id" = tlf["object_id"],
+      "object_id" = tlf["object_id"],
       "etag" = tlf["etag"],
       "provenance_domain" = provenance,
       "usability_domain" = usability,

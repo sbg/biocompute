@@ -88,7 +88,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create and Manipulate BioCompute Objects with R</h1>
             
-            <h4 class="date">2021-09-08</h4>
+            <h4 class="date">2021-09-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbg/biocompute/blob/master/vignettes/intro.Rmd"><code>vignettes/intro.Rmd</code></a></small>
       <div class="hidden name"><code>intro.Rmd</code></div>
@@ -245,9 +245,9 @@ $available
   <span class="fu"><a href="../reference/compose_io_v1.4.2.html">compose_io</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="../reference/compose_error_v1.4.2.html">compose_error</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>{
-  "bco_spec_version": "NA",
-  "bco_id": "NA",
-  "checksum": "NA",
+  "spec_version": "https://w3id.org/biocompute/1.4.2/",
+  "object_id": "https://biocompute.sbgenomics.com/bco/f9051336-ccad-4151-b7b1-12543ed9a772",
+  "etag": "496f1a5c9693811984714b0647914929c5bc29c8e7a18ad2a0276f82b11a42ce",
   "provenance_domain": {
     "name": [],
     "version": [],
@@ -308,8 +308,8 @@ $available
 <span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_checksum_v1.4.2.html">validate_checksum</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>── Loading BioCompute Object ───────────────────────────────────────────────────
 ── Validating Checksum ─────────────────────────────────────────────────────────
-Documented checksum: NA
-Calculated checksum: 6323142e7d0888d5f73ec22efeced416f9ead8293e9095800df4559cf8f836d7
+Documented checksum: d18deb41a97a3108e743231af5fec0055dac321b945a569ca58bf33503ec526b
+Calculated checksum: c722ea929af19b3b80e899017bde78602b220d0f88a4a131411fe23533c3c999
 Documented and calculated checksum did NOT match.Due to the minor differences in JSON serialization,this could be a false positive. Please double check.</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
@@ -320,10 +320,8 @@ Documented and calculated checksum did NOT match.Due to the minor differences in
 <pre><code>── 0: Validating BioCompute Object ─────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
-              field     message
-1    data.object_id is required
-2 data.spec_version is required
-3         data.etag is required
+                  field           message
+1 data.extension_domain is the wrong type
 
 ── 1: Validating Provenance Domain ─────────────────────────────────────────────
 [1] FALSE

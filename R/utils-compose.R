@@ -71,7 +71,7 @@ generate_example <- function(type = c("minimal", "HCV1a")) {
       compose_provenance(), compose_usability(), compose_extension(),
       compose_description(), compose_execution(), compose_parametric(),
       compose_io(), compose_error(),
-      bco_id = "id"
+      object_id = "id"
     )
     return(biocompute::compose(
       tlf,

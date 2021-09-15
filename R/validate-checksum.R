@@ -26,9 +26,9 @@ validate_checksum_v1.4.2 <- function(file) {
   rule_text("Loading BioCompute Object")
   lst <- jsonlite::read_json(file, simplifyVector = TRUE)
   lst$bco_spec_version <- NULL
-  lst$bco_id <- NULL
-  checksum_old <- lst$checksum
-  lst$checksum <- NULL
+  lst$object_id <- NULL
+  checksum_old <- lst$etag
+  lst$etag <- NULL
 
   rule_text("Validating Checksum")
   json <- convert_json(lst)
