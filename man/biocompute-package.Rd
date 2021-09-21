@@ -28,8 +28,8 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Soner Koc \email{soner.koc@sevenbridges.com}
-  \item Nan Xiao
+  \item Soner Koc \email{soner.koc@sevenbridges.com} (\href{https://orcid.org/0000-0002-0772-6600}{ORCID})
+  \item Nan Xiao (\href{https://orcid.org/0000-0002-0250-5673}{ORCID})
   \item Dennis Dean \email{dennis.dean@sevenbridges.com} (\href{https://orcid.org/0000-0002-7621-9717}{ORCID})
 }
 

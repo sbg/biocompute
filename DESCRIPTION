@@ -4,8 +4,8 @@ Title: Create and Manipulate BioCompute Objects
 Version: 1.0.5
 Authors@R: c(
     person("Jeffrey", "Grover", email = "jeffrey.grover@sevenbridges.com", role = c("aut", "cre")),
-    person("Soner", "Koc", email = "soner.koc@sevenbridges.com", role = c("aut")),
-    person("Nan", "Xiao", role = c("aut")),
+    person("Soner", "Koc", email = "soner.koc@sevenbridges.com", role = c("aut"), comment = c(ORCID = "0000-0002-0772-6600")),
+    person("Nan", "Xiao", role = c("aut"), comment = c(ORCID = "0000-0002-0250-5673")),
     person("Dennis", "Dean", email = "dennis.dean@sevenbridges.com", role = c("aut"),
            comment = c(ORCID = "0000-0002-7621-9717")),
     person("Seven Bridges Genomics", role = c("cph", "fnd"))
