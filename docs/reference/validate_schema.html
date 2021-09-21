@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -166,13 +166,13 @@ for specific JSON schemas.</p>
   <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='export_json.html'>export_json</a></span><span class='op'>(</span><span class='va'>bco</span><span class='op'>)</span>
 <span class='va'>bco</span> <span class='op'>%&gt;%</span> <span class='fu'>validate_schema</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>0: Validating BioCompute Object</span><span> ─────────────────────────────────────────────
+</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>0: Validating BioCompute Object</span><span> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                                  field           message
 #&gt; 1 data.extension_domain.fhir_extension is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>1: Validating Provenance Domain</span><span> ─────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>1: Validating Provenance Domain</span><span> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                 field                  message
@@ -183,10 +183,10 @@ for specific JSON schemas.</p>
 #&gt; 5        data.created must be date-time format
 #&gt; 6       data.modified must be date-time format
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>2: Validating Usability Domain</span><span> ──────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>2: Validating Usability Domain</span><span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>3.1: Validating Extension Domain (FHIR Extension)</span><span> ───────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>3.1: Validating Extension Domain (FHIR Extension)</span><span> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                   field           message
@@ -196,10 +196,10 @@ for specific JSON schemas.</p>
 #&gt; 4 data.fhir_resources.3 is the wrong type
 #&gt; 5 data.fhir_resources.4 is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>3.2: Validating Extension Domain (SCM Extension)</span><span> ────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>3.2: Validating Extension Domain (SCM Extension)</span><span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>4: Validating Description Domain</span><span> ────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>4: Validating Description Domain</span><span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                               field                  message
@@ -213,7 +213,7 @@ for specific JSON schemas.</p>
 #&gt; 8                     data.platform        is the wrong type
 #&gt; 9 data.pipeline_steps.0.step_number        is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>5: Validating Execution Domain</span><span> ──────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>5: Validating Execution Domain</span><span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] FALSE
 #&gt; attr(,"errors")
 #&gt;                            field           message
@@ -222,13 +222,13 @@ for specific JSON schemas.</p>
 #&gt; 3 data.external_data_endpoints.1 is the wrong type
 #&gt; 4 data.external_data_endpoints.2 is the wrong type
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>6: Validating Parametric Domain</span><span> ─────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>6: Validating Parametric Domain</span><span> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>7: Validating I/O Domain</span><span> ────────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>7: Validating I/O Domain</span><span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; 
-#&gt; ── </span><span style='font-weight: bold;'>8: Validating Error Domain</span><span> ──────────────────────────────────────────────────
+#&gt; ── </span><span style='font-weight: bold;'>8: Validating Error Domain</span><span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; [1] TRUE
 #&gt; </div></span></pre>
   </div>
@@ -242,7 +242,7 @@ for specific JSON schemas.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
+  <p>Developed by Jeffrey Grover, Soner Koc, Nan Xiao, Dennis Dean, Seven Bridges Genomics.</p>
 </div>
 
 <div class="pkgdown">

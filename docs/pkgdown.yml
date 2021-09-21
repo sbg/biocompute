@@ -1,8 +1,8 @@
-pandoc: 2.10.1
+pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   case-study: case-study.html
   intro: intro.html
-last_built: 2020-10-15T04:49Z
+last_built: 2021-09-21T20:19Z
 
