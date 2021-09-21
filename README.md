@@ -28,6 +28,6 @@ remotes::install_github("sbg/biocompute")
 
 ## Copyright
 
-© 2020 Seven Bridges Genomics, Inc. All rights reserved.
+© 2021 Seven Bridges Genomics, Inc. All rights reserved.
 
 This project is licensed under the GNU Affero General Public License v3.
