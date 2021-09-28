@@ -1,3 +1,9 @@
+# biocompute 1.0.6
+
+## Improvements
+
+- Fixed broken links to BCO specification in documentation
+
 # biocompute 1.0.5
 
 ## Improvements

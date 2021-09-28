@@ -24,7 +24,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jeffrey Grover \email{jeffrey.grover@sevenbridges.com}
+\strong{Maintainer}: Jeffrey Grover \email{jeffrey.grover@sevenbridges.com} (\href{https://orcid.org/0000-0001-6246-1767}{ORCID})
 
 Authors:
 \itemize{

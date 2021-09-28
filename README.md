@@ -1,6 +1,6 @@
 # biocompute
 
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![CRAN Version](https://www.r-pkg.org/badges/version/biocompute)](https://cran.r-project.org/package=biocompute)
 [![Travis build status](https://travis-ci.org/sbg/biocompute.svg?branch=master)](https://travis-ci.org/sbg/biocompute)
 [![Downloads from the RStudio CRAN mirror](https://cranlogs.r-pkg.org/badges/grand-total/biocompute)](https://cran.r-project.org/package=biocompute)

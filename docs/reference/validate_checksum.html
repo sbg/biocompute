@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/sbg/biocompute/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -156,7 +156,7 @@
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>An SHA-256 checksum is
-<a href='https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/top-level.md#203-etag-etag'>calculated and stored</a>
+<a href='https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/top-level.md#203-checksum-checksum'>calculated and stored</a>
 in the top level fields when a BioCompute Object is created. In reality,
 due to the delicate differences in how the data in JSON is represented,
 parsed, and handled in different languages, there could be false positives
@@ -168,11 +168,11 @@ in the validation results.</p>
   <span class='fu'><a href='convert_json.html'>convert_json</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='export_json.html'>export_json</a></span><span class='op'>(</span><span class='va'>bco</span><span class='op'>)</span>
 <span class='va'>bco</span> <span class='op'>%&gt;%</span> <span class='fu'>validate_checksum</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>Loading BioCompute Object</span><span> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt; ── </span><span style='font-weight: bold;'>Validating Checksum</span><span> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-#&gt; Documented checksum: bb8d01d21cd9e78661130ef73e7047a952e13decbb5f642b848086e1f6afc54d
-#&gt; Calculated checksum: bb8d01d21cd9e78661130ef73e7047a952e13decbb5f642b848086e1f6afc54d
-#&gt; Documented and calculated checksum matched.</div></span></pre>
+</div><div class='output co'>#&gt; ── <span style='font-weight: bold;'>Loading BioCompute Object</span> ───────────────────────────────────────────────────
+#&gt; ── <span style='font-weight: bold;'>Validating Checksum</span> ─────────────────────────────────────────────────────────
+#&gt; Documented checksum: 6323142e7d0888d5f73ec22efeced416f9ead8293e9095800df4559cf8f836d7
+#&gt; Calculated checksum: 6323142e7d0888d5f73ec22efeced416f9ead8293e9095800df4559cf8f836d7
+#&gt; Documented and calculated checksum matched.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

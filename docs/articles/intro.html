@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">biocompute</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.6</span>
       </span>
     </div>
 
@@ -40,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -69,7 +69,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/sbg/biocompute/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -83,12 +83,12 @@
 
       
 
-      </header><script src="intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="intro_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create and Manipulate BioCompute Objects with R</h1>
             
-            <h4 class="date">2021-09-21</h4>
+            <h4 class="date">2021-09-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sbg/biocompute/blob/master/vignettes/intro.Rmd"><code>vignettes/intro.Rmd</code></a></small>
       <div class="hidden name"><code>intro.Rmd</code></div>
@@ -206,7 +206,7 @@ $available
   ],
   "derived_from": "https://github.com/biocompute-objects/BCO_Specification/blob/1.2.1-beta/HCV1a.json",
   "obsolete_after": "2018-11-12T12:30:48-0500",
-  "embargo": ["2017-10-12T20:30:48+0300", "2017-11-12T20:30:48+0300"],
+  "embargo": ["2017-10-12T12:30:48-0500", "2017-11-12T12:30:48-0500"],
   "created": "2017-01-20T09:40:17-0500",
   "modified": "2019-05-10T09:40:17-0500",
   "contributors": [
@@ -246,7 +246,7 @@ $available
 <span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>{
   "bco_spec_version": "https://w3id.org/biocompute/1.3.0/",
-  "bco_id": "https://biocompute.sbgenomics.com/bco/c8d60fd4-71d8-46db-b9d5-fc8b287dba35",
+  "bco_id": "https://biocompute.sbgenomics.com/bco/71ed7801-7391-4120-9570-560a68d2e3e8",
   "checksum": "d743d2f1407707eadcc2a700f7c506f13deddf6bf9c8d9d888e9087cc67a1c8f",
   "provenance_domain": {
     "name": [],
@@ -304,10 +304,10 @@ $available
   <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/export_json.html">export_json</a></span><span class="op">(</span><span class="va">bco</span><span class="op">)</span>
 <span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_checksum_v1.3.0.html">validate_checksum</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>── Loading BioCompute Object ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-── Validating Checksum ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Documented checksum: bb8d01d21cd9e78661130ef73e7047a952e13decbb5f642b848086e1f6afc54d
-Calculated checksum: bb8d01d21cd9e78661130ef73e7047a952e13decbb5f642b848086e1f6afc54d
+<pre><code>── Loading BioCompute Object ───────────────────────────────────────────────────
+── Validating Checksum ─────────────────────────────────────────────────────────
+Documented checksum: 6323142e7d0888d5f73ec22efeced416f9ead8293e9095800df4559cf8f836d7
+Calculated checksum: 6323142e7d0888d5f73ec22efeced416f9ead8293e9095800df4559cf8f836d7
 Documented and calculated checksum matched.</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bco</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".json"</span><span class="op">)</span>
@@ -315,13 +315,13 @@ Documented and calculated checksum matched.</code></pre>
   <span class="fu"><a href="../reference/convert_json.html">convert_json</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/export_json.html">export_json</a></span><span class="op">(</span><span class="va">bco</span><span class="op">)</span>
 <span class="va">bco</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/validate_schema_v1.3.0.html">validate_schema</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>── 0: Validating BioCompute Object ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<pre><code>── 0: Validating BioCompute Object ─────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                                  field           message
 1 data.extension_domain.fhir_extension is the wrong type
 
-── 1: Validating Provenance Domain ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 1: Validating Provenance Domain ─────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                 field                  message
@@ -332,10 +332,10 @@ attr(,"errors")
 5        data.created must be date-time format
 6       data.modified must be date-time format
 
-── 2: Validating Usability Domain ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 2: Validating Usability Domain ──────────────────────────────────────────────
 [1] TRUE
 
-── 3.1: Validating Extension Domain (FHIR Extension) ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 3.1: Validating Extension Domain (FHIR Extension) ───────────────────────────
 [1] FALSE
 attr(,"errors")
                   field           message
@@ -345,10 +345,10 @@ attr(,"errors")
 4 data.fhir_resources.3 is the wrong type
 5 data.fhir_resources.4 is the wrong type
 
-── 3.2: Validating Extension Domain (SCM Extension) ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 3.2: Validating Extension Domain (SCM Extension) ────────────────────────────
 [1] TRUE
 
-── 4: Validating Description Domain ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 4: Validating Description Domain ────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                               field                  message
@@ -362,7 +362,7 @@ attr(,"errors")
 8                     data.platform        is the wrong type
 9 data.pipeline_steps.0.step_number        is the wrong type
 
-── 5: Validating Execution Domain ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 5: Validating Execution Domain ──────────────────────────────────────────────
 [1] FALSE
 attr(,"errors")
                            field           message
@@ -371,13 +371,13 @@ attr(,"errors")
 3 data.external_data_endpoints.1 is the wrong type
 4 data.external_data_endpoints.2 is the wrong type
 
-── 6: Validating Parametric Domain ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 6: Validating Parametric Domain ─────────────────────────────────────────────
 [1] TRUE
 
-── 7: Validating I/O Domain ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 7: Validating I/O Domain ────────────────────────────────────────────────────
 [1] TRUE
 
-── 8: Validating Error Domain ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── 8: Validating Error Domain ──────────────────────────────────────────────────
 [1] TRUE</code></pre>
 </div>
 <div id="export-biocompute-objects" class="section level1">
