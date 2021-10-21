@@ -3,6 +3,13 @@
 ## Improvements
 
 - Update to BCO spec v1.4.2
+- Added ability to read BCOs from json.
+
+# biocompute 1.0.6
+
+## Improvements
+
+- Fixed broken links to BCO specification in documentation.
 
 # biocompute 1.0.4
 

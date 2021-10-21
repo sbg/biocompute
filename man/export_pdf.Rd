@@ -24,7 +24,7 @@ Path to the output file
 Export BioCompute Object as PDF
 }
 \examples{
-\donttest{
+\dontrun{
 file_pdf <- tempfile(fileext = ".pdf")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%

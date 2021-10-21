@@ -1,7 +1,7 @@
 #' Compose BioCompute Object - Usability Domain (v1.4.2)
 #'
 #' The usability domain
-#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/main/docs/usability-domain.md}{domain definition}).
+#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/usability-domain.md}{domain definition}).
 #'
 #' @param text A character vector of free text values that could
 #' improves search-ability, provide specific scientific use cases,

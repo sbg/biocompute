@@ -2,7 +2,7 @@
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN Version](https://www.r-pkg.org/badges/version/biocompute)](https://cran.r-project.org/package=biocompute)
-[![Travis build status](https://travis-ci.org/sbg/biocompute.svg?branch=master)](https://travis-ci.org/sbg/biocompute)
+[![Travis build status](https://app.travis-ci.com/sbg/biocompute.svg?branch=master)](https://app.travis-ci.com/sbg/biocompute)
 [![Downloads from the RStudio CRAN mirror](https://cranlogs.r-pkg.org/badges/grand-total/biocompute)](https://cran.r-project.org/package=biocompute)
 
 Seven Bridges implementation of the BioCompute Object (BCO) specification. Offers the capabilities to compose, validate, and convert BioCompute Objects with R.

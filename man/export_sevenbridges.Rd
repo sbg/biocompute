@@ -39,7 +39,7 @@ Response of the file upload request
 Export BioCompute Object to Seven Bridges Platforms
 }
 \examples{
-\donttest{
+\dontrun{
 file_json <- tempfile(fileext = ".json")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%

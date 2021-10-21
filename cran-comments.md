@@ -1,3 +1,22 @@
+# biocompute 1.1.0
+
+## Test environments
+
+- Local macOS install, R 4.1.1
+- Ubuntu 20.04.1 LTS (on R-hub), R 4.1.1
+- win-builder (release, devel, and oldrelease)
+
+# biocompute 1.0.6
+
+## Test environments
+
+- Local macOS install, R 4.1.1
+- Ubuntu 20.04.1 LTS (on R-hub), R 4.1.1
+- win-builder (release, devel, and oldrelease)
+
+## R CMD check results
+
+There were no ERRORs or WARNINGs.
 # biocompute 1.0.3
 
 ## Test environments

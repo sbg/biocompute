@@ -18,7 +18,7 @@
 #' @export export_sevenbridges
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' file_json <- tempfile(fileext = ".json")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%

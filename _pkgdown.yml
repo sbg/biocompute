@@ -36,5 +36,5 @@ reference:
       - generate_example
       - is_bco
       - is_domain
-      - parse_bco
+      - read_bco
       - versions

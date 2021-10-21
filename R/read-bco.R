@@ -5,15 +5,15 @@
 #'
 #' @return A list of class \code{bco}
 #'
-#' @export parse_bco
+#' @export read_bco
 #'
 #' @examples
 #' bco <- tempfile(fileext = ".json")
-#' generate_example("HCV1a") %>%
+#' bco <- generate_example("HCV1a") %>%
 #'   convert_json() %>%
 #'   export_json(bco)
-#' bco %>% parse_bco()
-parse_bco <- function(x, ...) {
+#' bco %>% read_bco()
+read_bco <- function(x, ...) {
   bco <- jsonlite::fromJSON(x, ...)
 
   class(bco) <- c(class(bco), "bco")
