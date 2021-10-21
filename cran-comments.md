@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # biocompute 1.1.0
 
 ## Test environments
@@ -10,8 +9,6 @@
 ## R CMD check results
 
 There were no ERRORs or WARNINGs.
-=======
->>>>>>> master
 # biocompute 1.0.6
 
 ## Test environments

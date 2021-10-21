@@ -20,11 +20,7 @@ A list of class \code{bco.domain}
 \description{
 Non-default parameters customizing the computational flow
 which can affect the output of the calculations
-<<<<<<< HEAD
 (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/parametric-domain.md}{domain definition}).
-=======
-(\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/parametric-domain.md}{domain definition}).
->>>>>>> master
 }
 \examples{
 df_parametric <- data.frame(

@@ -19,11 +19,7 @@ A list of class \code{bco.domain}
 }
 \description{
 The usability domain
-<<<<<<< HEAD
 (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/usability-domain.md}{domain definition}).
-=======
-(\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/usability-domain.md}{domain definition}).
->>>>>>> master
 }
 \examples{
 text <- c(

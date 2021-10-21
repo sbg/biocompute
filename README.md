@@ -1,10 +1,6 @@
 # biocompute
 
-<<<<<<< HEAD
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
-=======
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
->>>>>>> master
 [![CRAN Version](https://www.r-pkg.org/badges/version/biocompute)](https://cran.r-project.org/package=biocompute)
 [![Travis build status](https://app.travis-ci.com/sbg/biocompute.svg?branch=master)](https://app.travis-ci.com/sbg/biocompute)
 [![Downloads from the RStudio CRAN mirror](https://cranlogs.r-pkg.org/badges/grand-total/biocompute)](https://cran.r-project.org/package=biocompute)

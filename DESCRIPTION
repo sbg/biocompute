@@ -1,11 +1,7 @@
 Package: biocompute
 Type: Package
 Title: Create and Manipulate BioCompute Objects
-<<<<<<< HEAD
 Version: 1.1.0
-=======
-Version: 1.0.6
->>>>>>> master
 Authors@R: c(
     person("Jeffrey", "Grover", email = "jeffrey.grover@sevenbridges.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6246-1767")),
     person("Soner", "Koc", email = "soner.koc@sevenbridges.com", role = c("aut"), comment = c(ORCID = "0000-0002-0772-6600")),
