@@ -1,8 +1,8 @@
-#' Compose BioCompute Object - Parametric Domain (v1.3.0)
+#' Compose BioCompute Object - Parametric Domain (v1.4.2)
 #'
 #' Non-default parameters customizing the computational flow
 #' which can affect the output of the calculations
-#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/parametric-domain.md}{domain definition}).
+#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/parametric-domain.md}{domain definition}).
 #'
 #' @param df Data frame. Variables include \code{param} (parameter names),
 #' \code{value} (value of the parameters), and \code{step}
@@ -13,7 +13,7 @@
 #' @importFrom jsonlite toJSON
 #'
 #' @rdname compose_parametric
-#' @export compose_parametric_v1.3.0
+#' @export compose_parametric_v1.4.2
 #'
 #' @examples
 #' df_parametric <- data.frame(
@@ -27,7 +27,7 @@
 #' )
 #'
 #' compose_parametric(df_parametric) %>% convert_json()
-compose_parametric_v1.3.0 <- function(df = NULL) {
+compose_parametric_v1.4.2 <- function(df = NULL) {
   if (!is.null(df)) {
     # mix types in values under the same key is probably bad practice
     # so we consciously choose to be more strict and make everything character
@@ -47,4 +47,4 @@ compose_parametric_v1.3.0 <- function(df = NULL) {
 
 #' @rdname compose_parametric
 #' @export compose_parametric
-compose_parametric <- compose_parametric_v1.3.0
+compose_parametric <- compose_parametric_v1.4.2

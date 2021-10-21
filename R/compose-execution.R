@@ -1,6 +1,6 @@
-#' Compose BioCompute Object - Execution Domain (v1.3.0)
+#' Compose BioCompute Object - Execution Domain (v1.4.2)
 #'
-#' @param script Character string. Points to internal or external
+#' @param script Character string or list. Points to internal or external
 #' references to an object that was used to perform computations
 #' for this BCO instance.
 #' @param script_driver Character string. Indicate what kind of
@@ -26,7 +26,7 @@
 #' @importFrom stats setNames
 #'
 #' @rdname compose_execution
-#' @export compose_execution_v1.3.0
+#' @export compose_execution_v1.4.2
 #'
 #' @examples
 #' script <- "https://example.com/workflows/antiviral_resistance_detection_hive.py"
@@ -62,7 +62,7 @@
 #' compose_execution(
 #'   script, script_driver, software_prerequisites, external_data_endpoints, environment_variables
 #' ) %>% convert_json()
-compose_execution_v1.3.0 <-
+compose_execution_v1.4.2 <-
   function(
            script = NULL, script_driver = NULL, software_prerequisites = NULL,
            external_data_endpoints = NULL, environment_variables = NULL) {
@@ -101,7 +101,7 @@ compose_execution_v1.3.0 <-
     }
 
     domain <- list(
-      "script" = script,
+      "script" = as.list(script),
       "script_driver" = script_driver,
       "software_prerequisites" = sp_lst,
       "external_data_endpoints" = ede_lst,
@@ -114,4 +114,4 @@ compose_execution_v1.3.0 <-
 
 #' @rdname compose_execution
 #' @export compose_execution
-compose_execution <- compose_execution_v1.3.0
+compose_execution <- compose_execution_v1.4.2

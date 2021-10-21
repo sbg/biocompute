@@ -1,4 +1,4 @@
-#' BioCompute Objects schema validator (v1.3.0)
+#' BioCompute Objects schema validator (v1.4.2)
 #'
 #' @param file Path to the BCO JSON file
 #'
@@ -7,11 +7,11 @@
 #' @importFrom jsonvalidate json_validate json_validator
 #'
 #' @rdname validate_schema
-#' @export validate_schema_v1.3.0
+#' @export validate_schema_v1.4.2
 #'
 #' @note JSON schema validators for BCO domains and complete BCO based on
 #' jsonvalidate. Refer to the
-#' \href{https://github.com/biocompute-objects/BCO_Specification/tree/main/ieee-2791-schema}{BioCompute Objects Schema}
+#' \href{https://github.com/biocompute-objects/BCO_Specification/tree/1.4.2/ieee-2791-schema}{BioCompute Objects Schema}
 #' for specific JSON schemas.
 #'
 #' @examples
@@ -20,11 +20,11 @@
 #'   convert_json() %>%
 #'   export_json(bco)
 #' bco %>% validate_schema()
-validate_schema_v1.3.0 <- function(file) {
+validate_schema_v1.4.2 <- function(file) {
   rule_text("0: Validating BioCompute Object")
 
   txt <- paste(readLines(file), collapse = "")
-  schema <- system.file("schemas/1.3.0-alpha/biocomputeobject.json", package = "biocompute")
+  schema <- system.file("schemas/1.4.2/2791object.json", package = "biocompute")
   v <- jsonvalidate::json_validator(schema)
   print(v(txt, verbose = TRUE, greedy = TRUE))
   cat("\n")
@@ -48,35 +48,29 @@ validate_schema_v1.3.0 <- function(file) {
   }
 
   rule_text("1: Validating Provenance Domain")
-  validate_domain("provenance_domain", "schemas/1.3.0-alpha/provenance_domain.json")
+  validate_domain("provenance_domain", "schemas/1.4.2/provenance_domain.json")
 
   rule_text("2: Validating Usability Domain")
-  validate_domain("usability_domain", "schemas/1.3.0-alpha/usability_domain.json")
+  validate_domain("usability_domain", "schemas/1.4.2/usability_domain.json")
 
-  rule_text("3.1: Validating Extension Domain (FHIR Extension)")
-  validate_domain_extension("fhir_extension", "schemas/1.3.0-alpha/extension_domain/fhir_extension.json")
+  rule_text("3: Validating Description Domain")
+  validate_domain("description_domain", "schemas/1.4.2/description_domain.json")
 
-  rule_text("3.2: Validating Extension Domain (SCM Extension)")
-  validate_domain_extension("scm_extension", "schemas/1.3.0-alpha/extension_domain/scm_extension.json")
+  rule_text("4: Validating Execution Domain")
+  validate_domain("execution_domain", "schemas/1.4.2/execution_domain.json")
 
-  rule_text("4: Validating Description Domain")
-  validate_domain("description_domain", "schemas/1.3.0-alpha/description_domain.json")
+  rule_text("5: Validating Parametric Domain")
+  validate_domain("parametric_domain", "schemas/1.4.2/parametric_domain.json")
 
-  rule_text("5: Validating Execution Domain")
-  validate_domain("execution_domain", "schemas/1.3.0-alpha/execution_domain.json")
+  rule_text("6: Validating I/O Domain")
+  validate_domain("io_domain", "schemas/1.4.2/io_domain.json")
 
-  rule_text("6: Validating Parametric Domain")
-  validate_domain("parametric_domain", "schemas/1.3.0-alpha/parametric_domain.json")
-
-  rule_text("7: Validating I/O Domain")
-  validate_domain("io_domain", "schemas/1.3.0-alpha/io_domain.json")
-
-  rule_text("8: Validating Error Domain")
-  validate_domain("error_domain", "schemas/1.3.0-alpha/error_domain.json")
+  rule_text("7: Validating Error Domain")
+  validate_domain("error_domain", "schemas/1.4.2/error_domain.json")
 
   invisible(NULL)
 }
 
 #' @rdname validate_schema
 #' @export validate_schema
-validate_schema <- validate_schema_v1.3.0
+validate_schema <- validate_schema_v1.4.2

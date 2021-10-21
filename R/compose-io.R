@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Input and Output Domain (v1.3.0)
+#' Compose BioCompute Object - Input and Output Domain (v1.4.2)
 #'
 #' This domain contains the list of global input and output files
 #' created by the computational workflow, excluding the intermediate files.
@@ -13,7 +13,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_io
-#' @export compose_io_v1.3.0
+#' @export compose_io_v1.4.2
 #'
 #' @examples
 #' input_subdomain <- data.frame(
@@ -46,7 +46,7 @@
 #' )
 #'
 #' compose_io(input_subdomain, output_subdomain) %>% convert_json()
-compose_io_v1.3.0 <- function(input = NULL, output = NULL) {
+compose_io_v1.4.2 <- function(input = NULL, output = NULL) {
   if (!is.null(input)) {
     input$access_time <- as.character(input$access_time, format = "%Y-%m-%dT%H:%M:%S%z")
     input_lst <- df2list(input)
@@ -79,4 +79,4 @@ compose_io_v1.3.0 <- function(input = NULL, output = NULL) {
 
 #' @rdname compose_io
 #' @export compose_io
-compose_io <- compose_io_v1.3.0
+compose_io <- compose_io_v1.4.2

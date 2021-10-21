@@ -1,10 +1,10 @@
-#' Compose BioCompute Object - Description Domain (v1.3.0)
+#' Compose BioCompute Object - Description Domain (v1.4.2)
 #'
 #' @param keywords Character vector. A list of keywords to aid in
 #' searchability and description of the experiment.
 #' @param xref Data frame. A list of the databases and/or ontology IDs
 #' that are cross-referenced in the BCO.
-#' @param platform Character string. Reference to a particular deployment
+#' @param platform Character string or list. Reference to a particular deployment
 #' of an existing platform where this BCO can be reproduced.
 #' @param pipeline_meta Data frame. Pipeline metadata.
 #' Variables include \code{step_number}, \code{name}, \code{description},
@@ -20,7 +20,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_description
-#' @export compose_description_v1.3.0
+#' @export compose_description_v1.4.2
 #'
 #' @examples
 #' keywords <- c("HCV1a", "Ledipasvir", "antiviral resistance", "SNP", "amino acid substitutions")
@@ -108,9 +108,9 @@
 #'   keywords, xref, platform,
 #'   pipeline_meta, pipeline_prerequisite, pipeline_input, pipeline_output
 #' ) %>% convert_json()
-compose_description_v1.3.0 <-
+compose_description_v1.4.2 <-
   function(
-           keywords = NULL, xref = NULL, platform = "Seven Bridges Platform",
+           keywords = NULL, xref = NULL, platform = list("Seven Bridges Platform"),
            pipeline_meta = NULL, pipeline_prerequisite = NULL,
            pipeline_input = NULL, pipeline_output = NULL) {
     if (is.null(keywords)) keywords <- character()
@@ -210,7 +210,7 @@ compose_description_v1.3.0 <-
     domain <- list(
       "keywords" = keywords,
       "xref" = xref_lst,
-      "platform" = platform,
+      "platform" = as.list(platform),
       "pipeline_steps" = ps_lst
     )
     class(domain) <- c(class(domain), "bco.domain")
@@ -220,4 +220,4 @@ compose_description_v1.3.0 <-
 
 #' @rdname compose_description
 #' @export compose_description
-compose_description <- compose_description_v1.3.0
+compose_description <- compose_description_v1.4.2

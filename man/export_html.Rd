@@ -24,7 +24,7 @@ Path to the output file
 Export BioCompute Object as HTML
 }
 \examples{
-\donttest{
+\dontrun{
 file_html <- tempfile(fileext = ".html")
 generate_example("HCV1a") \%>\%
   convert_json() \%>\%

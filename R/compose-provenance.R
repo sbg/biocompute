@@ -1,4 +1,4 @@
-#' Compose BioCompute Object - Provenance Domain (v1.3.0)
+#' Compose BioCompute Object - Provenance Domain (v1.4.2)
 #'
 #' @param name Character string. Name for the BCO.
 #' @param version Character string. Version of this BCO instance object.
@@ -19,7 +19,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_provenance
-#' @export compose_provenance_v1.3.0
+#' @export compose_provenance_v1.4.2
 #'
 #' @examples
 #' name <- "HCV1a ledipasvir resistance SNP detection"
@@ -69,7 +69,7 @@
 #'   name, version, review, derived_from, obsolete_after,
 #'   embargo, created, modified, contributors, license
 #' ) %>% convert_json()
-compose_provenance_v1.3.0 <-
+compose_provenance_v1.4.2 <-
   function(
            name = NULL, version = NULL, review = NULL, derived_from = NULL,
            obsolete_after = NULL, embargo = NULL, created = NULL,
@@ -136,4 +136,4 @@ compose_provenance_v1.3.0 <-
 
 #' @rdname compose_provenance
 #' @export compose_provenance
-compose_provenance <- compose_provenance_v1.3.0
+compose_provenance <- compose_provenance_v1.4.2

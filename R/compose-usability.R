@@ -1,7 +1,7 @@
-#' Compose BioCompute Object - Usability Domain (v1.3.0)
+#' Compose BioCompute Object - Usability Domain (v1.4.2)
 #'
 #' The usability domain
-#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/usability-domain.md}{domain definition}).
+#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/usability-domain.md}{domain definition}).
 #'
 #' @param text A character vector of free text values that could
 #' improves search-ability, provide specific scientific use cases,
@@ -10,7 +10,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_usability
-#' @export compose_usability_v1.3.0
+#' @export compose_usability_v1.4.2
 #'
 #' @examples
 #' text <- c(
@@ -34,7 +34,7 @@
 #' text %>%
 #'   compose_usability() %>%
 #'   convert_json()
-compose_usability_v1.3.0 <- function(text = NULL) {
+compose_usability_v1.4.2 <- function(text = NULL) {
   if (is.null(text)) {
     text_vec <- character()
   } else {
@@ -50,4 +50,4 @@ compose_usability_v1.3.0 <- function(text = NULL) {
 
 #' @rdname compose_usability
 #' @export compose_usability
-compose_usability <- compose_usability_v1.3.0
+compose_usability <- compose_usability_v1.4.2

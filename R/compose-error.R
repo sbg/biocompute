@@ -1,9 +1,9 @@
-#' Compose BioCompute Object - Error Domain (v1.3.0)
+#' Compose BioCompute Object - Error Domain (v1.4.2)
 #'
 #' The error domain can be used to determine what range of input
 #' returns outputs that are within the tolerance level defined
 #' in this subdomain and therefore can be used to optimize algorithm
-#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/error-domain.md}{domain definition}).
+#' (\href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/error-domain.md}{domain definition}).
 #'
 #' @param empirical Data frame. Variables include \code{key} and \code{value}.
 #' Each row is one item in the empirical error subdomain.
@@ -13,7 +13,7 @@
 #' @return A list of class \code{bco.domain}
 #'
 #' @rdname compose_error
-#' @export compose_error_v1.3.0
+#' @export compose_error_v1.4.2
 #'
 #' @examples
 #' empirical <- data.frame(
@@ -29,7 +29,7 @@
 #' )
 #'
 #' compose_error(empirical, algorithmic) %>% convert_json()
-compose_error_v1.3.0 <- function(empirical = NULL, algorithmic = NULL) {
+compose_error_v1.4.2 <- function(empirical = NULL, algorithmic = NULL) {
   empirical_lst <- if (!is.null(empirical)) as.list(setNames(as.character(empirical$value), as.character(empirical$key))) else list()
   algorithmic_lst <- if (!is.null(algorithmic)) as.list(setNames(as.character(algorithmic$value), as.character(algorithmic$key))) else list()
 
@@ -41,4 +41,4 @@ compose_error_v1.3.0 <- function(empirical = NULL, algorithmic = NULL) {
 
 #' @rdname compose_error
 #' @export compose_error
-compose_error <- compose_error_v1.3.0
+compose_error <- compose_error_v1.4.2

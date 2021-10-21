@@ -1,4 +1,4 @@
-#' BioCompute Objects checksum validator (v1.3.0)
+#' BioCompute Objects checksum validator (v1.4.2)
 #'
 #' @param file Path to the BCO JSON file
 #'
@@ -7,10 +7,10 @@
 #' @importFrom digest digest
 #'
 #' @rdname validate_checksum
-#' @export validate_checksum_v1.3.0
+#' @export validate_checksum_v1.4.2
 #'
 #' @note An SHA-256 checksum is
-#' \href{https://github.com/biocompute-objects/BCO_Specification/blob/1.3.0/top-level.md#203-checksum-checksum}{calculated and stored}
+#' \href{https://github.com/biocompute-objects/BCO_Specification/blob/1.4.2/docs/top-level.md#203-etag-etag}{calculated and stored}
 #' in the top level fields when a BioCompute Object is created. In reality,
 #' due to the delicate differences in how the data in JSON is represented,
 #' parsed, and handled in different languages, there could be false positives
@@ -22,13 +22,13 @@
 #'   convert_json() %>%
 #'   export_json(bco)
 #' bco %>% validate_checksum()
-validate_checksum_v1.3.0 <- function(file) {
+validate_checksum_v1.4.2 <- function(file) {
   rule_text("Loading BioCompute Object")
   lst <- jsonlite::read_json(file, simplifyVector = TRUE)
   lst$bco_spec_version <- NULL
-  lst$bco_id <- NULL
-  checksum_old <- lst$checksum
-  lst$checksum <- NULL
+  lst$object_id <- NULL
+  checksum_old <- lst$etag
+  lst$etag <- NULL
 
   rule_text("Validating Checksum")
   json <- convert_json(lst)
@@ -54,4 +54,4 @@ validate_checksum_v1.3.0 <- function(file) {
 
 #' @rdname validate_checksum
 #' @export validate_checksum
-validate_checksum <- validate_checksum_v1.3.0
+validate_checksum <- validate_checksum_v1.4.2

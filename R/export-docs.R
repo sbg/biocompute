@@ -13,7 +13,7 @@
 #' @export export_pdf
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' file_pdf <- tempfile(fileext = ".pdf")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
@@ -43,7 +43,7 @@ export_pdf <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
 #' @export export_html
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' file_html <- tempfile(fileext = ".html")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
@@ -73,7 +73,7 @@ export_html <- function(x, file, wrap = FALSE, linewidth = 80, ...) {
 #' @export export_word
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' file_docx <- tempfile(fileext = ".docx")
 #' generate_example("HCV1a") %>%
 #'   convert_json() %>%
