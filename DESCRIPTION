@@ -1,16 +1,16 @@
 Package: biocompute
 Type: Package
 Title: Create and Manipulate BioCompute Objects
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: c(
-    person("Jeffrey", "Grover", email = "jeffrey.grover@sevenbridges.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6246-1767")),
-    person("Soner", "Koc", email = "soner.koc@sevenbridges.com", role = c("aut"), comment = c(ORCID = "0000-0002-0772-6600")),
+    person("Soner", "Koc", email = "soner.koc@sevenbridges.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0772-6600")),
+    person("Jeffrey", "Grover", email = "jeffrey.grover@sevenbridges.com", role = c("aut"), comment = c(ORCID = "0000-0001-6246-1767")),
     person("Nan", "Xiao", role = c("aut"), comment = c(ORCID = "0000-0002-0250-5673")),
     person("Dennis", "Dean", email = "dennis.dean@sevenbridges.com", role = c("aut"),
            comment = c(ORCID = "0000-0002-7621-9717")),
     person("Seven Bridges Genomics", role = c("cph", "fnd"))
     )
-Maintainer: Jeffrey Grover <jeffrey.grover@sevenbridges.com>
+Maintainer: Soner Koc <soner.koc@sevenbridges.com>
 Description: Tools to create, validate, and export BioCompute Objects
     described in King et al. (2019) <doi:10.17605/osf.io/h59uh>.
     Users can encode information in data frames, and compose
@@ -40,4 +40,4 @@ Imports:
     rmarkdown
 Suggests:
     knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

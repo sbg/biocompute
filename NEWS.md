@@ -1,3 +1,9 @@
+# biocompute 1.1.1
+
+## Improvements
+
+- Update package maintainer.
+
 # biocompute 1.1.0
 
 ## Improvements
