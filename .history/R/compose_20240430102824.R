@@ -36,7 +36,7 @@ compose_v1.4.2 <-
       "object_id" = tlf["object_id"],
       "etag" = tlf["etag"],
       "provenance_domain" = provenance,
-      "usability_domain" = I(usability),
+      "usability_domain" = usability,
       "extension_domain" = extension,
       "description_domain" = description,
       "execution_domain" = execution,
