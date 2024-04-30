@@ -94,9 +94,7 @@ compose_provenance_v1.4.2 <-
 
     derived_from <- if (!is.null(derived_from)) as.character(derived_from) else character()
     obsolete_after <- if (!is.null(obsolete_after)) as.character(obsolete_after, format = "%Y-%m-%dT%H:%M:%S%z") else character()
-    embargo <- c( "start_time" = as.POSIXct(embargo[1], format = "%Y-%m-%dT%H:%M:%S%z"), "end_time" = as.POSIXct(embargo[2], format = "%Y-%m-%dT%H:%M:%S%z")) 
-    embargo <- if (!is.null(embargo)) as.character(embargo, format = "%Y-%m-%dT%H:%M:%S%z") else character() 
-    embargo <- convert_json(embargo)
+    embargo <- if (!is.null(embargo)) as.character(embargo, format = "%Y-%m-%dT%H:%M:%S%z") else character()
     created <- if (!is.null(created)) as.character(created, format = "%Y-%m-%dT%H:%M:%S%z") else character()
     modified <- if (!is.null(modified)) as.character(modified, format = "%Y-%m-%dT%H:%M:%S%z") else character()
 
