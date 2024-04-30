@@ -14,7 +14,7 @@
 #' @examples
 #' compose_description() %>% convert_json()
 #' generate_example("minimal") %>% convert_json()
-convert_json <- function(x, pretty = TRUE, auto_unbox = TRUE, na = "string", ...) {
+convert_json <- function(x, pretty = FALSE, auto_unbox = FALSE, na = "string", ...) {
   jsonlite::toJSON(x, pretty = pretty, auto_unbox = auto_unbox, na = na, ...)
 }
 
