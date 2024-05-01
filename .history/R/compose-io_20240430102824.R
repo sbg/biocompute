@@ -51,7 +51,7 @@ compose_io_v1.4.2 <- function(input = NULL, output = NULL) {
     input$access_time <- as.character(input$access_time, format = "%Y-%m-%dT%H:%M:%S%z")
     input_lst <- df2list(input)
     for (i in 1:length(input_lst)) {
-      input_lst[[i]] <- list("uri" = unbox(input_lst[[i]]))
+      input_lst[[i]] <- list("uri" = input_lst[[i]])
     }
   } else {
     input_lst <- list()
