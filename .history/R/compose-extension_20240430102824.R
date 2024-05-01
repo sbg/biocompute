@@ -35,10 +35,8 @@ compose_extension_v1.4.2 <- function(fhir = NULL, scm = NULL) {
   if (is.null(fhir)) fhir_lst <- list() else fhir_lst <- fhir
   if (is.null(scm)) scm_lst <- list() else scm_lst <- scm
 
-  domain <- c(
-    "extension_schema": "https://w3id.org/biocompute/extension_domain/1.1.0/fhir/fhir_extension.json",
+  domain <- list(
     "fhir_extension" = fhir_lst,
-    "extension_schema": "https://w3id.org/biocompute/extension_domain/1.1.0/scm/scm_extension.json",
     "scm_extension" = scm_lst
   )
   class(domain) <- c(class(domain), "bco.domain")
