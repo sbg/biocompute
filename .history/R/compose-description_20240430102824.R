@@ -139,7 +139,7 @@ compose_description_v1.4.2 <-
       # fill meta
       for (i in 1:length(ps_lst)) {
         ps_lst[[i]] <- list(
-          "step_number" = as.integer(unlist(unname(ps_lst[[i]]["step_number"]))),
+          "step_number" = unlist(unname(ps_lst[[i]]["step_number"])),
           "name" = unlist(unname(ps_lst[[i]]["name"])),
           "description" = unlist(unname(ps_lst[[i]]["description"])),
           "version" = unlist(unname(ps_lst[[i]]["version"]))
