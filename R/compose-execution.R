@@ -92,7 +92,7 @@ compose_execution_v1.4.2 <-
     }
 
     if (is.null(environment_variables)) {
-      ev_lst <- list()
+      ev_lst <- c()
     } else {
       ev_lst <- as.list(setNames(
         as.character(environment_variables$value),
