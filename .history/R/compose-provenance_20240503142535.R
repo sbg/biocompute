@@ -110,7 +110,7 @@ compose_provenance_v1.4.2 <-
             "name" = unlist(unname(ctb_lst[[i]]["name"])),
             "affiliation" = unlist(unname(ctb_lst[[i]]["affiliation"])),
             "email" = unlist(unname(ctb_lst[[i]]["email"])),
-            "contribution" = unlist(unname(str_split(ctb_lst[[i]]["contribution"], ", ", n = Inf))),
+            "contribution" = unlist(unname(strsplit(gsub(" ", "", ctb_lst[[i]]["contribution"]), split=','))),
             "orcid" = unlist(unname(ctb_lst[[i]]["orcid"]))
           )
       }
