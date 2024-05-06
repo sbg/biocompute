@@ -105,16 +105,12 @@ compose_provenance_v1.4.2 <-
       ctb <- contributors
       ctb_lst <- df2list(ctb)
       for (i in 1:length(ctb_lst)) {
-        ctb_con_str <- ctb_lst[[i]]["contribution"]
-        ctb_con <-  str_split(gsub(" ", "", ctb_con_str), ",", n=Inf)
-        ctb_con <- unlist(unname(ctb_con))
-        ctb_con <- if(length(ctb_con) > 1) ctb_con else list(ctb_con)
         ctb_lst[[i]] <-
           list(
             "name" = unlist(unname(ctb_lst[[i]]["name"])),
             "affiliation" = unlist(unname(ctb_lst[[i]]["affiliation"])),
             "email" = unlist(unname(ctb_lst[[i]]["email"])),
-            "contribution" = ctb_con,
+            "contribution" = unname(ctb_lst[[i]]["contribution"]),
             "orcid" = unlist(unname(ctb_lst[[i]]["orcid"]))
           )
       }
