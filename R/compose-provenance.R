@@ -94,7 +94,8 @@ compose_provenance_v1.4.2 <-
 
     derived_from <- if (!is.null(derived_from)) as.character(derived_from) else character()
     obsolete_after <- if (!is.null(obsolete_after)) as.character(obsolete_after, format = "%Y-%m-%dT%H:%M:%S%z") else character()
-    embargo <- if (!is.null(embargo)) as.character(embargo, format = "%Y-%m-%dT%H:%M:%S%z") else character()
+    embargo <- if (!is.null(embargo)) list("start_time" = as.character(embargo[1], format = "%Y-%m-%dT%H:%M:%S%z"), "end_time" = as.character(embargo[2], format = "%Y-%m-%dT%H:%M:%S%z")) else character()
+    #embargo <- convert_json(embargo, pretty=FALSE)
     created <- if (!is.null(created)) as.character(created, format = "%Y-%m-%dT%H:%M:%S%z") else character()
     modified <- if (!is.null(modified)) as.character(modified, format = "%Y-%m-%dT%H:%M:%S%z") else character()
 
@@ -104,12 +105,16 @@ compose_provenance_v1.4.2 <-
       ctb <- contributors
       ctb_lst <- df2list(ctb)
       for (i in 1:length(ctb_lst)) {
+        ctb_con_str <- ctb_lst[[i]]["contribution"]
+        ctb_con <-  str_split(gsub(" ", "", ctb_con_str), ",", n=Inf)
+        ctb_con <- unlist(unname(ctb_con))
+        ctb_con <- if(length(ctb_con) > 1) ctb_con else list(ctb_con)
         ctb_lst[[i]] <-
           list(
             "name" = unlist(unname(ctb_lst[[i]]["name"])),
             "affiliation" = unlist(unname(ctb_lst[[i]]["affiliation"])),
             "email" = unlist(unname(ctb_lst[[i]]["email"])),
-            "contribution" = unlist(unname(ctb_lst[[i]]["contribution"])),
+            "contribution" = ctb_con,
             "orcid" = unlist(unname(ctb_lst[[i]]["orcid"]))
           )
       }

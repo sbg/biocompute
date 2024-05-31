@@ -37,6 +37,7 @@ compose_extension_v1.4.2 <- function(fhir = NULL, scm = NULL) {
 
   domain <- list(
     "fhir_extension" = fhir_lst,
+    "extension_schema" = "https://w3id.org/biocompute/extension_domain/1.1.0/scm/scm_extension.json",
     "scm_extension" = scm_lst
   )
   class(domain) <- c(class(domain), "bco.domain")

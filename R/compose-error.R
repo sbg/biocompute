@@ -30,8 +30,8 @@
 #'
 #' compose_error(empirical, algorithmic) %>% convert_json()
 compose_error_v1.4.2 <- function(empirical = NULL, algorithmic = NULL) {
-  empirical_lst <- if (!is.null(empirical)) as.list(setNames(as.character(empirical$value), as.character(empirical$key))) else list()
-  algorithmic_lst <- if (!is.null(algorithmic)) as.list(setNames(as.character(algorithmic$value), as.character(algorithmic$key))) else list()
+  empirical_lst <- if (!is.null(empirical)) as.list(setNames(as.character(empirical$value), as.character(empirical$key))) else c()
+  algorithmic_lst <- if (!is.null(algorithmic)) as.list(setNames(as.character(algorithmic$value), as.character(algorithmic$key))) else c()
 
   domain <- list("empirical_error" = empirical_lst, "algorithmic_error" = algorithmic_lst)
   class(domain) <- c(class(domain), "bco.domain")
