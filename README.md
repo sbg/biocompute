@@ -11,7 +11,7 @@ Users can encode information in data frames, and compose BioCompute Objects (BCO
 
 Check out the [introduction vignette](https://sbg.github.io/biocompute/articles/intro.html) or the [case study vignette](https://sbg.github.io/biocompute/articles/case-study.html) to get started.
 
-To see the library used in a real application, refer to the [BCO App repository](https://github.com/sbg/bco-app).
+To see the library used in a real use case, refer to the [BCO App repository](https://github.com/sbg/bco-app).
 
 ## Installation
 
