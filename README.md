@@ -28,7 +28,7 @@ Or try the development version on GitHub:
 remotes::install_github("sbg/biocompute")
 ```
 
-Note: the code in this repository is the most up to date, and is not available for install in CRAN. If you are looking for a library that is more consistent with the BCO standard, it is recommended you install the development version from this repository.
+Note: the code in this repository is the most up to date, and this version is not available for install in CRAN. If you are looking for a version of the library that is more consistent with the BCO standard, it is recommended you install the development version from this repository.
 
 ## Copyright
 
